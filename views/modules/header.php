@@ -1,4 +1,4 @@
-<header class="main-header">
+<header class="main-header" >
 	
 	<!--==========================
 	=            logo            =
@@ -8,7 +8,7 @@
 		<!-- mini logo -->
 		<span class="logo-mini">
 
-			<img  class="img-responsive" src="views/img/template/cog-logo-sm.jpg" style="padding:10px; font-size: 50px">
+			<img  class="img-responsive" src="views/img/template/cog-logo-sm.jpg" style="padding:10px; ">
 			<!-- <img  class="img-responsive" src="views/img/template/icono-blanco.png" style="padding:10px; font-size: 50px"> -->
 
 		</span>
@@ -17,7 +17,7 @@
 		<span class="logo-lg">
 
 			<!-- <img class="img-responsive" src="views/img/template/logo-blanco-lineal.png" style="padding: 10px 0;"> -->
-			<img class="img-responsive" src="views/img/template/cgx-logo-lg.png" style="padding: 3px 0;">
+			<img class="img-responsive" src="views/img/template/cgx-logo-lg.png" style="padding: 3px 0; width: 180px">
 
 
 		</span>

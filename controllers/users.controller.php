@@ -5,7 +5,7 @@ class ControllerUsers {
 	// User Login
 	
 	
-	public function ctrUserLogin (){
+	static public function ctrUserLogin (){
 
 		if (isset($_POST["loginUser"])){
 
