@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +70,7 @@ echo '<div class="wrapper">';
        $_GET["root"] == "sales" ||
        $_GET["root"] == "manage-sales" ||
        $_GET["root"] == "create-sales" ||
+       $_GET["root"] == "logout" ||
        $_GET["root"] == "sales-report" ){
       include "modules/".$_GET["root"].".php";   
 

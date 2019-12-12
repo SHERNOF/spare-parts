@@ -20,6 +20,7 @@ class ControllerUsers {
 			  	$item = "user";
 			  	$value = $_POST["loginUser"];
 			  	$answer = UsersModel::mdlShowUsers($table, $item, $value);
+
 	
 
 			  	// var_dump($answer["user"]
@@ -28,7 +29,16 @@ class ControllerUsers {
 
 			  	if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $_POST["loginPassword"]){
 
-			  		echo '<br><div class="alert alert-success">You\'re the man!!! Welcome to the system</div>';
+			  		// this is from tempplate.php under \views\plugins
+
+			  		$_SESSION["startSession"] = "ok";
+			  		echo '<script>
+
+			  		window.location = "home";
+
+			  		</script>';
+
+
 
 			  	} else {
 			  		echo '<br><div class="alert alert-danger">Login error, please try again</div>';
