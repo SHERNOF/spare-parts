@@ -1,199 +1,409 @@
+
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
 
-        User Management
+  <section class="content-header">
 
-        <!-- <small>Manage Users</small> -->
+    <h1>
 
-      </h1>
+      User management
 
-      <ol class="breadcrumb">
+    </h1>
 
-        <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
+    <ol class="breadcrumb">
 
-        <li class="active">Dashboard</li>
+      <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
 
-      </ol>
-      
-    </section>
+      <li class="active">Dashboard</li>
 
+    </ol>
 
-    <!-- Main content -->
-    <section class="content">
+  </section>
 
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
+  <section class="content">
 
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modelAddUser" >
-              Add User
-            </button>
-          <!-- <h3 class="box-title">Title</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div> -->
-        </div>
+    <div class="box">
 
-        <div class="box-body">
+      <div class="box-header with-border">
 
-            <table class="table table-bordered table-striped dt-responsive tables"> 
-                <thead> 
-                    <tr>  
-                        <th style="width:10px">#</th>
-                        <th>Number</th>
-                        <th>User</th>
-                        <th>Photo</th>
-                        <th>Profile</th>
-                        <th>Status</th>
-                        <th>Last Login</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                  <tbody> 
-                      <tr>  
-                        <td>1</td>
-                        <td>User Administrator</td>
-                        <td>admin</td>
-                        <td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>Administrator</td>
-                        <td><button class="btn btn-success btn-xs">Activated</button></td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addUser">
 
-                      <tr>  
-                        <td>1</td>
-                        <td>User Administrator</td>
-                        <td>admin</td>
-                        <td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>Administrator</td>
-                        <td><button class="btn btn-danger btn-xs">Deactivated</button></td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
+          Add user
 
+        </button>
 
-                     <tr>  
-                        <td>1</td>
-                        <td>User Administrator</td>
-                        <td>admin</td>
-                        <td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>Administrator</td>
-                        <td><button class="btn btn-success btn-xs">Activated</button></td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
-
-                  </tbody>
-
-            </table>
-          <!-- Start creating your amazing application! -->
-        </div>
       </div>
-    </section>
-  </div>
 
+      <div class="box-body">
+
+        <table class="table table-bordered table-striped dt-responsive tables" width="100%">
+       
+          <thead>
+           
+           <tr>
+             
+             <th style="width:10px">#</th>
+             <th>Name</th>
+             <th>Username</th>
+             <th>Photo</th>
+             <th>Profile</th>
+             <th>Status</th>
+             <th>Last login</th>
+             <th>Actions</th>
+
+           </tr> 
+
+          </thead>
+
+          <tbody>
+
+            <?php
+
+              $item = null; 
+              $value = null;
+
+              $users = ControllerUsers::ctrShowUsers($item, $value);
+
+              // var_dump($users);
+
+              foreach ($users as $key => $value) {
+
+                echo '
+
+                  <tr>
+                    <td>'.($key+1).'</td>
+                    <td>'.$value["name"].'</td>
+                    <td>'.$value["user"].'</td>';
+
+                    if ($value["photo"] != ""){
+
+                      echo '<td><img src="'.$value["photo"].'" class="img-thumbnail" width="40px"></td>';
+
+                    }else{
+
+                      echo '<td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                    
+                    }
+
+                    echo '<td>'.$value["profile"].'</td>';
+
+                    if($value["status"] != 0){
+
+                      echo '<td><button class="btn btn-success btnActivate btn-xs" userId="'.$value["id"].'" userStatus="0">Activated</button></td>';
+
+                    }else{
+
+                      echo '<td><button class="btn btn-danger btnActivate btn-xs" userId="'.$value["id"].'" userStatus="1">Deactivated</button></td>';
+                    }
+                    
+                    echo '<td>'.$value["lastLogin"].'</td>
+
+                    <td>
+
+                      <div class="btn-group">
+                          
+                        <button class="btn btn-warning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#editUser"><i class="fa fa-pencil"></i></button>
+
+                        <button class="btn btn-danger btnDeleteUser" userId="'.$value["id"].'" username="'.$value["user"].'" userPhoto="'.$value["photo"].'"><i class="fa fa-times"></i></button>
+
+                      </div>  
+
+                    </td>
+
+                  </tr>';
+              }
+
+            ?>
+
+          </tbody>
+
+        </table>
+
+      </div>
+    
+    </div>
+
+  </section>
+
+</div>
+
+<!--=====================================
+=            module add user            =
+======================================-->
 
 <!-- Modal -->
+<div id="addUser" class="modal fade" role="dialog">
 
-<!-- The Modal -->
-<div class="modal fade" id="modelAddUser" role="dialog">
   <div class="modal-dialog">
+
+    <!-- Modal content-->
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="POST" enctype="multipart/form-data">
 
-      <!-- Modal Header -->
-      <div class="modal-header" style="background: #3c8dbc; color: white">
-        <h4 class="modal-title">Nice Sherwin</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+        <!--=====================================
+        HEADER
+        ======================================-->
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="box-body">
+        <div class="modal-header" style="background: #3c8dbc; color: #fff">
 
-          <!-- for entry fir number -->
-          <div class="form-group">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Add user</h4>
+
+        </div>
+
+        <!--=====================================
+        BODY
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!--Input name -->
+            <div class="form-group">
+
               <div class="input-group">
+
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" name="newNumber" placeholder="Insert Number" required="">
-              </div>
-          </div>    
 
-              <!-- user entry -->
-          <div class="form-group">
+                <input class="form-control input-lg" type="text" name="newName" placeholder="Add name" required>
+
+              </div>
+
+            </div>
+
+            <!-- input username -->
+            <div class="form-group">
+
               <div class="input-group">
+
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" class="form-control input-lg" name="newUser" placeholder="Add User" required="">
-              </div>
-          </div>
 
-          <!-- password entry -->
-          <div class="form-group">
+                <input class="form-control input-lg" type="text" id="newUser" name="newUser" placeholder="Add Usere" required>
+
+              </div>
+
+            </div>
+
+            <!-- input password -->
+            <div class="form-group">
+
               <div class="input-group">
+
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="text" class="form-control input-lg" name="newPassword" placeholder="Input password" required="">
-              </div>
-          </div>
 
-            <!-- user profile entry -->
-          <div class="form-group">
+                <input class="form-control input-lg" type="password" name="newPasswd" placeholder="Add password" required>
+
+              </div>
+
+            </div>
+
+            <!-- input profile -->
+            <div class="form-group">
+
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
                 <select class="form-control input-lg" name="newProfile">
-                
-                  <option value="">Select Profile</option>
-                  <option value="Administrator">Administrator</option>
-                  <option value="Special">Special</option>
-                  <option value="Seller">Seller</option>
+
+                  <option value="">Select profile</option>
+                  <option value="administrator">Administrator</option>
+                  <option value="special">Special</option>
+                  <option value="seller">Seller</option>
 
                 </select>
+
               </div>
+
+            </div>
+
+            <!-- Uploading image -->
+            <div class="form-group">
+
+              <div class="panel">Upload image</div>
+
+              <input class="newPics" type="file" name="newPhoto">
+
+              <p class="help-block">Maximum size 2Mb</p>
+
+              <img class="thumbnail preview" src="views/img/users/default/anonymous.png" width="100px">
+
+            </div>
+
           </div>
 
-            <!-- pictures entry -->
-          <div class="form-group">
-            <div class="panel">Upload Profile Photo</div>
-            <input type="file" id="newPhoto" name="newPhoto">
-            <p class="help-block">Only max of 200MB per Photo</p>
-            <img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="100px">
-          </div>          
-
-
-  
         </div>
-      </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-      </div>
+        <!--=====================================
+        FOOTER
+        ======================================-->
 
-    </form>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+          <button type="submit" class="btn btn-primary">Save</button>
+          
+        </div>
+
+          <?php
+            $createUser = new ControllerUsers();
+            $createUser -> ctrCreateUser();
+          ?>
+
+      </form>
 
     </div>
+
   </div>
+
 </div>
+<!--====  End of module add user  ====-->
+
+<!--=====================================
+=            module edit user            =
+======================================-->
+
+<!-- Modal -->
+<div id="editUser" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <form role="form" method="POST" enctype="multipart/form-data">
+
+        <!--=====================================
+        HEADER
+        ======================================-->
+
+        <div class="modal-header" style="background: #3c8dbc; color: #fff">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Edit user</h4>
+
+        </div>
+
+        <!--=====================================
+        BODY
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!--Input name -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                <input class="form-control input-lg" type="text" id="EditName" name="EditName" placeholder="Edit name" required>
+
+              </div>
+
+            </div>
+
+            <!-- input username -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                <input class="form-control input-lg" type="text" id="EditUser" name="EditUser" placeholder="Edit username" readonly>
+
+              </div>
+
+            </div>
+
+            <!-- input password -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                <input class="form-control input-lg" type="password" name="EditPasswd" placeholder="Add new password">
+
+                <input type="hidden" name="currentPasswd" id="currentPasswd">
+
+              </div>
+
+            </div>
+
+            <!-- input profile -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                <select class="form-control input-lg" name="EditProfile">
+
+                  <option value="" id="EditProfile"></option>
+                  <option value="administrator">Administrator</option>
+                  <option value="special">Special</option>
+                  <option value="seller">Seller</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- Uploading image -->
+            <div class="form-group">
+
+              <div class="panel">Upload image</div>
+
+              <input class="newPics" type="file" name="editPhoto">
+
+              <p class="help-block">Maximum size 2Mb</p>
+
+              <img class="thumbnail preview" src="views/img/users/default/anonymous.png" alt="" width="100px">
+
+              <input type="hidden" name="currentPicture" id="currentPicture">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--=====================================
+        FOOTER
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+          <button type="submit" class="btn btn-primary">Edit User</button>
+          
+        </div>
+
+          <?php
+            $editUser = new ControllerUsers();
+            $editUser -> ctrEditUser();
+          ?>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<?php
+
+  $deleteUser = new ControllerUsers();
+  $deleteUser -> ctrDeleteUser();
+
+?> 
