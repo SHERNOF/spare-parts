@@ -3,7 +3,7 @@
 // this is the db connection syntax
 
 class Connection {
-	public function connect(){
+	static public function connect(){
 		$link = new PDO("mysql:host=localhost;dbname=spr", "root", "");
 
 		$link -> exec("set names utf8");

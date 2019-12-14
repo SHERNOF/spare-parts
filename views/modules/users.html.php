@@ -1,4 +1,4 @@
-<div class="content-wrapper" >
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -27,7 +27,7 @@
       <div class="box">
         <div class="box-header with-border">
 
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modelAddUser" >
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addUser" >
               Add User
             </button>
           <!-- <h3 class="box-title">Title</h3>
@@ -43,8 +43,11 @@
         <div class="box-body">
 
             <table class="table table-bordered table-striped dt-responsive tables"> 
+
                 <thead> 
+
                     <tr>  
+
                         <th style="width:10px">#</th>
                         <th>Number</th>
                         <th>User</th>
@@ -52,10 +55,14 @@
                         <th>Profile</th>
                         <th>Status</th>
                         <th>Last Login</th>
-                        <th>Action</th>
+                        <th>Actions</th>
+
                     </tr>
+
                 </thead>
+
                   <tbody> 
+
                       <tr>  
                         <td>1</td>
                         <td>User Administrator</td>
@@ -118,16 +125,20 @@
 <!-- Modal -->
 
 <!-- The Modal -->
-<div class="modal fade" id="modelAddUser" role="dialog">
+<div class="modal fade" id="addUser" role="dialog">
+
   <div class="modal-dialog">
+
+  
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="POST" enctype="multipart/form-data">
 
       <!-- Modal Header -->
-      <div class="modal-header" style="background: #3c8dbc; color: white">
-        <h4 class="modal-title">Nice Sherwin</h4>
+      <div class="modal-header" style="background: #3c8dbc; color: #fff">
+        
         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add User</h4>
       </div>
 
       <!-- Modal body -->
@@ -138,7 +149,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" name="newNumber" placeholder="Insert Number" required="">
+                <input type="text" class="form-control input-lg" name="newName" placeholder="Add Name" required>
               </div>
           </div>    
 
@@ -146,7 +157,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" class="form-control input-lg" name="newUser" placeholder="Add User" required="">
+                <input type="text" class="form-control input-lg" name="newUser" placeholder="Add username" required>
               </div>
           </div>
 
@@ -154,7 +165,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="text" class="form-control input-lg" name="newPassword" placeholder="Input password" required="">
+                <input type="password" class="form-control input-lg" name="newPasswd" placeholder="Input password" required>
               </div>
           </div>
 
@@ -191,6 +202,11 @@
         <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save Changes</button>
       </div>
+
+     <?php
+      $createUser = new ControllerUsers();
+      $createUser -> ctrCreateUser();
+      ?> 
 
     </form>
 

@@ -33,6 +33,8 @@ session_start();
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="views/dist/css/skins/_all-skins.min.css">
 
+  <!-- <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet"> -->
+
  
 
   <!-- Google Font -->
@@ -58,6 +60,9 @@ session_start();
    <script src="views/plugins/sweetalert2/sweetalert2.all.js"></script>
 
  
+   
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script> -->
+
 </head>
 
 <!--=====================================

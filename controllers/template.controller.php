@@ -1,5 +1,5 @@
 <?php
-class ControllersTemplate {
+class ControllerTemplate {
 	 static public function ctrTemplate(){
 	 	include "views/template.php";
 	 }
