@@ -53,40 +53,43 @@ class ControllerUsers {
 
 					if (isset($_POST["newUser"])) {
 
+						// if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newName"]) &&
+						// 	preg_match('/^[a-zA-Z0-9]+$/', $_POST["newUser"]) &&
+						// 	preg_match('/^[a-zA-Z0-9]+$/', $_POST["newPasswd"])){
+
 						if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newName"]) &&
 							preg_match('/^[a-zA-Z0-9]+$/', $_POST["newUser"]) &&
 							preg_match('/^[a-zA-Z0-9]+$/', $_POST["newPasswd"])){
 
-							$table = 'users';
+							$table = "users";
 								
-							$data = array('name' => $_POST["newName"],
-											'user' => $_POST["newUser"],
-											'password' => $_POST["newPasswd"],
-											'profile' => $_POST["newProfile"]);
+							$data = array("name" => $_POST["newName"],
+											"user" => $_POST["newUser"],
+											"password" => $_POST["newPasswd"],
+											"profile" => $_POST["newProfile"]);
 
 								$answer = UsersModel::mdlAddUser($table, $data);
 
-								if ($answer == 'ok') {
+								if ($answer == "ok") {
 				
-										echo '<script>
-										
-										Swal({
-											type: "success",
-											title: "¡User added succesfully!",
-											showConfirmButton: true,
-											confirmButtonText: "Close",
-											// CloseOnConfirm; false
-				
-										}).then((result) => {
-				
-											if(result.value){
-				
-												window.location = "users";
-											}
-				
-										});
-										
-										</script>';
+									echo '<script>
+						
+									swal({
+										type: "success",
+										title: "¡User added succesfully!",
+										showConfirmButton: true,
+										confirmButtonText: "Close"
+			
+									}).then(function(result){
+			
+										if(result.value){
+			
+											window.location = "users";
+										}
+			
+									});
+									
+									</script>';
 								}
 
 
@@ -94,27 +97,25 @@ class ControllerUsers {
 
 
 							echo '<script>
-
+					
 							swal({
-
-									type: "error",
-									title: "The user cant go blank or special characters or blank field",
-									showConfirmButton: true,
-									confirmButtonText: "Close",
-									// CloseOnConfirm; false
-							
-								}).then(function(result) {
-
-									if(result.value) {
+								type: "error",
+								title: "No especial characters or blank fields",
+								showConfirmButton: true,
+								confirmButtonText: "Close"
+					
+								}).then(function(result){
+		
+									if(result.value){
+		
 										window.location = "users";
 									}
-
-									});
-
-							</script>';
+		
+								});
+							
+						</script>';
 
 						}
 					}
-
 				}
 			}

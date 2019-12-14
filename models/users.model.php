@@ -29,8 +29,9 @@ class UsersModel{
 
 		static public function mdlAddUser($table, $data) {
 
-			$stmt = Connection::connect()->prepare("INSERT INTO $table(name, user, password, profile) VALUES (:name, :user, :password, :profile)");			
+			$stmt = Connection::connect()->prepare("INSERT INTO $table(name, user, password, profile) VALUES (:name, :user, :password, :profile)");
 
+			
 			$stmt -> bindParam(":name", $data["name"], PDO::PARAM_STR);
 			
 			$stmt -> bindParam(":user", $data["user"], PDO::PARAM_STR);
@@ -38,22 +39,20 @@ class UsersModel{
 			$stmt -> bindParam(":password", $data["password"], PDO::PARAM_STR);
 			
 			$stmt -> bindParam(":profile", $data["profile"], PDO::PARAM_STR);
-			
-			// if ($stmt->execute()) {
-			if ($stmt->execute()) {
 
-				return 'ok';
+			if ($stmt -> execute()) {
+
+				return "ok";
 			
 			} else {
 
 				return 'error';
 			}
 
-			$stmt -> close();
+			$stmt->close();
 
 			$stmt = null;
 
 
-		}
-
+	}
 }
