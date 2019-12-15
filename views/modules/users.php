@@ -199,9 +199,9 @@
             <!-- pictures entry -->
           <div class="form-group">
             <div class="panel">Upload Profile Photo</div>
-            <input type="file" id="newPhoto" name="newPhoto">
-            <p class="help-block">Only max of 2MB per Photo</p>
-            <img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="100px">
+            <input type="file" class="newPhoto" name="newPhoto">
+            <p class="help-block">Only max of 3MB per Photo</p>
+            <img src="views/img/users/default/anonymous.png" class="img-thumbnail preview" width="100px">
           </div>          
 
 

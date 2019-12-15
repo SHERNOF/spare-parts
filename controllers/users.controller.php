@@ -53,67 +53,161 @@ class ControllerUsers {
 
 					if (isset($_POST["newUser"])) {
 
-						// if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newName"]) &&
-						// 	preg_match('/^[a-zA-Z0-9]+$/', $_POST["newUser"]) &&
-						// 	preg_match('/^[a-zA-Z0-9]+$/', $_POST["newPasswd"])){
-
 						if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newName"]) &&
 							preg_match('/^[a-zA-Z0-9]+$/', $_POST["newUser"]) &&
 							preg_match('/^[a-zA-Z0-9]+$/', $_POST["newPasswd"])){
 
-							$table = "users";
-								
-							$data = array("name" => $_POST["newName"],
-											"user" => $_POST["newUser"],
-											"password" => $_POST["newPasswd"],
-											"profile" => $_POST["newProfile"]);
-
-								$answer = UsersModel::mdlAddUser($table, $data);
-
-								if ($answer == "ok") {
+				/*=============================================
+				Image Validation
+				=============================================*/		
+				$photo = "";
 				
-									echo '<script>
+				if (isset($_FILES["newPhoto"]["tmp_name"])){
+
+					list($width, $height) = getimagesize($_FILES["newPhoto"]["tmp_name"]);
+					
+					$newWidth = 500;
+					$newHeight = 500;
+
+					/*=============================================
+					Create the folder location of the photo
+					=============================================*/		
+
+					// $photoDirectory = "views/img/users/".$_POST["newUser"];
+					// $folder = "views/img/users/".$_POST["newUser"];
+					
+
+					// mkdir($folder, 0755);
+
+					// $folder = "views/img/users/".$_POST["newUser"];
+
+					// mkdir($folder, 0755);
+
+					$folder = "views/img/users/".$_POST["newUser"];
+
+					mkdir($folder, 0755);
+
+					// if($_FILES["newPhoto"]["type"] == "image/png"){
+
+						// $randomNumber = mt_rand(100,999);
+
+						// $route = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".jpg";
+
+						/*=============================================
+						Image trim
+						=============================================*/	
+
+						// $source = imagecreatefromjpeg($_FILES["newPhoto"]["tmp_name"]);
+
+						// $destination = imagecreatetruecolor($newWidth, $newHeight);
+
+						// imagecopyresized($destination, $source, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+						/*=============================================
+						Saving the photo
+						=============================================*/	
+
+						// imagepng($destination, $route);
+
+					// 	$randomNumber = mt_rand(100,999);
 						
-									swal({
-										type: "success",
-										title: "¡User added succesfully!",
-										showConfirmButton: true,
-										confirmButtonText: "Close"
+					// 	$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".png";
+						
+					// 	$srcImage = imagecreatefrompng($_FILES["newPhoto"]["tmp_name"]);
+						
+					// 	$destination = imagecreatetruecolor($newWidth, $newHeight);
+
+					// 	imagecopyresized($destination, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+					// 	imagepng($destination, $photo);
+
+					// }
+						
+					if($_FILES["newPhoto"]["type"] == "image/jpeg"){
+
+						$randomNumber = mt_rand(100,999);
+						
+						$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".jpg";
+						
+						$srcImage = imagecreatefromjpeg($_FILES["newPhoto"]["tmp_name"]);
+						
+						$destination = imagecreatetruecolor($newWidth, $newHeight);
+
+						imagecopyresized($destination, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+						imagejpeg($destination, $photo);
+
+					}
+
+					if ($_FILES["newPhoto"]["type"] == "image/png") {
+
+						$randomNumber = mt_rand(100,999);
+						
+						$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".png";
+						
+						$srcImage = imagecreatefrompng($_FILES["newPhoto"]["tmp_name"]);
+						
+						$destination = imagecreatetruecolor($newWidth, $newHeight);
+
+						imagecopyresized($destination, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+						imagepng($destination, $photo);
+					}
+				}
+
+						// 	$table = "users";
+								
+						// 	$data = array("name" => $_POST["newName"],
+						// 					"user" => $_POST["newUser"],
+						// 					"password" => $_POST["newPasswd"],
+						// 					"profile" => $_POST["newProfile"]);
+
+						// 		$answer = UsersModel::mdlAddUser($table, $data);
+
+						// 		if ($answer == "ok") {
+				
+						// 			echo '<script>
+						
+						// 			swal({
+						// 				type: "success",
+						// 				title: "¡User added succesfully!",
+						// 				showConfirmButton: true,
+						// 				confirmButtonText: "Close"
 			
-									}).then(function(result){
+						// 			}).then(function(result){
 			
-										if(result.value){
+						// 				if(result.value){
 			
-											window.location = "users";
-										}
+						// 					window.location = "users";
+						// 				}
 			
-									});
+						// 			});
 									
-									</script>';
-								}
+						// 			</script>';
+						// 		}
 
 
-						} else {
+						// } else {
 
 
-							echo '<script>
+						// 	echo '<script>
 					
-							swal({
-								type: "error",
-								title: "No especial characters or blank fields",
-								showConfirmButton: true,
-								confirmButtonText: "Close"
+						// 	swal({
+						// 		type: "error",
+						// 		title: "No especial characters or blank fields",
+						// 		showConfirmButton: true,
+						// 		confirmButtonText: "Close"
 					
-								}).then(function(result){
+						// 		}).then(function(result){
 		
-									if(result.value){
+						// 			if(result.value){
 		
-										window.location = "users";
-									}
+						// 				window.location = "users";
+						// 			}
 		
-								});
+						// 		});
 							
-						</script>';
+						// </script>';
 
 						}
 					}
