@@ -47,9 +47,24 @@
 
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						
-						<img class="user-image" src="views/img/users/default/anonymous.png">
+						<?php
+						
+						if($_SESSION["photo"] != ""){
+
+							echo '<img src="'.$_SESSION["photo"].'" class="user-image">';
+						
+						} else {
+
+							echo '<img class="user-image" src="views/img/users/default/anonymous.png">';
+
+						}
+
+						?>
+
+						<!-- <img class="user-image" src="views/img/users/default/anonymous.png"> -->
 											
-						<span class="hidden-xs">User Administrator</span>
+						<!-- <span class="hidden-xs">User Administrator</span> -->
+						<span class="hidden-xs"><?php echo $_SESSION["name"]; ?></span>
 
 					</a>
 

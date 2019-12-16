@@ -63,55 +63,49 @@
 
                   <tbody> 
 
-                      <tr>  
-                        <td>1</td>
-                        <td>User Administrator</td>
-                        <td>admin</td>
-                        <td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>Administrator</td>
-                        <td><button class="btn btn-success btn-xs">Activated</button></td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
+                  <?php
 
-                      <tr>  
-                        <td>1</td>
-                        <td>User Administrator</td>
-                        <td>admin</td>
-                        <td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>Administrator</td>
-                        <td><button class="btn btn-danger btn-xs">Deactivated</button></td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
+                  $item = null;
+                  $value = null;
+
+                  $users = ControllerUsers::ctrShowUsers($item, $value);
+                  // var_dump($users);
+
+                  foreach ($users as $key => $value) {
+                    
+                    echo 
+                    
+                    '<tr>  
+                      <td>'.($key+1).'</td>
+                      <td>'.$value["name"].'</td>
+                      <td>'.$value["user"].'</td>';
+
+                    if ($value["photo"] != ""){
+
+                      echo '<td><img src="'.$value["photo"].'" class="img-thumbnail" width="40px"></td>';
+                      
+                    } else {
+
+                      echo '<td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+
+                    }
+
+                      echo '<td>'.$value["profile"].'</td>
+                      <td><button class="btn btn-success btn-xs">Activated</button></td>
+                      <td>'.$value["last-login"].'</td>
+                      <td>
+                        <div class="btn-group"> 
+                              <button class="btn btn-wwarning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
+                              <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                        </div>
+                      </td>
+                   </tr> ';
+                         
+
+                  }
 
 
-                     <tr>  
-                        <td>1</td>
-                        <td>User Administrator</td>
-                        <td>admin</td>
-                        <td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>Administrator</td>
-                        <td><button class="btn btn-success btn-xs">Activated</button></td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
-
+                  ?>      
                   </tbody>
 
             </table>
@@ -199,7 +193,7 @@
             <!-- pictures entry -->
           <div class="form-group">
             <div class="panel">Upload Profile Photo</div>
-            <input type="file" class="newPhoto" name="newPhoto">
+            <input type="file" class="newPics" name="newPhoto">
             <p class="help-block">Only max of 3MB per Photo</p>
             <img src="views/img/users/default/anonymous.png" class="img-thumbnail preview" width="100px">
           </div>          
@@ -218,6 +212,113 @@
      <?php
       $createUser = new ControllerUsers();
       $createUser -> ctrCreateUser();
+      ?> 
+
+    </form>
+
+    </div>
+  </div>
+</div>
+
+
+<!--=====================================
+=            module edit user            =
+======================================-->
+
+<!-- The Modal -->
+<div class="modal fade" id="modalEditUser" role="dialog">
+
+  <div class="modal-dialog">
+
+  <!-- Modal content-->
+    <div class="modal-content">
+
+      <form role="form" method="POST" enctype="multipart/form-data">
+
+      
+      <!--=====================================
+                    HEADER
+      ======================================-->
+
+    
+      <div class="modal-header" style="background: #3c8dbc; color: #fff">
+        
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit User</h4>
+      </div>
+
+        <!--=====================================
+                      BODY
+        ======================================-->
+
+      <div class="modal-body">
+
+        <div class="box-body">
+
+          <!-- Name Entry-->
+          <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control input-lg" name="editName" value="" required>
+              </div>
+          </div>    
+
+              <!-- Username entry -->
+          <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="text" class="form-control input-lg" name="editUser" value="" required>
+              </div>
+          </div>
+
+          <!-- password entry -->
+          <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control input-lg" name="editPasswd" value="Input new Password" required>
+              </div>
+          </div>
+
+            <!-- user profile  -->
+
+          <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control input-lg" name="editProfile">
+                
+                  <option value="" id="editProfile"></option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Special">Special</option>
+                  <option value="Seller">Seller</option>
+
+                </select>
+              </div>
+          </div>
+
+            <!-- pictures entry -->
+          <div class="form-group">
+            <div class="panel">Upload Profile Photo</div>
+            <input type="file" class="newPics" name="editPhoto">
+            <p class="help-block">Only max of 3MB per Photo</p>
+            <img src="views/img/users/default/anonymous.png" class="img-thumbnail preview" width="100px">
+          </div>          
+
+
+  
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Modify Changes</button>
+      </div>
+
+    <!-- PHP objects that invokes the method of saving new user -->
+
+     <?php
+      // $createUser = new ControllerUsers();
+      // $createUser -> ctrCreateUser();
       ?> 
 
     </form>

@@ -15,6 +15,8 @@ class ControllerUsers {
 			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["loginUser"]) && 
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["loginPassword"])) {
 
+				$encrypt = crypt($_POST["loginPassword"], '$2a$07$usesomesillystringforsalt$');
+
 			  	// 2. the input in the placeholdr user is then to b compared to the user column in the database
 			  
 			  	$table = "users";
@@ -26,11 +28,18 @@ class ControllerUsers {
 
 			  	// 3. this condition defines the behaviour of the page if there's no value or wrong values are input in the login page vs the database
 
-			  	if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $_POST["loginPassword"]){
+			  	// if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $_POST["loginPassword"]){
+					if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $encrypt){
 
 			  		// this is from tempplate.php under \views\plugins
 
-			  		$_SESSION["startSession"] = "ok";
+					  $_SESSION["startSession"] = "ok";
+					  $_SESSION["id"] = $answer["id"];
+					  $_SESSION["name"] = $answer["name"]; 
+					  $_SESSION["user"] = $answer["user"];
+					  $_SESSION["profile"] = $answer["profile"];
+					  $_SESSION["photo"] = $answer["photo"];
+
 			  		echo '<script>
 
 			  		window.location = "home";
@@ -73,55 +82,9 @@ class ControllerUsers {
 					Create the folder location of the photo
 					=============================================*/		
 
-					// $photoDirectory = "views/img/users/".$_POST["newUser"];
-					// $folder = "views/img/users/".$_POST["newUser"];
-					
+					$picsFolder = "views/img/users/".$_POST["newUser"];
 
-					// mkdir($folder, 0755);
-
-					// $folder = "views/img/users/".$_POST["newUser"];
-
-					// mkdir($folder, 0755);
-
-					$folder = "views/img/users/".$_POST["newUser"];
-
-					mkdir($folder, 0755);
-
-					// if($_FILES["newPhoto"]["type"] == "image/png"){
-
-						// $randomNumber = mt_rand(100,999);
-
-						// $route = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".jpg";
-
-						/*=============================================
-						Image trim
-						=============================================*/	
-
-						// $source = imagecreatefromjpeg($_FILES["newPhoto"]["tmp_name"]);
-
-						// $destination = imagecreatetruecolor($newWidth, $newHeight);
-
-						// imagecopyresized($destination, $source, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-						/*=============================================
-						Saving the photo
-						=============================================*/	
-
-						// imagepng($destination, $route);
-
-					// 	$randomNumber = mt_rand(100,999);
-						
-					// 	$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".png";
-						
-					// 	$srcImage = imagecreatefrompng($_FILES["newPhoto"]["tmp_name"]);
-						
-					// 	$destination = imagecreatetruecolor($newWidth, $newHeight);
-
-					// 	imagecopyresized($destination, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-					// 	imagepng($destination, $photo);
-
-					// }
+					mkdir($picsFolder, 0755);
 						
 					if($_FILES["newPhoto"]["type"] == "image/jpeg"){
 
@@ -155,61 +118,76 @@ class ControllerUsers {
 					}
 				}
 
-						// 	$table = "users";
+							$table = "users";
+
+							$encrypt = crypt($_POST["newPasswd"], '$2a$07$usesomesillystringforsalt$');
 								
-						// 	$data = array("name" => $_POST["newName"],
-						// 					"user" => $_POST["newUser"],
-						// 					"password" => $_POST["newPasswd"],
-						// 					"profile" => $_POST["newProfile"]);
+							$data = array("name" => $_POST["newName"],
+											"user" => $_POST["newUser"],
+											"password" => $encrypt,
+											// "password" => $_POST["newPasswd"],
+											"profile" => $_POST["newProfile"],
+											"photo" => $photo);
 
-						// 		$answer = UsersModel::mdlAddUser($table, $data);
+								$answer = UsersModel::mdlAddUser($table, $data);
 
-						// 		if ($answer == "ok") {
+								if ($answer == "ok") {
 				
-						// 			echo '<script>
+									echo '<script>
 						
-						// 			swal({
-						// 				type: "success",
-						// 				title: "¡User added succesfully!",
-						// 				showConfirmButton: true,
-						// 				confirmButtonText: "Close"
+									swal({
+										type: "success",
+										title: "¡User added succesfully!",
+										showConfirmButton: true,
+										confirmButtonText: "Close"
 			
-						// 			}).then(function(result){
+									}).then(function(result){
 			
-						// 				if(result.value){
+										if(result.value){
 			
-						// 					window.location = "users";
-						// 				}
+											window.location = "users";
+										}
 			
-						// 			});
+									});
 									
-						// 			</script>';
-						// 		}
+									</script>';
+								}
 
 
-						// } else {
+						} else {
 
 
-						// 	echo '<script>
+							echo '<script>
 					
-						// 	swal({
-						// 		type: "error",
-						// 		title: "No especial characters or blank fields",
-						// 		showConfirmButton: true,
-						// 		confirmButtonText: "Close"
+							swal({
+								type: "error",
+								title: "No especial characters or blank fields",
+								showConfirmButton: true,
+								confirmButtonText: "Close"
 					
-						// 		}).then(function(result){
+								}).then(function(result){
 		
-						// 			if(result.value){
+									if(result.value){
 		
-						// 				window.location = "users";
-						// 			}
+										window.location = "users";
+									}
 		
-						// 		});
+								});
 							
-						// </script>';
+						</script>';
 
 						}
 					}
+				}
+
+				/*=============================================
+				SHOW USERS
+				=============================================*/
+				static public function ctrShowUsers($item, $value){
+
+					$table = "users";
+					$answer = UsersModel::mdlShowUsers($table, $item, $value);
+					return $answer;
+
 				}
 			}

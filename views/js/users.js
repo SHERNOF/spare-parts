@@ -2,39 +2,71 @@
 =            User's Photo           =
 ====================================*/
 
-$(".newPhoto").change(function(){
 
-    var imagen = this.files[0];
+$(".newPics").change(function(){
+
+    var newImage = this.files[0];
 
     /*====================================
-    =            Validate file format    =
+    =        Validate file format        =
     ====================================*/
 
-    if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
-        $(".newPhoto").val("");
+    if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png"){
+        $(".newPics").val("");
 
         swal ({
-            title: "Upload Image Error",
-            text: "Error file uploaded is not an image",
             type: "error",
-            Confirmateion: "clear"
+			title: "Error uploading image",
+			text: "¡Image has to be JPEG or PNG!",
+			showConfirmButton: true,
+			confirmButtonText: "Close"
         });
 
-    } else if (imagen["size"] > 3000000){
-        $(".newPhoto").val("");
+    } else if (newImage["size"] > 2000000){
+        $(".newPics").val("");
         swal ({
-            title: "Upload Image Error",
-            text: "The image should not exceed 2MB",
             type: "error",
-            Confirmateion: "clear"
+			title: "Error uploading image",
+			text: "¡Image too big. It has to be less than 2Mb!",
+			showConfirmButton: true,
+			confirmButtonText: "Close"
         });
     } else {
-        var dataImagen = new FileReader;
-        dataImagen.readAsDataURL(imagen);
-        $(dataImagen).on("load", function(event){
-            var routeImagen = event.target.result;
-            $(".preview").attr("src", routeImagen)
-        })
+        var dataImage = new FileReader;
+        dataImage.readAsDataURL(newImage);
+        $(dataImage).on("load", function(event){
+            var routeImage = event.target.result;
+            $(".preview").attr("src", routeImage)
+        });
     }
 
 })
+
+
+/*====================================
+=        Edit user                   =
+====================================*/
+
+$(".btnEditUser").click(function(){
+    var idUser = $(this).attr("idUser");
+
+    var data = new FormData();
+    data.append("idUser", idUser)
+
+    $.ajax ({
+        url: "ajax/users.ajax.php",
+        method: "POST",
+        data: data,
+        cache: false,
+        contenttype: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer) {
+            console.log("answer", answer);
+        }
+
+    })
+    
+})
+
+

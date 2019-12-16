@@ -10,13 +10,27 @@ class UsersModel{
 	
 	static public function mdlShowUsers($table, $item, $value){
 
-		$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
+		if($item != null){
 
-		$stmt -> bindParam(":".$item, $value, PDO:: PARAM_STR);
+			$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
 
-		$stmt -> execute();
+			$stmt -> bindParam(":".$item, $value, PDO:: PARAM_STR);
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetch(); 
 
-		return $stmt -> fetch(); 
+		} else {
+
+			$stmt = Connection::connect()->prepare("SELECT * FROM $table");
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetchAll(); 
+
+		}
+
+	
 
 		$stmt -> close();
 
@@ -29,7 +43,8 @@ class UsersModel{
 
 		static public function mdlAddUser($table, $data) {
 
-			$stmt = Connection::connect()->prepare("INSERT INTO $table(name, user, password, profile) VALUES (:name, :user, :password, :profile)");
+			$stmt = Connection::connect()->prepare("INSERT INTO 
+			$table(name, user, password, profile, photo) VALUES (:name, :user, :password, :profile, :photo)");
 
 			
 			$stmt -> bindParam(":name", $data["name"], PDO::PARAM_STR);
@@ -39,6 +54,8 @@ class UsersModel{
 			$stmt -> bindParam(":password", $data["password"], PDO::PARAM_STR);
 			
 			$stmt -> bindParam(":profile", $data["profile"], PDO::PARAM_STR);
+
+			$stmt -> bindParam(":photo", $data["photo"], PDO::PARAM_STR);
 
 			if ($stmt -> execute()) {
 
