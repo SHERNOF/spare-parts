@@ -190,4 +190,66 @@ class ControllerUsers {
 					return $answer;
 
 				}
+
+				/*=============================================
+				EDIT USERS
+				=============================================*/
+				static public function ctrEditUsers($item, $value){
+
+					if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editName"])){
+
+				/*=============================================
+				Image Validation
+				=============================================*/
+
+						$photo = $_POST["currentPhoto"];
+
+						if (isset($_FILES["newPhoto"]["tmp_name"])){
+
+							list($width, $height) = getimagesize($_FILES["newPhoto"]["tmp_name"]);
+							
+							$newWidth = 500;
+							$newHeight = 500;
+		
+							/*=============================================
+							Create the folder location of the photo
+							=============================================*/		
+		
+							$picsFolder = "views/img/users/".$_POST["newUser"];
+		
+							mkdir($picsFolder, 0755);
+								
+							if($_FILES["newPhoto"]["type"] == "image/jpeg"){
+		
+								$randomNumber = mt_rand(100,999);
+								
+								$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".jpg";
+								
+								$srcImage = imagecreatefromjpeg($_FILES["newPhoto"]["tmp_name"]);
+								
+								$destination = imagecreatetruecolor($newWidth, $newHeight);
+		
+								imagecopyresized($destination, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+		
+								imagejpeg($destination, $photo);
+		
+							}
+		
+							if ($_FILES["newPhoto"]["type"] == "image/png") {
+		
+								$randomNumber = mt_rand(100,999);
+								
+								$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".png";
+								
+								$srcImage = imagecreatefrompng($_FILES["newPhoto"]["tmp_name"]);
+								
+								$destination = imagecreatetruecolor($newWidth, $newHeight);
+		
+								imagecopyresized($destination, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+		
+								imagepng($destination, $photo);
+							}
+						}
+		
+				}
 			}

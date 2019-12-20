@@ -8,13 +8,13 @@ class UsersModel{
 	=            Show Users            =
 	=============================================*/
 	
-	static public function mdlShowUsers($table, $item, $value){
+	static public function MdlShowUsers($table, $item, $value){
 
 		if($item != null){
 
 			$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
 
-			$stmt -> bindParam(":".$item, $value, PDO:: PARAM_STR);
+			$stmt -> bindParam(":".$item, $value, PDO::PARAM_STR);
 	
 			$stmt -> execute();
 	
@@ -41,7 +41,7 @@ class UsersModel{
 	=            Add User 			             =
 	=============================================*/
 
-		static public function mdlAddUser($table, $data) {
+		static public function MdlAddUser($table, $data) {
 
 			$stmt = Connection::connect()->prepare("INSERT INTO 
 			$table(name, user, password, profile, photo) VALUES (:name, :user, :password, :profile, :photo)");

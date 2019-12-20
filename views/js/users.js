@@ -48,24 +48,41 @@ $(".newPics").change(function(){
 ====================================*/
 
 $(".btnEditUser").click(function(){
+
     var idUser = $(this).attr("idUser");
+    // console.log("idUser", idUser);
 
     var data = new FormData();
-    data.append("idUser", idUser)
+    data.append("idUser", idUser);
 
     $.ajax ({
-        url: "ajax/users.ajax.php",
+        url:"ajax/users.ajax.php",
         method: "POST",
         data: data,
         cache: false,
-        contenttype: false,
+        contentType: false,
         processData: false,
         dataType: "json",
         success: function(answer) {
-            console.log("answer", answer);
+
+            // console.log("answer", answer);
+
+            $("#editName").val(answer["name"]);
+            $("#EditUser").val(answer["user"]);
+            $("#editProfile").html(answer["profile"]);
+            $("#editProfile").val(answer["profile"]);
+            $("#currentPasswd").val(answer["password"]);
+            $("#currentPhoto").val(answer["photo"]);
+
+
+            if(answer["photo"] != ""){
+                $(".preview").attr("src", answer["photo"]);
+
+            }
+
         }
 
-    })
+    });
     
 })
 

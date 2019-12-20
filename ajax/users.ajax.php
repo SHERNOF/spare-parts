@@ -10,26 +10,27 @@ class AjaxUsers {
     // ======================================
     
     public $idUser;
-    public function ajaxEditUser{
+
+    public function ajaxEditUser(){
+
         $item = "id";
         $value = $this->idUser;
 
-        $response = ControllerUsers::ctrShowUsers($item, $value);
+        $answer = ControllerUsers::ctrShowUsers($item, $value);
 
         echo json_encode($answer);
 
     }
-    
-    // =====================================
+}
+
+// =====================================
 	// =            Edit User              =
     // ======================================
 
     if(isset($_POST["idUser"])){
 
-    $edit = new AjaxUsers();
-    $edit -> idUser = $_POST["idUser"];
-    $edit -> ajaxEditUser();
-
-    }
-
-}
+        $edit = new AjaxUsers();
+        $edit -> idUser = $_POST["idUser"];
+        $edit -> ajaxEditUser();
+    
+        }

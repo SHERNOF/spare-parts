@@ -42,7 +42,7 @@
 
         <div class="box-body">
 
-            <table class="table table-bordered table-striped dt-responsive tables"> 
+            <table class="table table-bordered table-striped dt-responsive tables" width="100%"> 
 
                 <thead> 
 
@@ -91,15 +91,19 @@
                     }
 
                       echo '<td>'.$value["profile"].'</td>
+
                       <td><button class="btn btn-success btn-xs">Activated</button></td>
                       <td>'.$value["last-login"].'</td>
                       <td>
+                      
                         <div class="btn-group"> 
-                              <button class="btn btn-wwarning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
+                              <button class="btn btn-warning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#editUser"><i class="fa fa-pencil"></i></button>
+                              
+                              
                               <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                         </div>
                       </td>
-                   </tr> ';
+                   </tr>';
                          
 
                   }
@@ -226,7 +230,7 @@
 ======================================-->
 
 <!-- The Modal -->
-<div class="modal fade" id="modalEditUser" role="dialog">
+<div class="modal fade" id="editUser" role="dialog">
 
   <div class="modal-dialog">
 
@@ -259,7 +263,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" name="editName" value="" required>
+                <input type="text" class="form-control input-lg" id="editName" name="editName" value="Edit Name" required>
               </div>
           </div>    
 
@@ -267,7 +271,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" class="form-control input-lg" name="editUser" value="" required>
+                <input type="text" class="form-control input-lg" id="EditUser" name="EditUser" placeholder="Edit username" readonly>
               </div>
           </div>
 
@@ -276,6 +280,7 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input type="password" class="form-control input-lg" name="editPasswd" value="Input new Password" required>
+                <input type="hidden" id="currentPasswd" name="currentPaswd">
               </div>
           </div>
 
@@ -284,8 +289,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                <select class="form-control input-lg" name="editProfile">
-                
+                <select class="form-control input-lg"  name="editProfile">
                   <option value="" id="editProfile"></option>
                   <option value="Administrator">Administrator</option>
                   <option value="Special">Special</option>
@@ -299,8 +303,9 @@
           <div class="form-group">
             <div class="panel">Upload Profile Photo</div>
             <input type="file" class="newPics" name="editPhoto">
-            <p class="help-block">Only max of 3MB per Photo</p>
+            <p class="help-block">Only max of 2MB per Photo</p>
             <img src="views/img/users/default/anonymous.png" class="img-thumbnail preview" width="100px">
+            <input type="hidden" id="currentPhoto" name="currentPhoto">
           </div>          
 
 
@@ -310,15 +315,15 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Modify Changes</button>
       </div>
 
     <!-- PHP objects that invokes the method of saving new user -->
 
      <?php
-      // $createUser = new ControllerUsers();
-      // $createUser -> ctrCreateUser();
+      $editUser = new ControllerUsers();
+      $editUser -> ctrEditCreateUser();
       ?> 
 
     </form>
