@@ -323,7 +323,7 @@
 
      <?php
       $editUser = new ControllerUsers();
-      $editUser -> ctrEditCreateUser();
+      $editUser -> ctrEditUser();
       ?> 
 
     </form>

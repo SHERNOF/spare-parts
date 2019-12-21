@@ -194,9 +194,30 @@ class ControllerUsers {
 				/*=============================================
 				EDIT USERS
 				=============================================*/
-				static public function ctrEditUsers($item, $value){
+				static public function ctrEditUser(){
+
+					if (isset($_POST["editUser"])) {
 
 					if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editName"])){
+
+					} else {
+
+						echo '<script>
+					
+					swal({
+						type: "error",
+						title: "The name cannot be empty or no especial characters or blank fields",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+						}).then(function(result){
+							if(result.value){
+								window.location = "users";
+							}
+						})
+				</script>';
+					}
+
+
 
 				/*=============================================
 				Image Validation
@@ -204,9 +225,9 @@ class ControllerUsers {
 
 						$photo = $_POST["currentPhoto"];
 
-						if (isset($_FILES["newPhoto"]["tmp_name"])){
+						if (isset($_FILES["editPhoto"]["tmp_name"])){
 
-							list($width, $height) = getimagesize($_FILES["newPhoto"]["tmp_name"]);
+							list($width, $height) = getimagesize($_FILES["editPhoto"]["tmp_name"]);
 							
 							$newWidth = 500;
 							$newHeight = 500;
@@ -215,17 +236,23 @@ class ControllerUsers {
 							Create the folder location of the photo
 							=============================================*/		
 		
-							$picsFolder = "views/img/users/".$_POST["newUser"];
+							$picsFolder = "views/img/users/".$_POST["editUser"];
+
+							if(!empty($_POST["currentPhoto"])){
+								unlink($_POST["currentPhoto"]);
+							} else {
+								mkdir($picsFolder, 0755);
+							}
 		
-							mkdir($picsFolder, 0755);
+							
 								
-							if($_FILES["newPhoto"]["type"] == "image/jpeg"){
+							if($_FILES["editPhoto"]["type"] == "image/jpeg"){
 		
 								$randomNumber = mt_rand(100,999);
 								
-								$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".jpg";
+								$photo = "views/img/users/".$_POST["editUser"]."/".$randomNumber.".jpg";
 								
-								$srcImage = imagecreatefromjpeg($_FILES["newPhoto"]["tmp_name"]);
+								$srcImage = imagecreatefromjpeg($_FILES["editPhoto"]["tmp_name"]);
 								
 								$destination = imagecreatetruecolor($newWidth, $newHeight);
 		
@@ -235,13 +262,13 @@ class ControllerUsers {
 		
 							}
 		
-							if ($_FILES["newPhoto"]["type"] == "image/png") {
+							if ($_FILES["editPhoto"]["type"] == "image/png") {
 		
 								$randomNumber = mt_rand(100,999);
 								
-								$photo = "views/img/users/".$_POST["newUser"]."/".$randomNumber.".png";
+								$photo = "views/img/users/".$_POST["editUser"]."/".$randomNumber.".png";
 								
-								$srcImage = imagecreatefrompng($_FILES["newPhoto"]["tmp_name"]);
+								$srcImage = imagecreatefrompng($_FILES["editPhoto"]["tmp_name"]);
 								
 								$destination = imagecreatetruecolor($newWidth, $newHeight);
 		
@@ -250,6 +277,95 @@ class ControllerUsers {
 								imagepng($destination, $photo);
 							}
 						}
-		
+
+						$table = "users";
+
+						if($_POST["editPasswd"] != ""){
+
+						
+						if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["editPasswd"])) {
+
+							$encrypt = crypt($_POST["editPasswd"], '$2a$07$usesomesillystringforsalt$');
+				} else {
+					echo '<script>
+					
+					swal({
+						type: "error",
+						title: "No especial characters or blank fields",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+			
+						}).then(function(result){
+
+							if(result.value){
+
+								window.location = "users";
+							}
+
+						})
+					
+				</script>';
+
 				}
+
+			} else {
+				// $encrypt = $currentPasswd;
+				$encrypt = $_POST["currentPasswd"];
 			}
+
+			$data = array("name" => $_POST["editName"],
+						"user" => $_POST["editUser"],
+						"password" => $encrypt,
+						"profile" => $_POST["editProfile"],
+						"photo" => $photo);
+
+			$answer = UsersModel::mdlEditUser($table, $data);
+
+			if ($answer == "ok") {
+				
+				echo '<script>
+	
+				swal({
+					type: "success",
+					title: "¡User added succesfully!",
+					showConfirmButton: true,
+					confirmButtonText: "Close"
+
+				}).then(function(result){
+
+					if(result.value){
+
+						window.location = "users";
+					}
+
+				});
+				
+				</script>';
+			} else {
+				echo '<script>
+						
+				swal({
+					type: "error",
+					title: "No especial characters in the name or blank field",
+					showConfirmButton: true,
+					confirmButtonText: "Close"
+					 }).then(function(result){
+							
+						if (result.value) {
+
+							window.location = "users";
+						
+						}
+
+					});
+				
+			</script>';
+			}
+
+		}
+	}
+}
+
+
+// }
+	
