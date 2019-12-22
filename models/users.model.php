@@ -78,7 +78,7 @@ class UsersModel{
 	=============================================*/
 
 	static public function MdlEditUser($table, $data) {
-		$stmt = Connection::connect()->prepare("UPDATE $table set name = :name, password = :password, profile = :profile photo = :photo WHERE user = :user");
+		$stmt = Connection::connect()->prepare("UPDATE $table set name = :name, password = :password, profile = :profile, photo = :photo WHERE user = :user");
 
 		$stmt -> bindParam(":name", $data["name"], PDO::PARAM_STR);	
 		$stmt -> bindParam(":user", $data["user"], PDO::PARAM_STR);
