@@ -31,22 +31,25 @@ class ControllerUsers {
 			  	// if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $_POST["loginPassword"]){
 					if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $encrypt){
 
-			  		// this is from tempplate.php under \views\plugins
-
-					  $_SESSION["startSession"] = "ok";
-					  $_SESSION["id"] = $answer["id"];
-					  $_SESSION["name"] = $answer["name"]; 
-					  $_SESSION["user"] = $answer["user"];
-					  $_SESSION["profile"] = $answer["profile"];
-					  $_SESSION["photo"] = $answer["photo"];
-
-			  		echo '<script>
-
-			  		window.location = "home";
-
-			  		</script>';
-
-
+					  // this is from tempplate.php under \views\plugins
+					  
+					  if($answer["status"] == 1){
+						  
+						$_SESSION["startSession"] = "ok";
+						$_SESSION["id"] = $answer["id"];
+						$_SESSION["name"] = $answer["name"]; 
+						$_SESSION["user"] = $answer["user"];
+						$_SESSION["profile"] = $answer["profile"];
+						$_SESSION["photo"] = $answer["photo"];
+  
+						echo '<script>
+  
+						window.location = "home";
+  
+						</script>';
+					  } else {
+						echo '<br><div class="alert alert-danger">The user is not activated yet</div>';
+					  }
 
 			  	} else {
 			  		echo '<br><div class="alert alert-danger">Login error, please try again</div>';

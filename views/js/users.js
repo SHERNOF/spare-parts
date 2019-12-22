@@ -86,4 +86,44 @@ $(".btnEditUser").click(function(){
     
 })
 
+/*====================================
+=        Activating user             =
+====================================*/
+
+$(".btnActivate").click(function(){
+    var userId = $(this).attr("userId")
+    var userStatus = $(this).attr("userStatus")
+
+    var data = new FormData();
+    data.append("activateId", userId);
+    data.append("activateUser", userStatus);
+
+    $.ajax({
+        url:"ajax/users.ajax.php",
+        method: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer) {
+            
+        }
+    })
+
+    if(userStatus == 0){
+
+        $(this).removeClass('btn-success');
+        $(this).addClass('btn-danger');
+        $(this).html('Deactivate');
+        $(this).attr('userStatus', 1);
+
+    } else {
+        $(this).addClass('btn-success');
+        $(this).removeClass('btn-danger');
+        $(this).html('Activated');
+        $(this).attr('userStatus', 0);
+    }
+});
+
 
