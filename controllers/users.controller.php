@@ -28,7 +28,6 @@ class ControllerUsers {
 
 			  	// 3. this condition defines the behaviour of the page if there's no value or wrong values are input in the login page vs the database
 
-			  	// if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $_POST["loginPassword"]){
 					if($answer["user"] == $_POST["loginUser"] && $answer["password"] == $encrypt){
 
 					  // this is from tempplate.php under \views\plugins
@@ -41,13 +40,39 @@ class ControllerUsers {
 						$_SESSION["user"] = $answer["user"];
 						$_SESSION["profile"] = $answer["profile"];
 						$_SESSION["photo"] = $answer["photo"];
-  
+
+				/*=============================================
+								Last Login
+				=============================================*/
+
+				date_default_timezone_set("Asia/Singapore");
+				
+				$date = date('Y-m-d');
+				$hour = date('H:i:s');
+
+				$actualDate = $date.' '.$hour;
+
+				$item1 = "lastLogin";
+				$value1 = $actualDate;
+
+				$item2 = "id";
+				$value2 = $answer["id"];
+
+				$lastLogin = UsersModel::mdlUpdateUser($table, $item1, $value1, $item2, $value2);
+
+					if($lastLogin == "ok"){
+
+
 						echo '<script>
   
 						window.location = "home";
   
 						</script>';
+
+					}
+
 					  } else {
+
 						echo '<br><div class="alert alert-danger">The user is not activated yet</div>';
 					  }
 
@@ -128,7 +153,6 @@ class ControllerUsers {
 							$data = array("name" => $_POST["newName"],
 											"user" => $_POST["newUser"],
 											"password" => $encrypt,
-											// "password" => $_POST["newPasswd"],
 											"profile" => $_POST["newProfile"],
 											"photo" => $photo);
 
@@ -301,7 +325,7 @@ class ControllerUsers {
 					
 					swal({
 						type: "error",
-						title: "No especial characters or blank fields",
+						title: "No especial characters or blank in the password field",
 						showConfirmButton: true,
 						confirmButtonText: "Close"
 			
@@ -319,8 +343,9 @@ class ControllerUsers {
 				}
 
 			} else {
-				// $encrypt = $currentPasswd;
+
 				$encrypt = $_POST["currentPasswd"];
+
 			}
 
 			$data = array("name" => $_POST["editName"],
@@ -375,8 +400,55 @@ class ControllerUsers {
 
 		}
 	}
+
+		/*=============================================
+				DELETE USER
+	=============================================*/
+
+	static public function ctrDeleteUser(){
+
+		if(isset($_GET["userId"])){
+
+			$table = "users";
+			$data = $_GET["userId"];
+
+			if($_GET["userPhoto"] != ""){
+				
+				unlink($_GET["userPhoto"]);
+				rmdir('views/img/users/'.$_GET["username"]);
+
+			}
+
+			$answer = UsersModel::mdlDeleteUser($table, $data);
+
+			if($answer == "ok"){
+			
+				echo '<script>
+
+				swal({
+					  type: "success",
+					  title: "The user has been succesfully deleted",
+					  showConfirmButton: true,
+					  confirmButtonText: "Close"
+
+					  }).then(function(result){
+					  	
+						if (result.value) {
+
+						window.location = "users";
+
+						}
+					})
+
+				</script>';
+
+			}
+		}
+	}
+
 }
 
 
-// }
+
+
 	

@@ -102,16 +102,15 @@
 
                       }
                       
+                      echo '<td>'.$value["lastLogin"].'</td>
 
-                      
-                      echo '<td>'.$value["last-login"].'</td>
                       <td>
                       
                         <div class="btn-group"> 
-                              <button class="btn btn-warning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#editUser"><i class="fa fa-pencil"></i></button>
+                              <button class="btn btn-warning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#editUser"><i class="fa fa-pencil"></i></button>  
+                              <button class="btn btn-danger btnDeleteUser" userId="'.$value["id"].'" username="'.$value["user"].'" userPhoto="'.$value["photo"].'"><i class="fa fa-times"></i></button>
                               
                               
-                              <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                         </div>
                       </td>
                    </tr>';
@@ -177,7 +176,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="text" class="form-control input-lg" name="newUser" placeholder="Add username" required>
+                <input type="text" class="form-control input-lg" name="newUser" id="newUser" placeholder="Add username" required>
               </div>
           </div>
 
@@ -342,3 +341,8 @@
     </div>
   </div>
 </div>
+
+<?php
+$deleteUser = new ControllerUsers();
+$deleteUser -> ctrDeleteUser();
+?>
