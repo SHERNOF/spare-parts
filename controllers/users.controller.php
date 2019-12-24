@@ -401,20 +401,61 @@ class ControllerUsers {
 		}
 	}
 
-		/*=============================================
+	/*=============================================
 				DELETE USER
 	=============================================*/
+
+	// static public function ctrDeleteUser(){
+
+	// 	if(isset($_GET["userId"])){
+
+	// 		$table = "users";
+	// 		$data = $_GET["userId"];
+
+	// 		if($_GET["userPhoto"] != ""){
+				
+	// 			unlink($_GET["userPhoto"]);
+	// 			rmdir('views/img/users/'.$_GET["username"]);
+
+	// 		}
+
+	// 		$answer = UsersModel::mdlDeleteUser($table, $data);
+
+	// 		if($answer == "ok"){
+			
+	// 			echo '<script>
+
+	// 			swal({
+	// 				  type: "success",
+	// 				  title: "The user has been succesfully deleted",
+	// 				  showConfirmButton: true,
+	// 				  confirmButtonText: "Close"
+
+	// 				  }).then(function(result){
+					  	
+	// 					if (result.value) {
+
+	// 					window.location = "users";
+
+	// 					}
+	// 				})
+
+	// 			</script>';
+
+	// 		}
+	// 	}
+	// }
 
 	static public function ctrDeleteUser(){
 
 		if(isset($_GET["userId"])){
 
-			$table = "users";
+			$table ="users";
 			$data = $_GET["userId"];
 
 			if($_GET["userPhoto"] != ""){
-				
-				unlink($_GET["userPhoto"]);
+
+				unlink($_GET["userPhoto"]);				
 				rmdir('views/img/users/'.$_GET["username"]);
 
 			}
@@ -422,8 +463,8 @@ class ControllerUsers {
 			$answer = UsersModel::mdlDeleteUser($table, $data);
 
 			if($answer == "ok"){
-			
-				echo '<script>
+
+				echo'<script>
 
 				swal({
 					  type: "success",
@@ -442,8 +483,10 @@ class ControllerUsers {
 
 				</script>';
 
-			}
+			}		
+
 		}
+
 	}
 
 }
