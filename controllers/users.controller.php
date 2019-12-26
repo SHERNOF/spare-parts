@@ -16,6 +16,7 @@ class ControllerUsers {
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["loginPassword"])) {
 
 				$encrypt = crypt($_POST["loginPassword"], '$2a$07$usesomesillystringforsalt$');
+				// $encrypt = crypt($_POST["loginPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 			  	// 2. the input in the placeholdr user is then to b compared to the user column in the database
 			  
@@ -149,6 +150,7 @@ class ControllerUsers {
 							$table = "users";
 
 							$encrypt = crypt($_POST["newPasswd"], '$2a$07$usesomesillystringforsalt$');
+							// $encrypt = crypt($_POST["newPasswd"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 								
 							$data = array("name" => $_POST["newName"],
 											"user" => $_POST["newUser"],
@@ -227,22 +229,24 @@ class ControllerUsers {
 
 					if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editName"])){
 
-					} else {
-
-						echo '<script>
+				
 					
-					swal({
-						type: "error",
-						title: "The name cannot be empty or no especial characters or blank fields",
-						showConfirmButton: true,
-						confirmButtonText: "Close"
-						}).then(function(result){
-							if(result.value){
-								window.location = "users";
-							}
-						})
-				</script>';
-					}
+				// 	else {
+
+				// 		echo '<script>
+					
+				// 	swal({
+				// 		type: "error",
+				// 		title: "The name cannot be empty or no especial characters or blank fields",
+				// 		showConfirmButton: true,
+				// 		confirmButtonText: "Close"
+				// 		}).then(function(result){
+				// 			if(result.value){
+				// 				window.location = "users";
+				// 			}
+				// 		})
+				// </script>';
+				// 	}
 
 
 
@@ -396,8 +400,8 @@ class ControllerUsers {
 					});
 				
 			</script>';
+				} 
 			}
-
 		}
 	}
 
@@ -405,64 +409,26 @@ class ControllerUsers {
 				DELETE USER
 	=============================================*/
 
-	// static public function ctrDeleteUser(){
-
-	// 	if(isset($_GET["userId"])){
-
-	// 		$table = "users";
-	// 		$data = $_GET["userId"];
-
-	// 		if($_GET["userPhoto"] != ""){
-				
-	// 			unlink($_GET["userPhoto"]);
-	// 			rmdir('views/img/users/'.$_GET["username"]);
-
-	// 		}
-
-	// 		$answer = UsersModel::mdlDeleteUser($table, $data);
-
-	// 		if($answer == "ok"){
-			
-	// 			echo '<script>
-
-	// 			swal({
-	// 				  type: "success",
-	// 				  title: "The user has been succesfully deleted",
-	// 				  showConfirmButton: true,
-	// 				  confirmButtonText: "Close"
-
-	// 				  }).then(function(result){
-					  	
-	// 					if (result.value) {
-
-	// 					window.location = "users";
-
-	// 					}
-	// 				})
-
-	// 			</script>';
-
-	// 		}
-	// 	}
-	// }
-
 	static public function ctrDeleteUser(){
 
 		if(isset($_GET["userId"])){
+			
 
 			$table ="users";
 			$data = $_GET["userId"];
-
+			
 			if($_GET["userPhoto"] != ""){
 
 				unlink($_GET["userPhoto"]);				
 				rmdir('views/img/users/'.$_GET["username"]);
 
 			}
-
+			
 			$answer = UsersModel::mdlDeleteUser($table, $data);
+			
 
 			if($answer == "ok"){
+				console.log("answer", answer);
 
 				echo'<script>
 
@@ -483,13 +449,13 @@ class ControllerUsers {
 
 				</script>';
 
-			}		
-
+			}	
 		}
 
 	}
 
 }
+
 
 
 

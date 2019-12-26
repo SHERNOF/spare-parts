@@ -1,99 +1,103 @@
-
 <?php
 
 require_once "../controllers/users.controller.php";
 require_once "../models/users.model.php";
 
-class AjaxUsers {
 
-    // =====================================
-	// =            Edit User              =
-    // ======================================
-    
-    public $idUser;
 
-    static public function ajaxEditUser(){
+class AjaxUsers{
 
-        $item = "id";
-        $value = $this->idUser;
+	/*=============================================
+	EDIT USER
+	=============================================*/
 
-        $answer = ControllerUsers::ctrShowUsers($item, $value);
+	public $idUser;
 
-        echo json_encode($answer);
+	public function ajaxEditUser(){
 
-    }
+		$item = "id";
+		$value = $this->idUser;
 
-    /*====================================
-    =        Activating user             =
-    ====================================*/
+		$answer = ControllerUsers::ctrShowUsers($item, $value);
 
-    public $activateUser;
-    public $activateId;
+		echo json_encode($answer);
+	}
 
-    static public function ajaxActivateUser (){
 
-        $table = "users";
+	/*=============================================
+	ACTIVATE USER
+	=============================================*/
 
-        $item1 = "status";
-        $value1 = $this->activateUser;
+	public $activateUser;
+	public $activateId;	
 
-        $item2 = "id";
-        $value2 = $this->activateId;
+	public function ajaxActivateUser(){
 
-        $answer = UsersModel::mdlUpdateUser($table, $item1, $value1, $item2, $value2);
+		$table = "users";
+		$item1 = "status";
+		$value1 = $this->activateUser;
 
-    }
+		$item2 = "id";
+		$value2 = $this->activateId;
 
-        /*====================================
-        =        Check User Duplication      =
-        ====================================*/
-        
-        public $validateUser;
-        static public function ajaxValidateUser(){
+		$answer = UsersModel::mdlUpdateUser($table, $item1, $value1, $item2, $value2);
 
-            $item = "user";
-            $value = $this->validateUser;
-    
-            $answer = ControllerUsers::ctrShowUsers($item, $value);
-    
-            echo json_encode($answer);
 
-        }
+	}
+
+
+	/*=============================================
+	VALIDATE IF USER ALREADY EXISTS
+	=============================================*/
+
+	public $validateUser;
+
+	public function ajaxValidateUser(){
+
+		$item = "user";
+		$value = $this->validateUser;
+
+		$answer = ControllerUsers::ctrShowUsers($item, $value);
+
+		echo json_encode($answer);
+
+	}
+
 }
 
-    // =====================================
-        // =            Edit User              =
-        // ======================================
 
-        if(isset($_POST["idUser"])){
+/*=============================================
+EDIT USER
+=============================================*/
 
-            $edit = new AjaxUsers();
-            $edit -> idUser = $_POST["idUser"];
-            $edit -> ajaxEditUser();
-        
-            }
+if (isset($_POST["idUser"])) {
 
-        /*====================================
-        =        Activating user             =
-        ====================================*/
+	$edit = new AjaxUsers();
+	$edit -> idUser = $_POST["idUser"];
+	$edit -> ajaxEditUser();
+}
 
-        if(isset($_POST["activateUser"])){
-            $activateUser = new AjaxUsers();
-            $activateUser -> activateUser = $_POST["activateUser"];
-            $activateUser -> activateId = $_POST["activateId"];
-            $activateUser -> ajaxActivateUser();
-        }
+/*=============================================
+ACTIVATE USER
+=============================================*/
 
-        /*====================================
-        =        Check User Duplication      =
-        ====================================*/
+if (isset($_POST["activateUser"])) {
 
-        if(isset($_POST["validateUser"])){
-            
-        $valUser = new AjaxUsers();
-        $valUser -> validateUser = $_POST["validateUser"];
-        $valUser -> ajaxValidateUser();
-
-        }
+	$activateUser = new AjaxUsers();
+	$activateUser -> activateUser = $_POST["activateUser"];
+	$activateUser -> activateId = $_POST["activateId"];
+	$activateUser -> ajaxActivateUser();
+}
 
 
+/*=============================================
+VALIDATE IF USER ALREADY EXISTS
+=============================================*/
+
+
+if (isset($_POST["validateUser"])) {
+
+	$valUser = new AjaxUsers();
+	$valUser -> validateUser = $_POST["validateUser"];
+	$valUser -> ajaxValidateUser();
+}

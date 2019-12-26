@@ -50,7 +50,7 @@
 
                         <th style="width:10px">#</th>
                         <th>Number</th>
-                        <th>User</th>
+                        <th>Username</th>
                         <th>Photo</th>
                         <th>Profile</th>
                         <th>Status</th>
@@ -108,8 +108,7 @@
                       
                         <div class="btn-group"> 
                               <button class="btn btn-warning btnEditUser" idUser="'.$value["id"].'" data-toggle="modal" data-target="#editUser"><i class="fa fa-pencil"></i></button>  
-                              <button class="btn btn-danger btnDeleteUser" userId="'.$value["id"].'" username="'.$value["user"].'" userPhoto="'.$value["photo"].'"><i class="fa fa-times"></i></button>                                  
-                              
+                              <button class="btn btn-danger btnDeleteUser" userId="'.$value["id"].'" username="'.$value["user"].'" userPhoto="'.$value["photo"].'"><i class="fa fa-times"></i></button>
                         </div>
                       </td>
                    </tr>';
@@ -272,7 +271,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control input-lg" id="editName" name="editName" value="Edit Name" required>
+                <input type="text" class="form-control input-lg" id="editName" name="editName" value="" required>
               </div>
           </div>    
 
@@ -288,7 +287,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control input-lg" name="editPasswd" value="Input new Password" required>
+                <input type="password" class="form-control input-lg" name="editPasswd" placeholder="Add new Password">
                 <input type="hidden" id="currentPasswd" name="currentPaswd">
               </div>
           </div>
