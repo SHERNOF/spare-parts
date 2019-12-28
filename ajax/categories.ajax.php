@@ -1,7 +1,7 @@
 <?php
 
 require_once "../controllers/categories.controller.php";
-require_once "../models/usecategoriesrs.model.php";
+require_once "../models/categories.model.php";
 
 
 

@@ -8,6 +8,7 @@ $("#newCategory").change(function(){
 
     var category= $(this).val();
     var data = new FormData;
+    
     data.append("validateCategory", category);
     $.ajax({
         url:"ajax/categories.ajax.php",
@@ -16,7 +17,7 @@ $("#newCategory").change(function(){
         cache: false,
         contentType: false,
         processData: false,
-        // dataType: "json",
+        dataType: "json",
         success: function(answer) {
             if(answer){
 
