@@ -20,15 +20,15 @@
 				</a>
 			</li>
 			<li>
-				<a href="products">
+				<a href="spare">
 					<i class="fa fa-product-hunt"></i>
-					<span>Products</span>
+					<span>Spare Parts</span>
 				</a>
 			</li>
 			<li>
-				<a href="customers">
+				<a href="parts-user">
 					<i class="fa fa-user"></i>
-					<span>Customers</span>
+					<span>Parts User</span>
 				</a>
 			</li>
 
@@ -37,7 +37,7 @@
 			<li class="treeview">
 				<a href="#">
 					<i class="fa fa-list-ul"></i>
-					<span>Sales</span>
+					<span>Parts Handling</span>
 					<span class="pull-right-container">
 						<i class="fa fa-angle-left pull-right"></i>
 					</span>
@@ -46,19 +46,19 @@
 					<li>
 						<a href="manage-sales">
 							<i class="fa fa-circle"></i>
-							<span>Manage sales</span>
+							<span>Manage Parts</span>
 						</a>
 					</li>
 					<li>
 						<a href="create-sales">
 							<i class="fa fa-circle"></i>
-							<span>Create sale</span>
+							<span>Parts In-Out</span>
 						</a>
 					</li>
 					<li>
 						<a href="sales-report">
 							<i class="fa fa-circle"></i>
-							<span>Sales report</span>
+							<span>Parts Report</span>
 						</a>
 					</li>
 				</ul>

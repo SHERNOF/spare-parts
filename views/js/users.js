@@ -47,7 +47,7 @@ $(".newPics").change(function(){
 =        Edit user                   =
 ====================================*/
 
-$(".btnEditUser").click(function(){
+$(document).on("click", ".btnEditUser", function(){
 
     var idUser = $(this).attr("idUser");
     // console.log("idUser", idUser);
@@ -87,7 +87,8 @@ $(".btnEditUser").click(function(){
 =        Activating user             =
 ====================================*/
 
-$(".btnActivate").click(function(){
+// $(".btnActivate").click(function(){
+$(document).on("click",".btnActivate", function(){
     var userId = $(this).attr("userId")
     var userStatus = $(this).attr("userStatus")
 
@@ -102,9 +103,22 @@ $(".btnActivate").click(function(){
         cache: false,
         contentType: false,
         processData: false,
-        dataType: "json",
+        // dataType: "json",
         success: function(answer) {
             
+            if(window.matchMedia("(max-width:767px)").matches){
+		
+                swal({
+                    title: "The user status has been updated",
+                    type: "success",
+                    confirmButtonText: "Close"	
+                }).then(function(result) {
+    
+                    if (result.value) {
+                        window.location = "users";
+                    }
+                })
+            }
         }
     })
 
@@ -158,7 +172,8 @@ $("#newUser").change(function(){
 =        Delete user                 =
 ====================================*/
 
-$(".btnDeleteUser").click(function(){
+// $(".btnDeleteUser").click(function(){
+    $(document).on("click", ".btnDeleteUser", function(){
   
 	var userId = $(this).attr("userId");
 	var userPhoto = $(this).attr("userPhoto");

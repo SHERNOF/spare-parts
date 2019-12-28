@@ -15,8 +15,7 @@ class ControllerUsers {
 			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["loginUser"]) && 
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["loginPassword"])) {
 
-				$encrypt = crypt($_POST["loginPassword"], '$2a$07$usesomesillystringforsalt$');
-				// $encrypt = crypt($_POST["loginPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$encrypt = crypt($_POST["loginPassword"], '$2a$07$usesomesillystringforsalt$');				
 
 			  	// 2. the input in the placeholdr user is then to b compared to the user column in the database
 			  
@@ -149,8 +148,7 @@ class ControllerUsers {
 
 							$table = "users";
 
-							$encrypt = crypt($_POST["newPasswd"], '$2a$07$usesomesillystringforsalt$');
-							// $encrypt = crypt($_POST["newPasswd"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+							$encrypt = crypt($_POST["newPasswd"], '$2a$07$usesomesillystringforsalt$');						
 								
 							$data = array("name" => $_POST["newName"],
 											"user" => $_POST["newUser"],

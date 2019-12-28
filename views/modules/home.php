@@ -3,9 +3,9 @@
     <section class="content-header">
       <h1>
 
-        Home
+        <!-- Home -->
 
-        <small>Welcome to Cognex Spare Parts Management</small>
+        <medium>Cognex Spare Parts Management</medium>
 
       </h1>
 
