@@ -131,51 +131,52 @@
   </div>
 </div>
 
-  <!--=====================================
-    =     module add Categories            =
+    <!--=====================================
+    =     module edit Categories            =
     ======================================-->
 
-<!-- The Modal -->
-<div class="modal fade" id="editCategory" role="dialog">
+    <!-- The Modal -->
 
-  <div class="modal-dialog">
+    <div class="modal fade" id="editCategory" role="dialog">
 
-  
-    <div class="modal-content">
+      <div class="modal-dialog">
 
-      <form role="form" method="POST">
+        <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header" style="background: #3c8dbc; color: #fff">
-        
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Category</h4>
-      </div>
+          <form role="form" method="POST">
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="box-body">
+          <!-- Modal Header -->
+          <div class="modal-header" style="background: #3c8dbc; color: #fff">
+            
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Category</h4>
+          </div>
 
-          <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <input type="text" class="form-control input-lg" name="newCategory" id="newCategory" placeholder="Add Category" style="autofocus" required>
-              </div>
-          </div>    
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="box-body">
+
+              <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                    <input type="text" class="form-control input-lg" name="EditCategory" id="EditCategory" placeholder="Edit Category" style="autofocus" required>
+                  </div>
+              </div>    
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Category</button>
+          </div>
+          
+          <?php
+            $editCategory = new ControllerCategory();
+            $editCategory -> ctrEditCategory();
+          ?> 
+          
+        </form>
         </div>
       </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save Category</button>
-      </div>
-     
-     <?php
-      $createCategory = new ControllerCategory();
-      $createCategory -> ctrCreateCategory();
-      ?> 
-    </form>
     </div>
-  </div>
-</div>

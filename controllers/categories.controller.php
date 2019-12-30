@@ -63,21 +63,75 @@ class ControllerCategory {
     
 }
 
-    /*=============================================
-						SHow Category
-    =============================================*/
+/*=============================================
+                    SHow Category
+=============================================*/
 
-    static public function ctrShowCategories($item, $value){
+static public function ctrShowCategories($item, $value){
 
-        
-		$table = "categories";
-
-		$answer = CategoriesModel::MdlShowCategories($table, $item, $value);
-
-        return $answer;
-        
     
+    $table = "categories";
 
+    $answer = CategoriesModel::MdlShowCategories($table, $item, $value);
+
+    return $answer;
 
 }
+
+    /*=============================================
+	EDIT CATEGORY
+	=============================================*/
+
+	static public function ctrEditCategory(){
+
+		if(isset($_POST["editCategory"])){
+
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editCategory"])){
+
+				$table = "categories";
+
+				$data = array("Category"=>$_POST["editCategory"],
+							   "id"=>$_POST["idCategory"]);
+
+				$answer = CategoriesModel::mdlEditCategory($table, $data);
+				// var_dump($answer);
+
+				if($answer == "ok"){
+
+					echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Category has been successfully saved ",
+						  showConfirmButton: true,
+						  confirmButtonText: "Close"
+						  }).then(function(result){
+									if (result.value) {
+									window.location = "categories";
+									}
+								})
+                    </script>';
+                    
+				}
+			}else{
+
+				echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "No especial characters or blank fields",
+						  showConfirmButton: true,
+						  confirmButtonText: "Close"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "categories";
+
+							}
+						})
+
+			  	</script>';
+			}
+		}
+	}
 }
