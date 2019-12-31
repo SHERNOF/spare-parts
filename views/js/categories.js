@@ -50,9 +50,9 @@ EDIT CATEGORY
      	dataType:"json",
      	success: function(answer){
      		
-     		// console.log("answer", answer);
+     		console.log("answer", answer);
 
-     		$("#editCategory").val(answer["Category"]);
+     		$("#editCategory").val(answer["category"]);
      		$("#idCategory").val(answer["id"]);
 
      	}

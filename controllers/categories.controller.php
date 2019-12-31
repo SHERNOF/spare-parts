@@ -72,7 +72,7 @@ static public function ctrShowCategories($item, $value){
     
     $table = "categories";
 
-    $answer = CategoriesModel::MdlShowCategories($table, $item, $value);
+    $answer = CategoriesModel::mdlShowCategories($table, $item, $value);
 
     return $answer;
 

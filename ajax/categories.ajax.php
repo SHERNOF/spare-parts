@@ -4,7 +4,6 @@ require_once "../controllers/categories.controller.php";
 require_once "../models/categories.model.php";
 
 
-
 class AjaxCategories{
 
 	/*=============================================
@@ -34,7 +33,7 @@ EDIT CATEGORY
 
 if (isset($_POST["idCategory"])) {
 
-	$edit = new ajaxEditCategory();
+	$edit = new AjaxCategories();
 	$edit -> idCategory = $_POST["idCategory"];
 	$edit -> ajaxEditCategory();
 }
