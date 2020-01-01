@@ -67,7 +67,7 @@
                             <td>
   
                               <div class="btn-group">                                  
-                                <button class="btn btn-warning btnEditCategory" idCategory="'.$value["id"].'" data-toggle="modal" data-target="#editCategory"><i class="fa fa-pencil"></i></button>  
+                                <button class="btn btn-warning btnEditCategory" idCategory="'.$value["id"].'" data-toggle="modal" data-target="#EditCategory"><i class="fa fa-pencil"></i></button>  
                                 <button class="btn btn-danger btnDeleteCategory" idCategory="'.$value["id"].'"><i class="fa fa-times"></i></button>
                               </div>  
                             </td>
@@ -137,7 +137,7 @@
 
     <!-- The Modal -->
 
-    <div class="modal fade" id="editCategory" role="dialog">
+    <div class="modal fade" id="EditCategory" role="dialog">
 
       <div class="modal-dialog">
 
@@ -159,18 +159,21 @@
               <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                    <input type="text" class="form-control input-lg" name="EditCategory" id="EditCategory" placeholder="Edit Category" style="autofocus" required>
+                    <input type="text" class="form-control input-lg" name="editCategory" id="editCategory" style="autofocus" required>
+                    <input type="hidden" class="form-control input-lg" name="idCategory" id="idCategory" style="autofocus" required>
                   </div>
               </div>    
             </div>
           </div>
 
+
           <!-- Modal footer -->
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Category</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
           </div>
           
+
           <?php
             $editCategory = new ControllerCategory();
             $editCategory -> ctrEditCategory();
@@ -180,3 +183,9 @@
         </div>
       </div>
     </div>
+
+    <?php
+  
+    $deleteCategory = new ControllerCategory();
+    $deleteCategory -> ctrDeleteCategory();
+    ?>

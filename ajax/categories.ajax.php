@@ -33,7 +33,7 @@ EDIT CATEGORY
 
 if (isset($_POST["idCategory"])) {
 
-	$edit = new AjaxCategories();
-	$edit -> idCategory = $_POST["idCategory"];
-	$edit -> ajaxEditCategory();
+	$category = new AjaxCategories();
+	$category -> idCategory = $_POST["idCategory"];
+	$category -> ajaxEditCategory();
 }

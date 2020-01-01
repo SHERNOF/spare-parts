@@ -65,9 +65,9 @@ class CategoriesModel{
 
 	static public function mdlEditCategory($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET Category = :Category WHERE id = :id");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET category = :category WHERE id = :id");
 
-		$stmt -> bindParam(":Category", $data["Category"], PDO::PARAM_STR);
+		$stmt -> bindParam(":category", $data["category"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $data["id"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -84,5 +84,30 @@ class CategoriesModel{
 		$stmt = null;
 
 	}
-    
+
+		/*=============================================
+		DELETE CATEGORY
+		=============================================*/
+
+		static public function mdlDeleteCategory($table, $data){
+
+			$stmt = Connection::connect()->prepare("DELETE FROM $table WHERE id = :id");
+
+			$stmt -> bindParam(":id", $data, PDO::PARAM_INT);
+
+			if($stmt -> execute()){
+
+				return "ok";
+			
+			}else{
+
+				return "error";	
+
+			}
+
+			$stmt -> close();
+
+			$stmt = null;
+			
+		}   
 }

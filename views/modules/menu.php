@@ -20,7 +20,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="spare">
+				<a href="parts">
 					<i class="fa fa-product-hunt"></i>
 					<span>Spare Parts</span>
 				</a>

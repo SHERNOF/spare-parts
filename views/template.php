@@ -103,7 +103,7 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
     if ($_GET["route"] == 'home' || 
         $_GET["route"] == 'users' ||
         $_GET["route"] == 'categories' ||
-        $_GET["route"] == 'spare' ||
+        $_GET["route"] == 'parts' ||
         $_GET["route"] == 'parts-user' ||
         $_GET["route"] == 'manage-parts' ||
         $_GET["route"] == 'parts-inOut' ||

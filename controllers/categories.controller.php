@@ -90,8 +90,10 @@ static public function ctrShowCategories($item, $value){
 
 				$table = "categories";
 
-				$data = array("Category"=>$_POST["editCategory"],
-							   "id"=>$_POST["idCategory"]);
+				// $data = array("Category"=>$_POST["EditCategory"],
+                // 			   "id"=>$_POST["idCategory"]);
+                
+                $data = array("category" => $_POST["editCategory"], "id"=>$_POST["idCategory"]);
 
 				$answer = CategoriesModel::mdlEditCategory($table, $data);
 				// var_dump($answer);
@@ -133,5 +135,41 @@ static public function ctrShowCategories($item, $value){
 			  	</script>';
 			}
 		}
-	}
+    }
+    
+    /*=============================================
+    DELETE CATEGORY
+    =============================================*/
+
+    static public function ctrDeleteCategory() {
+        if(isset($_GET["idCategory"])){
+
+            $table ="categories";
+			$data = $_GET["idCategory"];
+
+			$answer = CategoriesModel::mdlDeleteCategory($table, $data);
+			// var_dump($answer);
+
+			if($answer == "ok"){
+
+				echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "The category has been successfully deleted",
+						  showConfirmButton: true,
+						  confirmButtonText: "Close"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "categories";
+
+									}
+								})
+
+					</script>';
+			}
+        }
+    }
+
 }
