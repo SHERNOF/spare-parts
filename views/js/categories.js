@@ -2,6 +2,8 @@
 =        Check User Duplication      =
 ====================================*/
 
+
+
 $("#newCategory").change(function(){
 
     $(".alert").remove();

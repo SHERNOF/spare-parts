@@ -78,6 +78,9 @@
 
    <!-- iCheck 1.0.1 -->
 <script src="views/plugins/iCheck/icheck.min.js"></script>
+
+<!-- https://code.jquery.com/jquery-3.3.1.js
+https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js -->
   
 </head>
 
@@ -156,5 +159,6 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
 <script src="views/js/template.js"></script>
 <script src="views/js/users.js"></script>
 <script src="views/js/categories.js"></script>
+<script src="views/js/parts.js"></script>
 </body>
 </html>

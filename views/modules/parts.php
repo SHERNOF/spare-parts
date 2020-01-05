@@ -35,88 +35,27 @@
 
         <div class="box-body">
 
-            <table class="table table-bordered table-striped dt-responsive tables" width="100%"> 
+            <table class="table table-bordered table-striped dt-responsive tableProducts" width="100%"> 
 
                 <thead> 
+
 
                     <tr>  
 
                         <th style="width:10px">#</th>
+                        
                         <th>Image</th>
-                        <th>Id</th>
+                        <th>Code</th>
                         <th>Description</th>
                         <th>Category</th>
                         <th>Stock</th>
-                        <th>Buy Price</th>
-                        <th>Sell Price</th>
+                        <th>Buying Price</th>
+                        <th>Selling Price</th>
                         <th>Date Added</th>
                         <th>Actions</th>
-
-
                     </tr>
-
                 </thead>
-
-                  <tbody> 
-
-                      <tr>  
-                        <td>1</td>
-                        <td><img src="views/img/parts/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>0001</td>
-                        <td>Helical</td>
-                        <td>AT70</td>
-                        <td>1</td>
-                        <td>40</td>
-                        <td>60</td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
-
-                     <tr>  
-                        <td>1</td>
-                        <td><img src="views/img/parts/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>0001</td>
-                        <td>Helical</td>
-                        <td>AT70</td>
-                        <td>1</td>
-                        <td>40</td>
-                        <td>60</td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
-
-                     <tr>  
-                        <td>1</td>
-                        <td><img src="views/img/parts/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>0001</td>
-                        <td>Helical</td>
-                        <td>AT70</td>
-                        <td>1</td>
-                        <td>40</td>
-                        <td>60</td>
-                        <td>2019-12-25 12:00:00</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-wwarning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
-
-                      
-
-                  </tbody>
-            </table>
+          </table>
         </div>
       </div>
     </section>

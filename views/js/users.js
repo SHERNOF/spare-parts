@@ -106,6 +106,7 @@ $(document).on("click",".btnActivate", function(){
         // dataType: "json",
         success: function(answer) {
             
+            
             if(window.matchMedia("(max-width:767px)").matches){
 		
                 swal({
