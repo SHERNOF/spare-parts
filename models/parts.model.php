@@ -12,7 +12,7 @@ class PartsModel {
 
         if ($item != null){
 
-            $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item");
+            $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id DESC");
 
 			$stmt -> bindParam(":".$item, $value, PDO::PARAM_STR);
 

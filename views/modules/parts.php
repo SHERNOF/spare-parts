@@ -86,12 +86,34 @@
       <div class="modal-body">
         <div class="box-body">
 
+            <!-- Categories -->
+
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id="newCategory" name="newCategory" required>
+                <option value="">Select Category</option>
+
+                <?php
+                $item = null;
+                $values = null;
+                $categories = ControllerCategory::ctrShowCategories($item, $values);
+
+                foreach($categories as $key => $value){
+                  echo '<option value="'.$value["id"].'">'.$value["category"].'</option>';
+                }
+                ?>
+                </select>
+              </div>
+          </div>
+
           <!-- for Id number -->
 
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                <input type="text" class="form-control input-lg" name="newId" placeholder="Add Id Number" required>
+                <!-- <input type="text" class="form-control input-lg" name="newId" placeholder="Add Id Number" required> -->
+                <input class="form-control input-lg" type="text" id="newCode" name="newCode" placeholder="Add Code" required readonly>
               </div>
           </div>    
 
@@ -100,31 +122,6 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
                 <input type="text" class="form-control input-lg" name="newDescription" placeholder="Add Description" required>
-              </div>
-          </div>
-
-            <!-- Categories -->
-
-          <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                <select class="form-control input-lg" name="newProfile">
-                <option value="">Select Category</option>
-
-                <?php
-
-                $item = null;
-                $value = null;
-                $categories = ControllerCategory::ctrShowCategories($item, $value);
-
-                foreach($categories as $key => $value){
-                  echo '<option value="'.$value["id"].'">'.$value["category"].'</option>';
-                }
-
-                ?>
-            
-
-                </select>
               </div>
           </div>
 
@@ -142,7 +139,7 @@
               <div class="col-xs-6">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                      <input type="number" class="form-control input-lg" name="newPriceBuy" min="0" placeholder="Buying Price" required>
+                      <input type="number" class="form-control input-lg" name="newPriceBuy" id="newPriceBuy" name="newPriceBuy" min="0" placeholder="Buying Price" required>
                     </div>
                   </div>
                 
@@ -150,7 +147,7 @@
               <div class="col-xs-6">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                      <input type="number" class="form-control input-lg" name="newPriceSell" min="0" placeholder="Selling Price" required>
+                      <input type="number" class="form-control input-lg" name="newPriceSell" id="newPriceSell" min="0" placeholder="Selling Price" required>
                   </div>
 
                   <br>
@@ -191,8 +188,8 @@
           </div>
 
           <?php
-              // $createPart = new ControllerParts();
-              // $createPart -> ctrCreatePart();
+              $createPart = new ControllerParts();
+              $createPart -> ctrCreatePart();
           ?> 
           
       </form>

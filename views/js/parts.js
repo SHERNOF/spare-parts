@@ -46,14 +46,19 @@ $('.tableProducts').DataTable( {
 } );
 
 /*=============================================
-LOAD DYNAMIC PRODUCTS TABLE
+Add Category and increment the code
 =============================================*/
 
 $("#newCategory").change(function(){
-    var idCategory = $(this).val()
-    DataCue.append("idCategory", idCategory);
+
+    var idCategory = $(this).val();
+    
+    var data = new FormData();
+    
+    data.append("idCategory", idCategory);
 
     $.ajax({
+
         url:"ajax/parts.ajax.php",
         method: "POST",
         data: data,
@@ -61,9 +66,18 @@ $("#newCategory").change(function(){
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(answer) {
+        success:function(answer){
 
-            console.log("answer", answer);
+            if(!answer){
+                var newCode = idCategory + "01";
+                $("#newCode").val(newCode);
+            } else {
+                var newCode = Number(answer["code"]) + 1;
+                $("#newCode").val(newCode);
+            }
+
+           
+
             // if(answer){
 
                 // $("#newCategory").parent().after('<div class="alert alert-warning">This category is already been used</div>')
@@ -72,3 +86,50 @@ $("#newCategory").change(function(){
         }
     })
 })
+
+/*=============================================
+Selling Price
+=============================================*/
+
+$("#newPriceBuy").change(function(){
+
+    if($(".percentage").prop("checked")){
+
+    var percentageValue = $(".newPercentage").val();
+    
+    var percentage = Number(($("#newPriceBuy").val()*percentageValue/100))+Number($("#newPriceBuy").val());
+
+    $("#newPriceSell").val(percentage);
+    $("#newPriceSell").prop("readonly", true);
+
+    }
+})
+
+/*=============================================
+New Percentage Change
+=============================================*/
+
+$(".newPercentage").change(function(){
+
+    if($(".percentage").prop("checked")){
+
+        var percentageValue = $(".newPercentage").val();
+        
+        var percentage = Number(($("#newPriceBuy").val()*percentageValue/100))+Number($("#newPriceBuy").val());
+    
+        $("#newPriceSell").val(percentage);
+        $("#newPriceSell").prop("readonly", true);
+
+    }
+})
+
+$(".percentage").on("ifUnchecked", function(){
+    $("#newPriceSell").prop("readonly", false);
+})
+
+$(".percentage").on("ifChecked", function(){
+    $("#newPriceSell").prop("readonly", true);
+})
+ 
+
+
