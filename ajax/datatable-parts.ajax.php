@@ -6,6 +6,11 @@ require_once "../models/parts.model.php";
 require_once "../models/categories.model.php";
 
 
+    /*=============================================
+    LOAD DYNAMIC PRODUCTS TABLE
+    =============================================*/
+
+
 class PartsTable{
     public function showPartsTable(){	
 
@@ -14,22 +19,44 @@ class PartsTable{
 
         $parts = ControllerParts::ctrShowParts($item, $value);
         // var_dump($parts);
-        // $image = "<img src='".$parts[$i]["image"]."' width='40px'>";
-        
-        
+    
 
         $Jsondata = '{
             "data": [';
 
             for($i = 0; $i < count($parts); $i++){
+
+        /*=============================================
+        Show product photos
+        =============================================*/
+
                 $image = "<img src='".$parts[$i]["image"]."' width='40px'>";
+
+        /*=============================================
+        Show Part Category
+        =============================================*/
 
 					$item = "id";
                     $value = $parts[$i]["idCategory"];
 
                     $categories = ControllerCategory::ctrShowCategories($item, $value);
 
-                    $buttons =  "<div class='btn-group'><button class='btn btn-wwarning btnEditPart' idPart=".$parts[$i]["id"]." data-toggle='modal' data-target='#EditPar'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeletePart' idParts=".$parts[$i]["id"]." code=".$parts[$i]["code"]." image=".$parts[$i]["image"]."><i class='fa fa-times'></i></button></div>";
+        /*=============================================
+        Color coding of stock
+        =============================================*/                    
+        if($parts[$i]["stock"] <= 10){            
+            $stock = "<button class='btn btn-danger'>".$parts[$i]["stock"]."</button>";
+        } else if ($parts[$i]["stock"] > 11 && $parts[$i]["stock"] <= 15){
+            $stock = "<button class='btn btn-warning'>".$parts[$i]["stock"]."</button>";
+        } else {
+            $stock = "<button class='btn btn-success'>".$parts[$i]["stock"]."</button>";
+        }
+    
+        /*=============================================
+        Button functions
+        =============================================*/
+
+                    $buttons =  "<div class='btn-group'><button class='btn btn-warning btnEditPart' idPart=".$parts[$i]["id"]." data-toggle='modal' data-target='#EditPar'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeletePart' idParts=".$parts[$i]["id"]." code=".$parts[$i]["code"]." image=".$parts[$i]["image"]."><i class='fa fa-times'></i></button></div>";
 
 
                 $Jsondata .= '[
@@ -38,7 +65,7 @@ class PartsTable{
                         "'.$parts[$i]["code"].'",
                         "'.$parts[$i]["description"].'",
                         "'.$categories["category"].'",
-						"$ '.$parts[$i]["stock"].'",
+                        "'.$stock.'",  
 						"$ '.$parts[$i]["buyingPrice"].'",
 						"$ '.$parts[$i]["sellingPrice"].'",
 						"'.$parts[$i]["date"].'",

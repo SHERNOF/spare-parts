@@ -109,11 +109,20 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
                 <select class="form-control input-lg" name="newProfile">
-                
-                  <option value="">Select Category</option>
-                  <option value="AT70">AT70</option>
-                  <option value="Merlin">Merlin</option>
-                  <option value="Wren">Wren</option>
+                <option value="">Select Category</option>
+
+                <?php
+
+                $item = null;
+                $value = null;
+                $categories = ControllerCategory::ctrShowCategories($item, $value);
+
+                foreach($categories as $key => $value){
+                  echo '<option value="'.$value["id"].'">'.$value["category"].'</option>';
+                }
+
+                ?>
+            
 
                 </select>
               </div>
