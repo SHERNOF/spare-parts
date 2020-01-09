@@ -6,17 +6,12 @@
         <!-- User Management -->
 
         <medium>Spare Parts Management</medium>
-
       </h1>
-
       <ol class="breadcrumb">
-
         <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
-
         <li class="active">Dashboard</li>
 
       </ol>
-      
     </section>
 
 
@@ -136,18 +131,20 @@
               <!-- Buying Prince Entry -->
               <div class="form-group row">
 
-              <div class="col-xs-6">
+              <!-- <div class="col-xs-6"> -->
+              <div class="col-xs-12 col-sm-6">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                      <input type="number" class="form-control input-lg" name="newPriceBuy" id="newPriceBuy" name="newPriceBuy" min="0" placeholder="Buying Price" required>
+                      <input type="number" class="form-control input-lg" step="any" name="newPriceBuy" id="newPriceBuy" name="newPriceBuy" min="0" placeholder="Buying Price" required>
                     </div>
                   </div>
                 
               <!-- Selling Price Entry -->
-              <div class="col-xs-6">
+              <!-- <div class="col-xs-6"> -->
+              <div class="col-xs-12 col-sm-6">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                      <input type="number" class="form-control input-lg" name="newPriceSell" id="newPriceSell" min="0" placeholder="Selling Price" required>
+                      <input type="number" class="form-control input-lg" name="newPriceSell" id="newPriceSell" min="0" step="any" placeholder="Selling Price" required>
                   </div>
 
                   <br>
@@ -174,9 +171,9 @@
             <!-- Picture entry -->
               <div class="form-group">
                 <div class="panel">Upload Profile Photo</div>
-                <input type="file" id="newPhoto" name="newPhoto">
+                <input type="file" class="newPicParts" name="newPicParts">
                 <p class="help-block">Only max of 2MB per Photo</p>
-                <img src="views/img/parts/anonymous.png" class="img-thumbnail" width="100px">
+                <img src="views/img/parts/anonymous.png" class="img-thumbnail preview" width="100px">
               </div>          
             </div>
           </div>
@@ -195,4 +192,134 @@
       </form>
     </div>
   </div>
+</div>
+
+
+    <!-- =====================================
+    =     Module Edit Parts            =
+    ======================================-->
+
+<div class="modal fade" id="EditPart" role="dialog">
+
+    <div class="modal-dialog">
+
+
+    <div class="modal-content">
+
+      <form role="form" method="POST" enctype="multipart/form-data">
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background: #3c8dbc; color: #fff">
+        
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Product</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="box-body">
+
+            <!-- Categories -->
+
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                <select class="form-control input-lg" id="editCategory" name="editCategory" required readonly>
+                <option id="editCategory"></option>
+
+                </select>
+              </div>
+          </div>
+
+          <!-- for Id number -->
+
+          <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                <!-- <input type="text" class="form-control input-lg" name="newId" placeholder="Add Id Number" required> -->
+                <input class="form-control input-lg" type="text" id="editCode" name="editCode" readonly required>
+              </div>
+          </div>    
+
+              <!-- Description Entry -->
+          <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                <input type="text" class="form-control input-lg" name="editDescription" id="editDescription" required>
+              </div>
+          </div>
+
+              <!-- Stock Entry -->
+              <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                <input type="number" class="form-control input-lg" name="editStock" min="0" id="editStock" required>
+              </div>
+          </div>
+
+              <!-- Buying Prince Entry -->
+              <div class="form-group row">
+
+              <!-- <div class="col-xs-6"> -->
+              <div class="col-xs-12 col-sm-6">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+                      <input type="number" class="form-control input-lg" step="any" id="editPriceBuy" name="newPriceBuy" min="0" required>
+                    </div>
+                  </div>
+                
+              <!-- Selling Price Entry -->
+              <!-- <div class="col-xs-6"> -->
+              <div class="col-xs-12 col-sm-6">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+                      <input type="number" class="form-control input-lg" name="editPriceSell" id="editPriceSell" min="0" step="any" required>
+                  </div>
+
+                  <br>
+
+              <!-- Percentage Checkbox -->
+
+              <div class="col-xs-6">
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" class="minimal percentage" checked>
+                    Use PerCentage
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-xs-6" style="padding:0">
+                <div class="input-group"> 
+                  <input type="number" class="form-control input-lg newPercentage" min="0" value="40" required>
+                  <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+              </div>                  
+            </div>
+          </div>
+
+            <!-- Picture entry -->
+              <div class="form-group">
+                <div class="panel">Upload Profile Photo</div>
+                <input type="file" class="PicParts" name="editPicParts">
+                <p class="help-block">Only max of 2MB per Photo</p>
+                <img src="views/img/parts/anonymous.png" class="img-thumbnail preview" width="100px">
+                <input type="hidden" name="actualPicParts" id="actualPicParts"> 
+              </div>          
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+
+          <?php
+              $editPart = new ControllerParts();
+              $editPart -> ctrEditPart();
+          ?>
+        
+    </form>
+  </div>
+</div>
 </div>

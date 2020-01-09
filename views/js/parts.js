@@ -1,6 +1,6 @@
 
 /*=============================================
-LOAD DYNAMIC PRODUCTS TABLE
+LOAD DYNAMIC PartS TABLE
 =============================================*/
 
 // $.ajax({
@@ -14,7 +14,8 @@ LOAD DYNAMIC PRODUCTS TABLE
 
 // })
 
-$('.tableProducts').DataTable( {
+// $('.productsTable').DataTable( {
+    $('.tableProducts').DataTable( {
     "ajax": "ajax/datatable-parts.ajax.php",
     "deferRender": true,
     "retrieve": true,
@@ -130,6 +131,117 @@ $(".percentage").on("ifUnchecked", function(){
 $(".percentage").on("ifChecked", function(){
     $("#newPriceSell").prop("readonly", true);
 })
+
+/*====================================
+=   Uploading Parts Photo           =
+====================================*/
+
+
+$(".newPicParts").change(function(){
+
+    var newImage = this.files[0];
+
+    /*====================================
+    =        Validate file format        =
+    ====================================*/
+
+    if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png"){
+        $(".newPicParts").val("");
+
+        swal ({
+            type: "error",
+			title: "Error uploading image",
+			text: "¡Image has to be JPEG or PNG!",
+			showConfirmButton: true,
+			confirmButtonText: "Close"
+        });
+
+    } else if (newImage["size"] > 2000000){
+        $(".newPicParts").val("");
+        swal ({
+            type: "error",
+			title: "Error uploading image",
+			text: "¡Image too big. It has to be less than 2Mb!",
+			showConfirmButton: true,
+			confirmButtonText: "Close"
+        });
+    } else {
+        var dataImage = new FileReader;
+        dataImage.readAsDataURL(newImage);
+        $(dataImage).on("load", function(event){
+            var routeImage = event.target.result;
+            $(".preview").attr("src", routeImage)
+        });
+    }
+
+})
+
+
  
+/*=============================================
+Edit Parts
+=============================================*/
 
+$(".partsTable tbody").on("click", "button.btnEditPart", function(){
 
+	var idPart = $(this).attr("idPart");
+	
+	var data = new FormData();
+    data.append("idPart", idPart);
+
+     $.ajax({
+
+      url:"ajax/parts.ajax.php",
+      method: "POST",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(answer){
+        
+        console.log("answer", answer);
+          
+        var categoryData = new FormData();
+        categoryData.append("idCategory",answer["idCategory"]);
+
+         $.ajax({
+
+            url:"ajax/categories.ajax.php",
+            method: "POST",
+            data: categoryData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType:"json",
+            success:function(answer){
+                
+                $("#editCategory").val(answer["id"]);
+                $("#editCategory").html(answer["Category"]);
+
+            }
+        })
+
+         $("#editCode").val(answer["code"]);
+
+         $("#editDescription").val(answer["description"]);
+
+         $("#editStock").val(answer["stock"]);
+
+         $("#editBuyingPrice").val(answer["buyingPrice"]);
+
+         $("#editSellingPrice").val(answer["sellingPrice"]);
+
+         if(answer["image"] != ""){
+
+       	    $("#currentImage").val(answer["image"]);
+
+       	    $(".preview").attr("src",  answer["image"]);
+
+         }
+
+      }
+
+  })
+
+})
