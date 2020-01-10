@@ -66,35 +66,35 @@ class PartsModel {
 
     }
     
-    /*=============================================
-	EDITING Part
-	=============================================*/
-	static public function mdlEditPart($table, $data){
+    // /*=============================================
+	// EDITING Part
+	// =============================================*/
+	// static public function mdlEditPart($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET idCategory = :idCategory, description = :description, image = :image, stock = :stock, buyingPrice = :buyingPrice, sellingPrice = :sellingPrice WHERE code = :code");
+	// 	$stmt = Connection::connect()->prepare("UPDATE $table SET idCategory = :idCategory, description = :description, image = :image, stock = :stock, buyingPrice = :buyingPrice, sellingPrice = :sellingPrice WHERE code = :code");
 
-		$stmt->bindParam(":idCategory", $data["idCategory"], PDO::PARAM_INT);
-		$stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
-		$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
-		$stmt->bindParam(":image", $data["image"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $data["stock"], PDO::PARAM_STR);
-		$stmt->bindParam(":buyingPrice", $data["buyingPrice"], PDO::PARAM_STR);
-		$stmt->bindParam(":sellingPrice", $data["sellingPrice"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":idCategory", $data["idCategory"], PDO::PARAM_INT);
+	// 	$stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":image", $data["image"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":stock", $data["stock"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":buyingPrice", $data["buyingPrice"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":sellingPrice", $data["sellingPrice"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
+	// 	if($stmt->execute()){
 
-			return "ok";
+	// 		return "ok";
 
-		}else{
+	// 	}else{
 
-			return "error";
+	// 		return "error";
 		
-		}
+	// 	}
 
-		$stmt->close();
-		$stmt = null;
+	// 	$stmt->close();
+	// 	$stmt = null;
 
-	}
+	// }
 
 }
 

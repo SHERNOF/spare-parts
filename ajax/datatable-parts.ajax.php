@@ -55,8 +55,8 @@ class PartsTable{
         /*=============================================
         Button functions
         =============================================*/
-
-        $buttons =  "<div class='btn-group'><button class='btn btn-warning btnEditPart' idPart=".$parts[$i]["id"]." data-toggle='modal' data-target='#EditPart'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeletePart' idPart=".$parts[$i]["id"]." code=".$parts[$i]["code"]." image=".$parts[$i]["image"]."><i class='fa fa-times'></i></button></div>";
+        
+        $buttons =  "<div class='btn-group'><button class='btn btn-warning btnEditPart' idPart='".$parts[$i]["id"]."' data-toggle='modal' data-target='#EditPart'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeletePart' idPart='".$parts[$i]["id"]."' code='".$parts[$i]["code"]."' image='".$parts[$i]["image"]."'><i class='fa fa-times'></i></button></div>";
 
 
                 $Jsondata .= '[

@@ -15,36 +15,37 @@ LOAD DYNAMIC PartS TABLE
 // })
 
 
-    $('.tableProducts').DataTable( {
+    $('.PartsTable').DataTable( {
+
     "ajax": "ajax/datatable-parts.ajax.php",
     "deferRender": true,
     "retrieve": true,
     "processing": true,
-    "language": {
-        "sEmptyTable":     "No data available in table",
-        "sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
-        "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
-        "sInfoFiltered":   "(filtered from _MAX_ total entries)",
-        "sInfoPostFix":    "",
-        "sInfoThousands":  ",",
-        "sLengthMenu":     "Show _MENU_ entries",
-        "sLoadingRecords": "Loading...",
-        "sProcessing":     "Processing...",
-        "sSearch":         "Search:",
-        "sZeroRecords":    "No matching records found",
-        "oPaginate": {
-            "sFirst":    "First",
-            "sLast":     "Last",
-            "sNext":     "Next",
-            "sPrevious": "Previous"
-        },
-        "oAria": {
-            "sSortAscending":  ": activate to sort column ascending",
-            "sSortDescending": ": activate to sort column descending"
-        }
-    }
+    // "language": {
+    //     "sEmptyTable":     "No data available in table",
+    //     "sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
+    //     "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
+    //     "sInfoFiltered":   "(filtered from _MAX_ total entries)",
+    //     "sInfoPostFix":    "",
+    //     "sInfoThousands":  ",",
+    //     "sLengthMenu":     "Show _MENU_ entries",
+    //     "sLoadingRecords": "Loading...",
+    //     "sProcessing":     "Processing...",
+    //     "sSearch":         "Search:",
+    //     "sZeroRecords":    "No matching records found",
+    //     "oPaginate": {
+    //         "sFirst":    "First",
+    //         "sLast":     "Last",
+    //         "sNext":     "Next",
+    //         "sPrevious": "Previous"
+    //     },
+    //     "oAria": {
+    //         "sSortAscending":  ": activate to sort column ascending",
+    //         "sSortDescending": ": activate to sort column descending"
+    //     }
+    // }
     
-} );
+});
 
 /*=============================================
 Add Category and increment the code
@@ -92,44 +93,104 @@ $("#newCategory").change(function(){
 Selling Price
 =============================================*/
 
-$("#newPriceBuy").change(function(){
+// $("#newPriceBuy", "#editPrioceBuy").change(function(){
 
-    if($(".percentage").prop("checked")){
+//     if($(".percentage").prop("checked")){
 
-    var percentageValue = $(".newPercentage").val();
+//     var percentageValue = $(".newPercentage").val();
     
-    var percentage = Number(($("#newPriceBuy").val()*percentageValue/100))+Number($("#newPriceBuy").val());
+//     var percentage = Number(($("#newPriceBuy").val()*percentageValue/100))+Number($("#newPriceBuy").val());
 
-    $("#newPriceSell").val(percentage);
-    $("#newPriceSell").prop("readonly", true);
+//     $("#newPriceSell").val(percentage);
+//     $("#newPriceSell").prop("readonly", true);
+//     }
 
-    }
+$("#newPriceBuy, #editPriceBuy").change(function(){
+
+	if($(".percentage").prop("checked")){
+
+		var valuePercentage = $(".newPercentage").val();
+		
+		var percentage = Number(($("#newPriceBuy").val()*valuePercentage/100))+Number($("#newPriceBuy").val());
+
+		var editPercentage = Number(($("#editPriceBuy").val()*valuePercentage/100))+Number($("#editPriceBuy").val());
+
+		$("#newPriceSell").val(percentage);
+		$("#newPriceSell").prop("readonly",true);
+
+		$("#editPriceSell").val(editPercentage);
+		$("#editPriceSell").prop("readonly",true);
+
+	}
+
 })
 
 /*=============================================
 New Percentage Change
 =============================================*/
 
+// $(".newPercentage").change(function(){
+
+//     if($(".percentage").prop("checked")){
+
+//         var percentageValue = $(".newPercentage").val();
+        
+//         var percentage = Number(($("#newPriceBuy").val()*percentageValue/100))+Number($("#newPriceBuy").val());
+
+//         var editPercentage = Number(($("#editPriceBuy").val()*percentageValue/100))+Number($("#editPriceBuy").val());
+        
+    
+//         $("#newPriceSell").val(percentage);
+//         $("#newPriceSell").prop("readonly", true);
+
+//         $("#editPriceSell").val(editPercentage);
+// 		$("#editPriceSell").prop("readonly",true);
+
+//     }
+// })
+
+// $(".percentage").on("ifUnchecked", function(){
+//     $("#newPriceSell").prop("readonly", false);
+//     $("#editPriceSell").prop("readonly", false);
+// })
+
+// $(".percentage").on("ifChecked", function(){
+//     $("#newPriceSell").prop("readonly", true);
+//     $("#editPriceSell").prop("readonly", true);
+// })
+
 $(".newPercentage").change(function(){
 
-    if($(".percentage").prop("checked")){
+	if($(".percentage").prop("checked")){
 
-        var percentageValue = $(".newPercentage").val();
-        
-        var percentage = Number(($("#newPriceBuy").val()*percentageValue/100))+Number($("#newPriceBuy").val());
-    
-        $("#newPriceSell").val(percentage);
-        $("#newPriceSell").prop("readonly", true);
+		var valuePercentage = $(this).val();
+		
+		var percentage = Number(($("#newPriceBuy").val()*valuePercentage/100))+Number($("#newPriceBuy").val());
 
-    }
+		var editPercentage = Number(($("#editPriceBuy").val()*valuePercentage/100))+Number($("#editPriceBuy").val());
+
+		$("#newPriceSell").val(percentage);
+		$("#newPriceSell").prop("readonly",true);
+
+		$("#editPriceSell").val(editPercentage);
+		$("#editPriceSell").prop("readonly",true);
+
+	}
+
 })
 
-$(".percentage").on("ifUnchecked", function(){
-    $("#newPriceSell").prop("readonly", false);
+$(".percentage").on("ifUnchecked",function(){
+
+	$("#newPriceSell").prop("readonly",false);
+	$("#editPriceSell").prop("readonly",false);
+
 })
 
-$(".percentage").on("ifChecked", function(){
-    $("#newPriceSell").prop("readonly", true);
+$(".percentage").on("ifChecked",function(){
+
+	$("#newPriceSell").prop("readonly",true);
+	$("#editPriceSell").prop("readonly",true);
+
 })
 
 /*====================================
@@ -182,9 +243,13 @@ $(".newPicParts").change(function(){
 Edit Parts
 =============================================*/
 
-    $(".partsTable tbody").on("click", "button.btnEditPart", function(){
-        // $(".tableProducts tbody").on("click", "button.btnEditPart", function(){
 
+    // $(".PartsTable tbody").on("click", "button.btnEditPart", function(){
+    //     var idPart = $(this).attr("idPart");
+    //     console.log("idPart", idPart);
+    // })
+
+    $(".PartsTable tbody").on("click", "button.btnEditPart", function(){
 	var idPart = $(this).attr("idPart");
 	
 	var data = new FormData();
@@ -201,7 +266,7 @@ Edit Parts
       dataType:"json",
       success:function(answer){
         
-        console.log("answer", answer);
+        // console.log("answer", answer);
           
         var categoryData = new FormData();
         categoryData.append("idCategory",answer["idCategory"]);
@@ -216,9 +281,11 @@ Edit Parts
             processData: false,
             dataType:"json",
             success:function(answer){
+
+                // console.log("answer", answer);
                 
                 $("#editCategory").val(answer["id"]);
-                $("#editCategory").html(answer["Category"]);
+                $("#editCategory").html(answer["category"]);
 
             }
         })
@@ -228,10 +295,6 @@ Edit Parts
          $("#editDescription").val(answer["description"]);
 
          $("#editStock").val(answer["stock"]);
-
-        //  $("#editBuyingPrice").val(answer["buyingPrice"]);
-
-        //  $("#editSellingPrice").val(answer["sellingPrice"]);
 
         $("#editPriceBuy").val(answer["buyingPrice"]);
 

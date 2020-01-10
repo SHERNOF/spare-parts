@@ -134,162 +134,155 @@ class ControllerParts {
 		}
 		
 
-		/*=============================================
-		EDIT Part
-		=============================================*/
+	// 	/*=============================================
+	// 	EDIT Part
+	// 	=============================================*/
 
-	static public function ctrEditPart(){
+	// static public function ctrEditPart(){
 
-		if(isset($_POST["editDescription"])){
+	// 	if(isset($_POST["editDescription"])){
 
-			// if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editDescription"]) &&
-			//    preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
-			//    preg_match('/^[0-9.]+$/', $_POST["editBuyingPrice"]) &&
-			//    preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
+	// 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editDescription"]) &&
+	// 			preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
+	// 			preg_match('/^[0-9.]+$/', $_POST["editPriceBuy"]) &&
+	// 			preg_match('/^[0-9.]+$/', $_POST["editPriceSell"])){
 
-				if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editDescription"]) &&
-				preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
-				preg_match('/^[0-9.]+$/', $_POST["editPriceBuy"]) &&
-				preg_match('/^[0-9.]+$/', $_POST["editPriceSell"])){
+	// 	   		/*=============================================
+	// 			VALIDATE Image
+	// 			=============================================*/
 
-		   		/*=============================================
-				VALIDATE Image
-				=============================================*/
+	// 		   	$route = $_POST["actualPicParts"];
 
-			   	$route = $_POST["actualPicParts"];
+	// 		   	if(isset($_FILES["editPicParts"]["tmp_name"]) && !empty($_FILES["editPicParts"]["tmp_name"])){
 
-			   	if(isset($_FILES["editPicParts"]["tmp_name"]) && !empty($_FILES["editPicParts"]["tmp_name"])){
+	// 				list($width, $height) = getPicPartssize($_FILES["editPicParts"]["tmp_name"]);
 
-					list($width, $height) = getPicPartssize($_FILES["editPicParts"]["tmp_name"]);
+	// 				$newWidth = 500;
+	// 				$newHeight = 500;
 
-					$newWidth = 500;
-					$newHeight = 500;
+	// 				/*=============================================
+	// 				WE CREATE THE FOLDER WHERE WE WILL SAVE THE Part Image
+	// 				=============================================*/
 
-					/*=============================================
-					WE CREATE THE FOLDER WHERE WE WILL SAVE THE Part Image
-					=============================================*/
+	// 				$folder = "views/img/Parts/".$_POST["editCode"];
 
-					$folder = "views/img/Parts/".$_POST["editCode"];
+	// 				/*=============================================
+	// 				WE ASK IF WE HAVE ANOTHER PICTURE IN THE DB
+	// 				=============================================*/
 
-					/*=============================================
-					WE ASK IF WE HAVE ANOTHER PICTURE IN THE DB
-					=============================================*/
+	// 				if(!empty($_POST["actualPicParts"]) && $_POST["actualPicParts"] != "views/img/Parts/default/anonymous.png"){
 
-					if(!empty($_POST["actualPicParts"]) && $_POST["actualPicParts"] != "views/img/Parts/default/anonymous.png"){
+	// 					unlink($_POST["actualPicParts"]);
 
-						unlink($_POST["actualPicParts"]);
+	// 				}else{
 
-					}else{
-
-						mkdir($folder, 0755);	
+	// 					mkdir($folder, 0755);	
 					
-					}
+	// 				}
 					
-					/*=============================================
-					WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE PicParts FORMAT
-					=============================================*/
+	// 				/*=============================================
+	// 				WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE PicParts FORMAT
+	// 				=============================================*/
 
-					if($_FILES["editPicParts"]["type"] == "image/jpeg"){
+	// 				if($_FILES["editPicParts"]["type"] == "image/jpeg"){
 
-						/*=============================================
-						WE SAVE THE PicParts IN THE FOLDER
-						=============================================*/
+	// 					/*=============================================
+	// 					WE SAVE THE PicParts IN THE FOLDER
+	// 					=============================================*/
 
-						$random = mt_rand(100,999);
+	// 					$random = mt_rand(100,999);
 
-						$route = "views/img/parts/".$_POST["editCode"]."/".$random.".jpg";
+	// 					$route = "views/img/parts/".$_POST["editCode"]."/".$random.".jpg";
 
-						$origin = imagecreatefromjpeg($_FILES["editPicParts"]["tmp_name"]);						
+	// 					$origin = imagecreatefromjpeg($_FILES["editPicParts"]["tmp_name"]);						
 
-						$destiny = imagecreatetruecolor($newWidth, $newHeight);
+	// 					$destiny = imagecreatetruecolor($newWidth, $newHeight);
 
-						imagecopyresized($destiny, $origin,	 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+	// 					imagecopyresized($destiny, $origin,	 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-						imagejpeg($destiny, $route);
+	// 					imagejpeg($destiny, $route);
 
-					}
+	// 				}
 
-					if($_FILES["editPicParts"]["type"] == "image/png"){
+	// 				if($_FILES["editPicParts"]["type"] == "image/png"){
 
-						/*=============================================
-						WE SAVE THE PicParts IN THE FOLDER
-						=============================================*/
+	// 					/*=============================================
+	// 					WE SAVE THE PicParts IN THE FOLDER
+	// 					=============================================*/
 
-						$random = mt_rand(100,999);
+	// 					$random = mt_rand(100,999);
 
-						$route = "views/img/parts/".$_POST["editCode"]."/".$random.".png";
+	// 					$route = "views/img/parts/".$_POST["editCode"]."/".$random.".png";
 
-						$origin = imagecreatefrompng($_FILES["editPicParts"]["tmp_name"]);
+	// 					$origin = imagecreatefrompng($_FILES["editPicParts"]["tmp_name"]);
 
-						$destiny = imagecreatetruecolor($newWidth, $newHeight);
+	// 					$destiny = imagecreatetruecolor($newWidth, $newHeight);
 
-						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+	// 					imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-						imagepng($destiny, $route);
+	// 					imagepng($destiny, $route);
 
-					}
+	// 				}
 
-				}
+	// 			}
 
-				$table = "parts";
+	// 			$table = "parts";
 
-				$data = array("idCategory" => $_POST["editCategory"],
-							   "code" => $_POST["editCode"],
-							   "description" => $_POST["editDescription"],
-							   "stock" => $_POST["editStock"],
-							//    "buyingPrice" => $_POST["editBuyingPrice"],
-							//    "sellingPrice" => $_POST["editSellingPrice"],
-							"buyingPrice" => $_POST["editPriceBuy"],
-							"sellingPrice" => $_POST["editPriceSell"],
-							   "image" => $route);
+	// 			$data = array("idCategory" => $_POST["editCategory"],
+	// 						   "code" => $_POST["editCode"],
+	// 						   "description" => $_POST["editDescription"],
+	// 						   "stock" => $_POST["editStock"],
+	// 						"buyingPrice" => $_POST["editPriceBuy"],
+	// 						"sellingPrice" => $_POST["editPriceSell"],
+	// 						   "image" => $route);
 
-				$answer = PartsModel::mdlEditPart($table, $data);
+	// 			$answer = PartsModel::mdlEditPart($table, $data);
 
-				if($answer == "ok"){
+	// 			if($answer == "ok"){
 
-					echo'<script>
+	// 				echo'<script>
 
-						swal({
-							  type: "success",
-							  title: "The Part has been edited",
-							  showConfirmButton: true,
-							  confirmButtonText: "Close"
-							  }).then(function(result){
-										if (result.value) {
+	// 					swal({
+	// 						  type: "success",
+	// 						  title: "The Part has been edited",
+	// 						  showConfirmButton: true,
+	// 						  confirmButtonText: "Close"
+	// 						  }).then(function(result){
+	// 									if (result.value) {
 
-										window.location = "Parts";
+	// 									window.location = "Parts";
 
-										}
-									})
+	// 									}
+	// 								})
 
-						</script>';
+	// 					</script>';
 
-				}
+	// 			}
 
 
-			}else{
+	// 		}else{
 
-				echo'<script>
+	// 			echo'<script>
 
-					swal({
-						  type: "error",
-						  title: "¡The Part cannot be empty or have special characters!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Close"
-						  }).then(function(result){
-							if (result.value) {
+	// 				swal({
+	// 					  type: "error",
+	// 					  title: "¡The Part cannot be empty or have special characters!",
+	// 					  showConfirmButton: true,
+	// 					  confirmButtonText: "Close"
+	// 					  }).then(function(result){
+	// 						if (result.value) {
 
-							window.location = "Parts";
+	// 						window.location = "Parts";
 
-							}
-						})
+	// 						}
+	// 					})
 
-			  	</script>';
-			}
+	// 		  	</script>';
+	// 		}
 
-		}
+	// 	}
 
-	}
+	// }
 
 
 	}
