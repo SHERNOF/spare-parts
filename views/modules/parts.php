@@ -74,7 +74,7 @@
       <div class="modal-header" style="background: #3c8dbc; color: #fff">
         
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Product</h4>
+        <h4 class="modal-title">Add Part</h4>
       </div>
 
       <!-- Modal body -->
@@ -212,7 +212,7 @@
       <div class="modal-header" style="background: #3c8dbc; color: #fff">
         
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Product</h4>
+        <h4 class="modal-title">Edit Part</h4>
       </div>
 
       <!-- Modal body -->
@@ -264,7 +264,7 @@
               <div class="col-xs-12 col-sm-6">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                      <input type="number" class="form-control input-lg" step="any" id="editPriceBuy" name="newPriceBuy" min="0" required>
+                      <input type="number" class="form-control input-lg" step="any" id="editPriceBuy" name="editPriceBuy" min="0" required>
                     </div>
                   </div>
                 

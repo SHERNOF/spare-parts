@@ -14,7 +14,7 @@ LOAD DYNAMIC PartS TABLE
 
 // })
 
-// $('.productsTable').DataTable( {
+
     $('.tableProducts').DataTable( {
     "ajax": "ajax/datatable-parts.ajax.php",
     "deferRender": true,
@@ -182,7 +182,8 @@ $(".newPicParts").change(function(){
 Edit Parts
 =============================================*/
 
-$(".partsTable tbody").on("click", "button.btnEditPart", function(){
+    $(".partsTable tbody").on("click", "button.btnEditPart", function(){
+        // $(".tableProducts tbody").on("click", "button.btnEditPart", function(){
 
 	var idPart = $(this).attr("idPart");
 	
@@ -228,13 +229,17 @@ $(".partsTable tbody").on("click", "button.btnEditPart", function(){
 
          $("#editStock").val(answer["stock"]);
 
-         $("#editBuyingPrice").val(answer["buyingPrice"]);
+        //  $("#editBuyingPrice").val(answer["buyingPrice"]);
 
-         $("#editSellingPrice").val(answer["sellingPrice"]);
+        //  $("#editSellingPrice").val(answer["sellingPrice"]);
+
+        $("#editPriceBuy").val(answer["buyingPrice"]);
+
+         $("#editPriceSell").val(answer["sellingPrice"]);
 
          if(answer["image"] != ""){
 
-       	    $("#currentImage").val(answer["image"]);
+       	    $("#actualPicParts").val(answer["image"]);
 
        	    $(".preview").attr("src",  answer["image"]);
 

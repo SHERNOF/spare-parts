@@ -7,7 +7,7 @@ require_once "../models/categories.model.php";
 
 
     /*=============================================
-    LOAD DYNAMIC PRODUCTS TABLE
+    LOAD DYNAMIC Parts TABLE
     =============================================*/
 
 
@@ -27,7 +27,7 @@ class PartsTable{
             for($i = 0; $i < count($parts); $i++){
 
         /*=============================================
-        Show product photos
+        Show Partsphotos
         =============================================*/
 
                 $image = "<img src='".$parts[$i]["image"]."' width='40px'>";
@@ -56,7 +56,7 @@ class PartsTable{
         Button functions
         =============================================*/
 
-                    $buttons =  "<div class='btn-group'><button class='btn btn-warning btnEditPart' idPart=".$parts[$i]["id"]." data-toggle='modal' data-target='#EditPar'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeletePart' idParts=".$parts[$i]["id"]." code=".$parts[$i]["code"]." image=".$parts[$i]["image"]."><i class='fa fa-times'></i></button></div>";
+        $buttons =  "<div class='btn-group'><button class='btn btn-warning btnEditPart' idPart=".$parts[$i]["id"]." data-toggle='modal' data-target='#EditPart'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeletePart' idPart=".$parts[$i]["id"]." code=".$parts[$i]["code"]." image=".$parts[$i]["image"]."><i class='fa fa-times'></i></button></div>";
 
 
                 $Jsondata .= '[

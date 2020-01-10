@@ -21,22 +21,22 @@ class AjaxParts{
 		echo json_encode($answer);
 	}
 
-	// /*=============================================
- 	//  EDIT Part
-  	// =============================================*/ 
+	/*=============================================
+ 	 EDIT Part
+  	=============================================*/ 
 
-  	// // public $idPart;
+  	public $idPart;
 
-  	// // public function ajaxEditPart(){
+  	public function ajaxEditPart(){
 
-	// //     $item = "id";
-	// //     $value = $this->idPart;
+	    $item = "id";
+	    $value = $this->idPart;
 
-	// //     $answer = controllerParts::ctrShowParts($item, $value);
+	    $answer = ControllerParts::ctrShowParts($item, $value);
 
-	// //     echo json_encode($answer);
+	    echo json_encode($answer);
 
-  	// // }
+  	}
 
 }
 

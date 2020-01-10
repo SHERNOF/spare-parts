@@ -142,10 +142,15 @@ class ControllerParts {
 
 		if(isset($_POST["editDescription"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editDescription"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
-			   preg_match('/^[0-9.]+$/', $_POST["editBuyingPrice"]) &&
-			   preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
+			// if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editDescription"]) &&
+			//    preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
+			//    preg_match('/^[0-9.]+$/', $_POST["editBuyingPrice"]) &&
+			//    preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
+
+				if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editDescription"]) &&
+				preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
+				preg_match('/^[0-9.]+$/', $_POST["editPriceBuy"]) &&
+				preg_match('/^[0-9.]+$/', $_POST["editPriceSell"])){
 
 		   		/*=============================================
 				VALIDATE Image
@@ -232,8 +237,10 @@ class ControllerParts {
 							   "code" => $_POST["editCode"],
 							   "description" => $_POST["editDescription"],
 							   "stock" => $_POST["editStock"],
-							   "buyingPrice" => $_POST["editBuyingPrice"],
-							   "sellingPrice" => $_POST["editSellingPrice"],
+							//    "buyingPrice" => $_POST["editBuyingPrice"],
+							//    "sellingPrice" => $_POST["editSellingPrice"],
+							"buyingPrice" => $_POST["editPriceBuy"],
+							"sellingPrice" => $_POST["editPriceSell"],
 							   "image" => $route);
 
 				$answer = PartsModel::mdlEditPart($table, $data);
