@@ -305,13 +305,13 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save Part</button>
         </div>        
     </form>
     <?php
-            // $editPart = new ControllerParts();
-            // $editPart -> ctrEditPart();
+            $editPart = new ControllerParts();
+            $editPart -> ctrEditPart();
         ?> 
   </div>
 </div>
