@@ -17,7 +17,9 @@ class ControllerParts {
 	=============================================*/
 
 	static public function ctrCreatePart(){
+
 		if(isset($_POST["newDescription"])){
+			
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newDescription"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["newStock"]) &&	
 			   preg_match('/^[0-9.]+$/', $_POST["newPriceBuy"]) &&
@@ -32,7 +34,7 @@ class ControllerParts {
 			
 				if (isset($_FILES["newPicParts"]["tmp_name"])){
 
-					list($width, $height) = getPicPartssize($_FILES["newPicParts"]["tmp_name"]);
+					list($width, $height) = getimagesize($_FILES["newPicParts"]["tmp_name"]);
 					
 					$newWidth = 500;
 					$newHeight = 500;
@@ -49,62 +51,36 @@ class ControllerParts {
 					PHP functions depending on the PicParts
 					=============================================*/
 
-					if($_FILES["newPicParts"]["type"] == "PicParts/jpeg"){
+					if($_FILES["newPicParts"]["type"] == "image/jpeg"){
 
 						$randomNumber = mt_rand(100,999);
 						
 						$route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".jpg";
 						
-						$srcPicParts = PicPartscreatefromjpeg($_FILES["newPicParts"]["tmp_name"]);
+						$srcPicParts = imagecreatefromjpeg($_FILES["newPicParts"]["tmp_name"]);
 						
-						$destination = PicPartscreatetruecolor($newWidth, $newHeight);
+						$destination = imagecreatetruecolor($newWidth, $newHeight);
 
-						PicPartscopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+						imagecopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-						PicPartsjpeg($destination, $route);
-
-						// $randomNumber = mt_rand(100,999);
-						
-						// $route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".jpg";
-						
-						// $srcPicParts = imagecreatefromjpeg($_FILES["newPicParts"]["tmp_name"]);
-						
-						// $destination = imagecreatetruecolor($newWidth, $newHeight);
-
-						// imagecopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-						// imagejpeg($destination, $route);
+						imagejpeg($destination, $route);
 
 					}
 
-					if ($_FILES["newPicParts"]["type"] == "PicParts/png") {
+						if ($_FILES["newPicParts"]["type"] == "image/png") {
 
-						$randomNumber = mt_rand(100,999);
-						
-						$route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".png";
-						
-						$srcPicParts = PicPartscreatefrompng($_FILES["newPicParts"]["tmp_name"]);
-						
-						$destination = PicPartscreatetruecolor($newWidth, $newHeight);
-
-						PicPartscopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-						PicPartspng($destination, $route);
-
-						// if ($_FILES["newPicParts"]["type"] == "PicParts/png") {
-
-						// 	$randomNumber = mt_rand(100,999);
+							$randomNumber = mt_rand(100,999);
 							
-						// 	$route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".png";
+							$route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".png";
 							
-						// 	$srcPicParts = imagecreatefrompng($_FILES["newPicParts"]["tmp_name"]);
+							$srcPicParts = imagecreatefrompng($_FILES["newPicParts"]["tmp_name"]);
 							
-						// 	$destination = imagecreatetruecolor($newWidth, $newHeight);
+							$destination = imagecreatetruecolor($newWidth, $newHeight);
 	
-						// 	imagecopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+							imagecopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 	
-						// 	imagepng($destination, $route);
-					// }
+							imagepng($destination, $route);
+					}
 				}	
 				
 				
@@ -157,7 +133,9 @@ class ControllerParts {
 				}
 			}
 		}
-	}
+	
+		
+		
 		
 
 		/*=============================================
@@ -334,5 +312,4 @@ class ControllerParts {
 
 	}
 
-
-	}
+}

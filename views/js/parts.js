@@ -207,6 +207,7 @@ $(".PicParts").change(function(){
     ====================================*/
 
     if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png"){
+        
         $(".PicParts").val("");
 
         swal ({
