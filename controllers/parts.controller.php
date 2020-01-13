@@ -63,6 +63,18 @@ class ControllerParts {
 
 						PicPartsjpeg($destination, $route);
 
+						// $randomNumber = mt_rand(100,999);
+						
+						// $route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".jpg";
+						
+						// $srcPicParts = imagecreatefromjpeg($_FILES["newPicParts"]["tmp_name"]);
+						
+						// $destination = imagecreatetruecolor($newWidth, $newHeight);
+
+						// imagecopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+						// imagejpeg($destination, $route);
+
 					}
 
 					if ($_FILES["newPicParts"]["type"] == "PicParts/png") {
@@ -78,7 +90,21 @@ class ControllerParts {
 						PicPartscopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
 						PicPartspng($destination, $route);
-					}
+
+						// if ($_FILES["newPicParts"]["type"] == "PicParts/png") {
+
+						// 	$randomNumber = mt_rand(100,999);
+							
+						// 	$route = "views/img/parts/".$_POST["newCode"]."/".$randomNumber.".png";
+							
+						// 	$srcPicParts = imagecreatefrompng($_FILES["newPicParts"]["tmp_name"]);
+							
+						// 	$destination = imagecreatetruecolor($newWidth, $newHeight);
+	
+						// 	imagecopyresized($destination, $srcPicParts, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+	
+						// 	imagepng($destination, $route);
+					// }
 				}	
 				
 				
@@ -131,13 +157,14 @@ class ControllerParts {
 				}
 			}
 		}
+	}
 		
 
 		/*=============================================
 		EDIT Part
 		=============================================*/
 
-	static public function ctrEditPart(){
+		static public function ctrEditPart(){
 
 		if(isset($_POST["editDescription"])){
 
@@ -201,6 +228,18 @@ class ControllerParts {
 
 						imagejpeg($destiny, $route);
 
+						// $random = mt_rand(100,999);
+
+						// $route = "views/img/parts/".$_POST["editCode"]."/".$random.".jpg";
+
+						// $origin = PicPartscreatefromjpeg($_FILES["editPicParts"]["tmp_name"]);						
+
+						// $destiny = PicPartscreatetruecolor($newWidth, $newHeight);
+
+						// PicPartscopyresized($destiny, $origin,	 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+						// PicPartsjpeg($destiny, $route);
+
 					}
 
 					if($_FILES["editPicParts"]["type"] == "image/png"){
@@ -220,6 +259,18 @@ class ControllerParts {
 						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
 						imagepng($destiny, $route);
+						
+						// $random = mt_rand(100,999);
+
+						// $route = "views/img/parts/".$_POST["editCode"]."/".$random.".png";
+
+						// $origin = PicPartscreatefrompng($_FILES["editPicParts"]["tmp_name"]);
+
+						// $destiny = PicPartscreatetruecolor($newWidth, $newHeight);
+
+						// PicPartscopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+						// PicPartspng($destiny, $route);
 
 					}
 

@@ -298,10 +298,7 @@
             <p class="help-block">Only max of 2MB per Photo</p>
             <img src="views/img/users/default/anonymous.png" class="img-thumbnail preview" width="100px">
             <input type="hidden" id="currentPhoto" name="currentPhoto">
-          </div>          
-
-
-  
+          </div>           
         </div>
       </div>
 

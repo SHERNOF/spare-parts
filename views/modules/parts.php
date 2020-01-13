@@ -170,7 +170,7 @@
             <!-- Picture entry -->
               <div class="form-group">
                 <div class="panel">Upload Profile Photo</div>
-                <input type="file" class="newPicParts" name="newPicParts">
+                <input type="file" class="PicParts" name="newPicParts">
                 <p class="help-block">Only max of 2MB per Photo</p>
                 <img src="views/img/parts/anonymous.png" class="img-thumbnail preview" width="100px">
               </div>          
@@ -179,7 +179,7 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-default oull-left" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save Part</button>
           </div>        
       </form>
@@ -295,7 +295,7 @@
           <!-- Picture entry -->
             <div class="form-group">
               <div class="panel">Upload Profile Photo</div>
-              <input type="file" class="editPicParts" name="editPicParts">
+              <input type="file" class="PicParts" name="editPicParts">
               <p class="help-block">Only max of 2MB per Photo</p>
               <img src="views/img/parts/anonymous.png" class="img-thumbnail preview" width="100px">
               <input type="hidden" name="actualPicParts" id="actualPicParts">

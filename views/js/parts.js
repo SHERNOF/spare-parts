@@ -198,7 +198,7 @@ $(".percentage").on("ifChecked",function(){
 ====================================*/
 
 
-$(".newPicParts").change(function(){
+$(".PicParts").change(function(){
 
     var newImage = this.files[0];
 
@@ -207,7 +207,7 @@ $(".newPicParts").change(function(){
     ====================================*/
 
     if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png"){
-        $(".newPicParts").val("");
+        $(".PicParts").val("");
 
         swal ({
             type: "error",
@@ -218,7 +218,7 @@ $(".newPicParts").change(function(){
         });
 
     } else if (newImage["size"] > 2000000){
-        $(".newPicParts").val("");
+        $(".PicParts").val("");
         swal ({
             type: "error",
 			title: "Error uploading image",
@@ -266,7 +266,7 @@ Edit Parts
       dataType:"json",
       success:function(answer){
         
-        console.log("answer", answer);
+        // console.log("answer", answer);
           
         var categoryData = new FormData();
         categoryData.append("idCategory",answer["idCategory"]);
@@ -299,6 +299,7 @@ Edit Parts
         $("#editPriceBuy").val(answer["buyingPrice"]);
 
          $("#editPriceSell").val(answer["sellingPrice"]);
+
 
          if(answer["image"] != ""){
 
