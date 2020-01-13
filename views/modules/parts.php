@@ -172,7 +172,7 @@
                 <div class="panel">Upload Profile Photo</div>
                 <input type="file" class="PicParts" name="newPicParts">
                 <p class="help-block">Only max of 2MB per Photo</p>
-                <img src="views/img/parts/anonymous.png" class="img-thumbnail preview" width="100px">
+                <img src="views/img/parts/default/anonymous.png" class="img-thumbnail preview" width="100px">
               </div>          
             </div>
           </div>
@@ -297,7 +297,7 @@
               <div class="panel">Upload Profile Photo</div>
               <input type="file" class="PicParts" name="editPicParts">
               <p class="help-block">Only max of 2MB per Photo</p>
-              <img src="views/img/parts/anonymous.png" class="img-thumbnail preview" width="100px">
+              <img src="views/img/parts/default/anonymous.png" class="img-thumbnail preview" width="100px">
               <input type="hidden" name="actualPicParts" id="actualPicParts">
             </div>          
           </div>

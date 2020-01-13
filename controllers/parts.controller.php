@@ -181,7 +181,7 @@ class ControllerParts {
 
 			   	if(isset($_FILES["editPicParts"]["tmp_name"]) && !empty($_FILES["editPicParts"]["tmp_name"])){
 
-					list($width, $height) = getPicPartssize($_FILES["editPicParts"]["tmp_name"]);
+					list($width, $height) = getimagesize($_FILES["editPicParts"]["tmp_name"]);
 
 					$newWidth = 500;
 					$newHeight = 500;
