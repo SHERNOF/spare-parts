@@ -19,6 +19,15 @@ class PartsTable{
 
         $parts = ControllerParts::ctrShowParts($item, $value);
         // var_dump($parts);
+
+        // if(count($parts) == 0){
+
+		// 	$Jsondata = '{"data":[]}';
+
+		// 	echo $jsonData;
+
+		// 	return;
+		// }
     
 
         $Jsondata = '{
@@ -80,11 +89,6 @@ class PartsTable{
         echo $Jsondata;
 
         return;
-
-       
-            
-        
-
     }
 }
 

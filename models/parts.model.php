@@ -41,7 +41,7 @@ class PartsModel {
     =============================================*/
     static public function mdlAddPart($table, $data){
 		
-        $stmt = Connection::connect()->prepare("INSERT INTO $table(idCategory, code, description, image, stock, buyingPrice, sellingPrice) VALUES (:idCategory, :code, :description, :image, :stock, :buyingPrice, :sellingPrice)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(idCategory, code, description, image, stock, buyingPrice, sellingPrice) VALUES (:idCategory, :code, :description, :image, :stock, :buyingPrice, :sellingPrice)");
 
 		$stmt->bindParam(":idCategory", $data["idCategory"], PDO::PARAM_INT);
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);

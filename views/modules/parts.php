@@ -94,6 +94,7 @@
 
                 foreach($categories as $key => $value){
                   echo '<option value="'.$value["id"].'">'.$value["category"].'</option>';
+                  
                 }
                 ?>
 
