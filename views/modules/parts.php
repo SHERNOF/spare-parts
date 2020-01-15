@@ -55,7 +55,7 @@
     =     Module Add Parts            =
     ======================================-->
 
-<div class="modal fade" id="addPart" role="dialog">
+<div id="addPart" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
  
@@ -77,6 +77,7 @@
         ======================================-->
       
       <div class="modal-body">
+
         <div class="box-body">
 
             <!-- Categories -->
@@ -93,8 +94,8 @@
                 $categories = ControllerCategory::ctrShowCategories($item, $values);
 
                 foreach($categories as $key => $value){
+
                   echo '<option value="'.$value["id"].'">'.$value["category"].'</option>';
-                  
                 }
                 ?>
 
@@ -115,7 +116,7 @@
           <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-                <input type="text" class="form-control input-lg" name="newDescription" placeholder="Add Description" required>
+                <input type="text" class="form-control input-lg" id="newDescription" name="newDescription" placeholder="Add Description" required>
               </div>
           </div>
 
@@ -123,7 +124,7 @@
               <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                <input type="number" class="form-control input-lg" name="newStock" min="0" placeholder="Stock" required>
+                <input type="number" class="form-control input-lg" name="newStock" id="newStock" min="0" placeholder="Stock" required>
               </div>
           </div>
 
@@ -134,7 +135,7 @@
               <div class="col-xs-12 col-sm-6">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                      <input type="number" class="form-control input-lg" step="any" name="newPriceBuy" id="newPriceBuy" name="newPriceBuy" min="0" placeholder="Buying Price" required>
+                      <input type="number" class="form-control input-lg" step="any" name="newPriceBuy" id="newPriceBuy" min="0" placeholder="Buying Price" required>
                     </div>
                   </div>
                 
@@ -171,7 +172,7 @@
             <!-- Picture entry -->
               <div class="form-group">
                 <div class="panel">Upload Profile Photo</div>
-                <input type="file" class="PicParts" name="newPicParts">
+                <input type="file" class="PicParts" id="newPicParts" name="newPicParts">
                 <p class="help-block">Only max of 2MB per Photo</p>
                 <img src="views/img/parts/default/anonymous.png" class="img-thumbnail preview" width="100px">
               </div>          

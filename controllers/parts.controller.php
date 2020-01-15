@@ -92,7 +92,7 @@ class ControllerParts {
 					"stock" => $_POST["newStock"],
 					"buyingPrice" => $_POST["newPriceBuy"],
 					"sellingPrice" => $_POST["newPriceSell"],
-					"PicParts" => $route);
+					"image" => $route);
 
 					$answer = PartsModel::mdlAddPart($table, $data);
 
