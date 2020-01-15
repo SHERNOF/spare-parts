@@ -26,7 +26,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="parts-user">
+				<a href="partsUser">
 					<i class="fa fa-user"></i>
 					<span>Parts User</span>
 				</a>

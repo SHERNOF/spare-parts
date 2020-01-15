@@ -74,13 +74,19 @@
   <!-- By default sweetalert2 doesn't support IE. To enable IE 11 support, include Promise polyfill -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
+ 
+
 
 
    <!-- iCheck 1.0.1 -->
 <script src="views/plugins/iCheck/icheck.min.js"></script>
 
-<!-- https://code.jquery.com/jquery-3.3.1.js
-https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js -->
+ <!-- InputMask -->
+ <script src="views/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="views/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="views/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+
   
 </head>
 
@@ -116,7 +122,7 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
         $_GET["route"] == 'users' ||
         $_GET["route"] == 'categories' ||
         $_GET["route"] == 'parts' ||
-        $_GET["route"] == 'parts-user' ||
+        $_GET["route"] == 'partsUser' ||
         $_GET["route"] == 'manage-parts' ||
         $_GET["route"] == 'parts-inOut' ||
         $_GET["route"] == 'parts-report' ||
