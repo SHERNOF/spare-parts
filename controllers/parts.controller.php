@@ -174,7 +174,7 @@ class ControllerParts {
 					WE ASK IF WE HAVE ANOTHER PICTURE IN THE DB
 					=============================================*/
 
-					if(!empty($_POST["actualPicParts"]) && $_POST["actualPicParts"] != "views/img/Parts/default/anonymous.png"){
+					if(!empty($_POST["actualPicParts"]) && $_POST["actualPicParts"] != "views/img/parts/default/anonymous.png"){
 
 						unlink($_POST["actualPicParts"]);
 
@@ -206,18 +206,6 @@ class ControllerParts {
 
 						imagejpeg($destiny, $route);
 
-						// $random = mt_rand(100,999);
-
-						// $route = "views/img/parts/".$_POST["editCode"]."/".$random.".jpg";
-
-						// $origin = PicPartscreatefromjpeg($_FILES["editPicParts"]["tmp_name"]);						
-
-						// $destiny = PicPartscreatetruecolor($newWidth, $newHeight);
-
-						// PicPartscopyresized($destiny, $origin,	 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-						// PicPartsjpeg($destiny, $route);
-
 					}
 
 					if($_FILES["editPicParts"]["type"] == "image/png"){
@@ -237,18 +225,6 @@ class ControllerParts {
 						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
 						imagepng($destiny, $route);
-						
-						// $random = mt_rand(100,999);
-
-						// $route = "views/img/parts/".$_POST["editCode"]."/".$random.".png";
-
-						// $origin = PicPartscreatefrompng($_FILES["editPicParts"]["tmp_name"]);
-
-						// $destiny = PicPartscreatetruecolor($newWidth, $newHeight);
-
-						// PicPartscopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-						// PicPartspng($destiny, $route);
 
 					}
 
@@ -312,4 +288,50 @@ class ControllerParts {
 
 	}
 
+	/*=============================================
+	DELETE PART
+	=============================================*/
+	static public function ctrDeletePart(){
+
+		if(isset($_GET["idPart"])){
+
+			$table ="parts";
+			$data = $_GET["idPart"];
+
+			if($_GET["image"] != "" && $_GET["image"] != "views/img/parts/default/anonymous.png"){
+
+				unlink($_GET["image"]);
+				rmdir('views/img/parts/'.$_GET["code"]);
+
+			}
+
+			$answer = PartsModel::mdlDeletePart($table, $data);
+
+			if($answer == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "The Part has been successfully deleted",
+					  showConfirmButton: true,
+					  confirmButtonText: "Close"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "parts";
+
+								}
+							})
+
+				</script>';
+
+			}		
+		
+		}
+
+	}
+
 }
+
+

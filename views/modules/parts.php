@@ -205,7 +205,7 @@
 
   <div class="modal-content">
 
-    <form role="form" method="POST" enctype="multipart/form-data">
+    <form role="form" method="post" enctype="multipart/form-data">
 
     <!-- Modal Header -->
     <div class="modal-header" style="background: #3c8dbc; color: #fff">
@@ -318,6 +318,11 @@
   </div>
 </div>
 </div>
+
+      <?php
+            $deletePart = new ControllerParts();
+            $deletePart -> ctrDeletePart();
+        ?> 
 
 
  
