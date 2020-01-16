@@ -82,6 +82,115 @@ class ControllerpartsUser{
 
 		return $answer;
 
-	}
+    }
 
+    /*=============================================
+	Edit Parts User
+	=============================================*/
+
+    static public function ctrEditpartsUser(){
+
+        if(isset($_POST["editpartsUser"])){
+
+            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editpartsUser"]) &&
+            preg_match('/^[0-9]+$/', $_POST["editIdDocument"]) &&
+            preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["editEmail"]) && 
+            preg_match('/^[()\-0-9 ]+$/', $_POST["editPhone"]) && 
+            preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editAddress"])){
+
+                $table = "partsUser";
+
+                $data = array("id"=>$_POST["idpartsUser"],
+                                "name"=>$_POST["editpartsUser"],
+					           "idDocument"=>$_POST["editIdDocument"],
+					           "email"=>$_POST["editEmail"],
+					           "phone"=>$_POST["editPhone"],
+					           "address"=>$_POST["editAddress"],
+                               "birthdate"=>$_POST["editBirthdate"]);
+                               
+                $answer = ModelpartsUser::mdlEditpartsUser($table, $data);
+
+                if($answer == "ok"){
+
+                    echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Edit Successful",
+						  showConfirmButton: true,
+						  confirmButtonText: "Close"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "partsUser";
+
+									}
+								})
+
+					</script>';
+
+                }
+
+        } else {
+
+            echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "Parts User cannot be blank or especial characters!",
+						  showConfirmButton: true,
+						  confirmButtonText: "Close"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "partsUser";
+
+							}
+						})
+
+			  	</script>';
+
+
+            }
+
+        }
+
+    }
+
+    /*=============================================
+	Delete Parts User
+	=============================================*/
+    static public function ctrDeletepartsUser(){
+
+		if(isset($_GET["idpartsUser"])){
+
+			$table ="partsUser";
+			$data = $_GET["idpartsUser"];
+
+			$answer = ModelpartsUser::mdlDeletepartsUser($table, $data);
+
+			if($answer == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "The part user has been deleted",
+					  showConfirmButton: true,
+					  confirmButtonText: "Close"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "partsUser";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	}
 }

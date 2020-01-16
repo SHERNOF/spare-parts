@@ -13,7 +13,7 @@ class AjaxpartsUser{
 
 	public $idpartsUser;
 
-	public function ajaxEdipartstUser(){
+	public function ajaxEditpartsUser(){
 
 		$item = "id";
 		$value = $this->idpartsUser;
@@ -30,10 +30,10 @@ class AjaxpartsUser{
 EDIT USER
 =============================================*/
 
-if (isset($_POST["idUpartsUser"])) {
+if (isset($_POST["idpartsUser"])) {
 
-	$edit = new AjaxpartsUsers();
-	$edit -> idpartsUser = $_POST["idpartsUser"];
-	$edit -> ajaxEditpartsUser();
+	$partsUser = new AjaxpartsUser();
+	$partsUser -> idpartsUser = $_POST["idpartsUser"];
+	$partsUser -> ajaxEditpartsUser();
 }
 

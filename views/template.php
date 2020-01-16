@@ -124,7 +124,7 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
         $_GET["route"] == 'parts' ||
         $_GET["route"] == 'partsUser' ||
         $_GET["route"] == 'manage-parts' ||
-        $_GET["route"] == 'parts-inOut' ||
+        $_GET["route"] == 'withdrawn' ||
         $_GET["route"] == 'parts-report' ||
         $_GET["route"] == 'logout'){
 
@@ -166,5 +166,6 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
 <script src="views/js/users.js"></script>
 <script src="views/js/categories.js"></script>
 <script src="views/js/parts.js"></script>
+<script src="views/js/partsUser.js"></script>
 </body>
 </html>

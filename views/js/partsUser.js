@@ -24,18 +24,49 @@ $(".btnEditpartsUser").click(function(){
         dataType: "json",
         success: function(answer) {
 
-            console.log("answer", answer);
-
-            // $("#editpartsUser").val(answer["name"]);
-            // $("#editIdDocument").val(answer["user"]);
-            // $("#editMail").html(answer["profile"]);
-            // $("#editPhone").val(answer["profile"]);
-            // $("#editAddress").val(answer["password"]);
-            // $("#editBirthdate").val(answer["photo"]);
+            // console.log("answer", answer);
+            
+            $("#idpartsUser").val(answer["id"]);
+            $("#editpartsUser").val(answer["name"]);
+            $("#editIdDocument").val(answer["idDocument"]);
+            $("#editEmail").val(answer["email"]);
+            $("#editPhone").val(answer["phone"]);
+            $("#editAddress").val(answer["address"]);
+            $("#editBirthdate").val(answer["birthdate"]);
         }
     });
 
 })
+
+/*=============================================
+DELETE PARTS USER
+=============================================*/
+
+    $(".btnDeletepartsUser").click(function(){
+
+        var idpartsUser = $(this).attr("idpartsUser");
+
+        console.log("idpartsUser", idpartsUser)
+	
+	swal({
+        title: 'Are you sure you want to delete this customer?',
+        text: "If you're not you can cancel the action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'cancel',
+        confirmButtonText: 'Yes, delete Customer!'
+      }).then(function(result){
+        if (result.value) {
+          
+            window.location = "index.php?route=partsUser&idpartsUser="+idpartsUser;
+        }
+
+  })
+
+})
+
 
 
 

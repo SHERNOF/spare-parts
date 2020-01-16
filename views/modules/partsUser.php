@@ -236,6 +236,7 @@ MODAL BODY
               <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" class="form-control input-lg" name="editpartsUser" id="editpartsUser"  required>
+                <input type="hidden" id="idpartsUser" name="idpartsUser">
               </div>
           </div>    
 
@@ -271,7 +272,7 @@ MODAL BODY
 
           <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                <input class="form-control input-lg" type="text" name="editBirthdate" name="editBirthdate" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input class="form-control input-lg" type="text" name="editBirthdate" id="editBirthdate" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
               </div>
           </div>
 
@@ -288,10 +289,16 @@ MODAL BODY
     </form>
 
     <?php
-      // $editpartsUser = new ControllerpartsUser();
-      // $editpartsUser -> ctrEditpartsUser();
+      $editpartsUser = new ControllerpartsUser();
+      $editpartsUser -> ctrEditpartsUser();
       ?> 
 
     </div>
   </div>
 </div>
+
+
+<?php
+  $deletepartsUser = new ControllerpartsUser();
+  $deletepartsUser -> ctrDeletepartsUser();
+  ?> 
