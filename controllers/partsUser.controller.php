@@ -71,7 +71,7 @@ class ControllerpartsUser{
     }
 
     /*=============================================
-	SHOW CUSTOMERS
+	SHOW PartsUser
 	=============================================*/
 
 	static public function ctrShowpartsUser($item, $value){
