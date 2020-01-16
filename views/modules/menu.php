@@ -35,7 +35,7 @@
 			<!-- another dorp down menu under a dropdown menu  -->
 			
 			<li class="treeview">
-				<a href="#">
+				<a href="withdrawn">
 					<i class="fa fa-list-ul"></i>
 					<span>Parts Handling</span>
 					<span class="pull-right-container">
@@ -44,9 +44,9 @@
 				</a>
 				<ul class="treeview-menu">
 					<li>
-						<a href="manage-sales">
+						<a href="withdrawn">
 							<i class="fa fa-circle"></i>
-							<span>Manage Parts</span>
+							<span>Withdrawn</span>
 						</a>
 					</li>
 					<li>
