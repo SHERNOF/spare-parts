@@ -123,7 +123,8 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
         $_GET["route"] == 'categories' ||
         $_GET["route"] == 'parts' ||
         $_GET["route"] == 'partsUser' ||
-        $_GET["route"] == 'manage-parts' ||
+        // $_GET["route"] == 'manage-parts' ||
+        $_GET["route"] == 'createWithdrawal' ||
         $_GET["route"] == 'withdrawn' ||
         $_GET["route"] == 'parts-report' ||
         $_GET["route"] == 'logout'){

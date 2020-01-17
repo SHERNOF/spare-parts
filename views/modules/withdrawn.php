@@ -3,7 +3,7 @@
     <section class="content-header">
       <h1>
 
-        Parts Categories
+        Parts Withdrawal Management
 
         <!-- <small>Manage Users</small> -->
 
@@ -13,7 +13,7 @@
 
         <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Dashboard</li>
+        <li class="active">Spare Parts Management</li>
 
       </ol>
       
@@ -26,6 +26,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
+
+        <a href="createWithdrawal">
 
             <button class="btn btn-primary">
               Withdraw Part
@@ -65,11 +67,11 @@
                         <td>cash</td>
                         <td>$20</td>
                         <td>$22</td>
-                        <th>2</th>
                         <td>2020-01-10 12:05:32</td>
+                        
                         <td>
                           <div class="btn-group"> 
-                                <button class="btn btn-success"><i class="fa fa-print"></i></button>
+                                <button class="btn btn-info"><i class="fa fa-print"></i></button>
                                 <button class="btn btn-danger"><i class="fa fa-times"></i></button>
                           </div>
                         </td>
