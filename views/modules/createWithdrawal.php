@@ -31,11 +31,14 @@
       <div class="col-lg-5 col-xs-12">
       
         <div class="box box-success">
+        
           <div class="box-header with-border">
 
-            <div class="box-body">
+            <form role="form" method="POST">
 
-              <form role="form" method="POST">
+              <div class="box-body">
+
+              
               
                 <div class="box">
 
@@ -55,31 +58,169 @@
                     ======================================-->
 
                     <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                      <input type="text" class="form-control" id="newWithdrawal" name="newWithdrawal" value="10002343" readnly>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <input type="text" class="form-control" id="newWithdrawal" name="newWithdrawal" value="10002343" readnly>
+                      </div>
                     </div>
-                  </div>
 
                      <!--=====================================
                       Parts User Input
                      ======================================-->
 
                     <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <select type="text" class="form-control" id="newpartsUser" name="newpartsUser" placeholder="Parts User" required>
-                          <option value="">Parts User Selection</option>  
-                        </select>
-                      <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addpartsUser" data-dismiss="modal">Parts User</button></span>
-                    </div>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                          <select type="text" class="form-control" id="newpartsUser" name="newpartsUser" placeholder="Parts User" required>
+                            <option value="">Parts User Selection</option>  
+                          </select>
+                        <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addpartsUser" data-dismiss="modal">Add Parts User</button></span>
+                      </div>
+                     </div>
+
+                     <!--=====================================
+                      Parts Input
+                     ======================================-->
+
+                     <div class="form-group row newParts">
+
+                        <!-- Parts Description -->
+
+                        <div class="col-xs-6" style="padding-right:0px">
+                          <div class="input-group">
+                              <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
+                              <input type="text" class="form-control" id="addParts" name="addParts" placeholder="Parts Description" required>
+                          </div>
+                        </div>
+
+                          <!-- Parts Quantity -->  
+
+                          <div class="col-xs-3">
+                            <input type="text" class="form-control" id="newPartsQty" name="newPartsQty" min="1" placeholder="0" required>
+                          </div>    
+
+                          <!-- Parts Price -->  
+                          <div class="col-xs-3" style="padding-left:0px">
+                            <div class="input-group" >
+                              
+                              <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                              
+                              <input type="number" min="1" class="form-control" id="newPartsPrice" name="newPartsPrice" placeholder="000000" readonly required>
+                              
+                            </div>
+                          </div>
+
+                      </div>
+
+                      <!--=====================================
+                      Add Parts Button
+                     ======================================-->
+
+                      <button type="button" class="btn btn-default hidden-lg">Add Parts</button>
+
+                      <hr>
+
+                      <div class="row">
+
+                      <!--=====================================
+                      Taxes and Total Price
+                     ======================================-->
+                      
+                    <div class="col-xs-8 pull-right">
+                    
+                      <table class="table">
+                      
+                            <thead>
+                              
+                                <th>Taxes</th>
+                                <th>Total</th>    
+                            
+                            </thead>
+
+                            <tbody>
+
+                              <tr>
+
+                                <td style="width:50%">
+                                  <div class="input-group">
+                                    <input type="number" class="form-control" min="0" id="newPartsTax" name="newPartsTax" placeholder="0" required>
+                                    <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                                  </div>
+                                </td>
+
+                                <td style="width:50%">
+                                  <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+
+                                    <input type="number" class="form-control" min="0" id="newPartsTotal" name="newPartsTotal" placeholder="0000" readonly required>
+                                    
+                                  </div>
+                                </td>
+                              
+                              </tr>
+                            
+                            </tbody>
+                        
+                        </table>
+                          
+                      </div>
+                  
                   </div>
-          
+
+                  <hr>
+
+                <!--=====================================
+                  Payment Method
+                  ======================================-->
+
+                  <div class="form-group row">
+                  
+                    <div class="col-xs-6" style="padding-right:0px"> 
+                    
+                      <div class="input-group">
+                      
+                        <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
+                          <option value="">Select Payment Method</option>
+                          <option value="Cash">Cash</option>
+                          <option value="Credit Card">Credit Card</option>
+                          <option value="Debit Card">Debit Card</option>
+                        </select>
+                  
+                      </div>
+                    
+                    </div>
+
+
+                    <div class="col-xs-6" style="padding-left:0px"> 
+                    
+                        <div class="input-group">
+
+                          <input type="number" class="form-control" min="0" id="newPartsTotal" name="newPartsTotal" placeholder="0000" readonly required>
+
+                          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                        </div>
+
+                    </div>
+                    
+                  </div>
+
+                  <br>                  
+
                 </div>
               
-              </form>
+              <!-- </form> -->              
           
             </div>
+
+            <div class="box-footer">
+
+            <button type="submit" class="btn btn-primary pull-right">Save sale</button>
+
+            </div>
+
+            </form>
           
           </div>
 
@@ -92,7 +233,48 @@
         ======================================-->
 
       <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+
         <div class="box box-warning">
+
+            <div class="box-header with-border">
+            
+              <div class="box-body">
+
+                <table class="table table-bordered table-striped dt-responsive tables"> 
+
+                <thead> 
+                    <tr>  
+                        <th style="width:10px">#</th>
+                        <th>Image</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody> 
+
+                      <tr>  
+                        <td>1</td>
+                        <td><img src="views/img/parts/default/anonymous.png" class="img-thumbnail" width="40px"></td>
+                        <td>0001</td>
+                        <td>Helical</td>
+                        <td>1</td>
+                        <td>
+                          <div class="btn-group"> 
+                                <button class="btn btn-primary">Add</button>
+                          </div>
+                        </td>
+                     </tr> 
+
+                </tbody>                 
+                
+                </table>
+              
+              </div>
+
+            </div>
         
         </div>
       </div>
