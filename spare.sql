@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2020 at 06:22 PM
+-- Generation Time: Jan 19, 2020 at 02:00 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -156,7 +156,7 @@ CREATE TABLE `partsUser` (
 
 INSERT INTO `partsUser` (`id`, `name`, `idDocument`, `email`, `phone`, `address`, `birthdate`, `partsWithdrawn`, `lastWithdrawn`, `registerDate`) VALUES
 (10, 'Sherwin', 777, 'sherwin.nofuente@cognex.com', '97781073', 'Singapore', '1978-10-07', 0, '0000-00-00 00:00:00', '2020-01-15 17:07:44'),
-(11, 'Angie', 46, 'angelynnofuente@yahoo.com', '6591780406', 'SIngapore', '1980-04-06', 0, '0000-00-00 00:00:00', '2020-01-15 17:21:27');
+(14, 'Angie', 222, 'angelynnofuente@yahoo.com', '97781073', 'SG', '1980-04-06', 0, '0000-00-00 00:00:00', '2020-01-18 14:04:20');
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `user`, `password`, `profile`, `photo`, `status`, `lastLogin`, `date`) VALUES
-(11, 'Sherwin Nofuente', 'sherwin', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/sherwin/869.jpg', 1, '2020-01-15 23:54:20', '2020-01-15 15:54:20'),
+(11, 'Sherwin Nofuente', 'sherwin', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/sherwin/869.jpg', 1, '2020-01-19 01:06:22', '2020-01-18 17:06:22'),
 (33, 'Angelyn Nofuente', 'angie', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/angie/607.jpg', 1, '0000-00-00 00:00:00', '2019-12-27 08:32:48'),
 (34, 'Boss', 'boss', '$2a$07$usesomesillystringforeP2z4S2A1gs4xMtjeS4l0aCZcXJgCZxe', 'Administrator', 'views/img/users/boss/972.png', 1, '0000-00-00 00:00:00', '2019-12-28 14:06:08'),
 (35, 'A', 'A', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/A/616.jpg', 0, '0000-00-00 00:00:00', '2019-12-28 18:12:11'),
@@ -192,6 +192,35 @@ INSERT INTO `users` (`id`, `name`, `user`, `password`, `profile`, `photo`, `stat
 (40, 'f', 'f', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/f/242.jpg', 0, '0000-00-00 00:00:00', '2019-12-31 16:20:17'),
 (41, 'g', 'g', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/g/305.jpg', 0, '0000-00-00 00:00:00', '2019-12-31 16:20:28'),
 (43, 'h', 'h', '$2a$07$usesomesillystringforeOyL9OHkEHx2/qTzssLMVGM8Mg9uR9Xy', 'Administrator', 'views/img/users/h/711.jpg', 0, '0000-00-00 00:00:00', '2020-01-01 14:31:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `withdrawal`
+--
+
+CREATE TABLE `withdrawal` (
+  `id` int(11) NOT NULL,
+  `code` int(11) NOT NULL,
+  `idCustomer` int(11) NOT NULL,
+  `idIssuer` int(11) NOT NULL,
+  `parts` text COLLATE utf8_spanish_ci NOT NULL,
+  `tax` int(11) NOT NULL,
+  `netPrice` float NOT NULL,
+  `totalPrice` float NOT NULL,
+  `paymentMethod` text COLLATE utf8_spanish_ci NOT NULL,
+  `saledate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `withdrawal`
+--
+
+INSERT INTO `withdrawal` (`id`, `code`, `idCustomer`, `idIssuer`, `parts`, `tax`, `netPrice`, `totalPrice`, `paymentMethod`, `saledate`) VALUES
+(9, 10001, 2, 2, '[{\"id\":\"1\",\"description\":\"Industrial vacuum cleaner\",\"quantity\":\"1\",\"stock\":\"9\",\"price\":\"2100\",\"totalPrice\":\"2100\"},{\"id\":\"2\",\"description\":\"Floating Plate for Palletizer\",\"quantity\":\"1\",\"stock\":\"14\",\"price\":\"6300\",\"totalPrice\":\"6300\"},{\"id\":\"3\",\"description\":\"Air Compressor for painting\",\"quantity\":\"2\",\"stock\":\"18\",\"price\":\"4200\",\"totalPrice\":\"8400\"}]', 3192, 16800, 19992, 'CC-321321321', '2018-11-02 08:54:08'),
+(11, 10002, 1, 1, '[{\"id\":\"4\",\"description\":\"Brick Cutter without Disk\",\"quantity\":\"5\",\"stock\":\"20\",\"price\":\"5600\",\"totalPrice\":\"28000\"},{\"id\":\"5\",\"description\":\"Floor Cutter without Disk\",\"quantity\":\"10\",\"stock\":\"20\",\"price\":\"2156\",\"totalPrice\":\"21560\"}]', 9416, 49560, 58976, 'DC-1234512345', '2018-12-03 16:53:28'),
+(12, 10003, 3, 1, '[{\"id\":\"5\",\"description\":\"Floor Cutter without Disk\",\"quantity\":\"5\",\"stock\":\"15\",\"price\":\"2156\",\"totalPrice\":\"10780\"}]', 2048, 10780, 12828, 'cash', '2018-12-11 05:44:50'),
+(13, 10004, 5, 2, '[{\"id\":\"9\",\"description\":\"Electric Water Washer\",\"quantity\":\"1\",\"stock\":\"19\",\"price\":\"3640\",\"totalPrice\":\"3640\"}]', 692, 3640, 4332, 'CC-1265489251', '2018-12-11 05:50:16');
 
 --
 -- Indexes for dumped tables
@@ -241,7 +270,7 @@ ALTER TABLE `parts`
 -- AUTO_INCREMENT for table `partsUser`
 --
 ALTER TABLE `partsUser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
