@@ -49,7 +49,8 @@
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" id="newIssuer" name="newIssuer" value="userAdministrator" readnly>
+                        <input type="text" class="form-control" id="newIssuer" name="newIssuer" value="<?php echo $_SESSION["name"]; ?>" readnly>
+                        <input type="hidden" name="idIssuer" value="<?php echo $_SESSION["id"]; ?>">
                       </div>
                     </div>
 
@@ -60,7 +61,23 @@
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="text" class="form-control" id="newWithdrawal" name="newWithdrawal" value="10002343" readnly>
+
+                        <?php
+
+                          $item = null;
+                          $value = null;
+
+                          $withdrawal = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
+
+                          if(!$withdrawal){
+                            echo '<input type="text" class="form-control" id="newWithdrawal" name="newWithdrawal" value="10001" readonly>';
+                          } else {
+                            foreach ($withdrawal as $key => $value){
+                            }
+                            $code = $value["code"] + 1;
+                            echo '<input type="text" class="form-control" id="newWithdrawal" name="newWithdrawal" value="'.$code.'" readonly>';
+                          }
+                        ?>
                       </div>
                     </div>
 
@@ -68,11 +85,25 @@
                       Parts User Input
                      ======================================-->
 
+                     
+
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                           <select type="text" class="form-control" id="newpartsUser" name="newpartsUser" placeholder="Parts User" required>
                             <option value="">Parts User Selection</option>  
+
+                            <?php
+                            $item = null;
+                            $value = null;
+
+                            $PartsUser = ControllerpartsUser::ctrShowpartsUser($item, $value);
+
+                            foreach($PartsUser as $key => $value){
+                              echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                            }
+                            ?>
+
                           </select>
                         <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addpartsUser" data-dismiss="modal">Add Parts User</button></span>
                       </div>
@@ -86,21 +117,21 @@
 
                         <!-- Parts Description -->
 
-                        <div class="col-xs-6" style="padding-right:0px">
+                        <!-- <div class="col-xs-6" style="padding-right:0px">
                           <div class="input-group">
                               <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
                               <input type="text" class="form-control" id="addParts" name="addParts" placeholder="Parts Description" required>
                           </div>
-                        </div>
+                        </div> -->
 
                           <!-- Parts Quantity -->  
 
-                          <div class="col-xs-3">
+                          <!-- <div class="col-xs-3">
                             <input type="text" class="form-control" id="newPartsQty" name="newPartsQty" min="1" placeholder="0" required>
-                          </div>    
+                          </div>     -->
 
                           <!-- Parts Price -->  
-                          <div class="col-xs-3" style="padding-left:0px">
+                          <!-- <div class="col-xs-3" style="padding-left:0px">
                             <div class="input-group" >
                               
                               <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
@@ -108,7 +139,7 @@
                               <input type="number" min="1" class="form-control" id="newPartsPrice" name="newPartsPrice" placeholder="000000" readonly required>
                               
                             </div>
-                          </div>
+                          </div> -->
 
                       </div>
 
@@ -240,7 +271,7 @@
             
               <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tables"> 
+                <table class="table table-bordered table-striped dt-responsive tableWithdrawal"> 
 
                 <thead> 
                     <tr>  
@@ -251,24 +282,8 @@
                         <th>Stock</th>
                         <th>Actions</th>
                     </tr>
-                </thead>
 
-                <tbody> 
-
-                      <tr>  
-                        <td>1</td>
-                        <td><img src="views/img/parts/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>0001</td>
-                        <td>Helical</td>
-                        <td>1</td>
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-primary">Add</button>
-                          </div>
-                        </td>
-                     </tr> 
-
-                </tbody>                 
+                </thead>          
                 
                 </table>
               

@@ -168,5 +168,6 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
 <script src="views/js/categories.js"></script>
 <script src="views/js/parts.js"></script>
 <script src="views/js/partsUser.js"></script>
+<script src="views/js/withdrawal.js"></script>
 </body>
 </html>
