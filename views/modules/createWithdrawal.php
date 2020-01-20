@@ -34,7 +34,7 @@
         
           <div class="box-header with-border">
 
-            <form role="form" method="POST">
+            <form role="form" method="POST" class="formulaWithdrawal">
 
               <div class="box-body">
 

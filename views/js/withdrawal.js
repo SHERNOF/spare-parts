@@ -86,7 +86,7 @@ $(".tableWithdrawal").on("click", "button.addPartsButton", function(){
 
                     '<div class="col-xs-6" style="padding-right:0px">'+
                         '<div class="input-group">'+
-                            '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>'+              
+                            '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removePartButton" idPart="'+idPart+'"><i class="fa fa-times"></i></button></span>'+              
                             '<input type="text" class="form-control newPartDescription" idPart="addPart" name="addPart" value="'+description+'" readonly required>'+
                         '</div>'+
                     '</div>'+
@@ -95,7 +95,6 @@ $(".tableWithdrawal").on("click", "button.addPartsButton", function(){
 
                     '<div class="col-xs-3">'+
                         '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" stock="'+stock+'" required>'+
-                        // '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
                     '</div>'+
 
                     '<!-- Parts Price -->  '+
@@ -110,3 +109,53 @@ $(".tableWithdrawal").on("click", "button.addPartsButton", function(){
         }
     })
 });
+
+/*=============================================
+Load table at all time during tab surf
+=============================================*/
+
+// $(".tableWithdrawal").on("draw.dt", function(){
+//     if(localStorage.getItem("removePartButton")!= null){ 
+
+//         var (listIdPart = JSON.parse(localStorage.getItem("removePartButton")));
+
+//         for(var i = 0; i < listIdPart.length; i++){
+//             $("button.recoverButton[idPart='"+listIdPart[i]["idPart"]+"']").removeClass('btn-default');
+//             $("button.recoverButton[idPart='"+listIdPart[i]["idPart"]+"']").addClass('btn-primary addPart');
+//         }
+
+//     }
+// })
+
+/*=============================================
+Removing Parts
+=============================================*/
+
+$(".formulaWithdrawal").on("click", "button.removePartButton", function(){
+    
+    $(this).parent().parent().parent().parent().remove();
+
+    var idPart = $(this).attr("idPart");
+    
+    /*======================================================
+    Store the id of the item to be deleted in local storage
+    =======================================================*/
+
+    if(localStorage.getItem("removePartButton") == null){
+
+        idremovePartButton = [];
+
+    } else {
+        idremovePartButton.concat(localStorage.getItem("removePartButton"))
+    }
+
+    idremovePartButton.push({"idPart":idPart})
+
+    localStorage.setItem("removePartButton", JSON.stringify(idremovePartButton));
+
+    $("button.recoverButton[idPart='"+idPart+"']").removeClass('btn-default');
+
+    $("button.recoverButton[idPart='"+idPart+"']").addClass('btn-primary addPart');
+
+});
+

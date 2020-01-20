@@ -65,9 +65,7 @@ class WithdrawalTable{
                         "'.$image.'",
                         "'.$parts[$i]["code"].'",
                         "'.$parts[$i]["description"].'",
-                        
                         "'.$stock.'",  
-					
 						"'.$buttons.'"               
                 ],';
                 }

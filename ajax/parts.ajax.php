@@ -37,7 +37,6 @@ class AjaxParts{
 	    echo json_encode($answer);
 
   	}
-
 }
 
 	/*=============================================
