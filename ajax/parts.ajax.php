@@ -10,6 +10,7 @@ class AjaxParts{
 	Generate Code from IdCategory
 	=============================================*/
 	public $idCategory;
+	
 
 	public function ajaxCreateCodePart(){
 
@@ -25,17 +26,41 @@ class AjaxParts{
  	 EDIT Part
   	=============================================*/ 
 
-  	public $idPart;
+	  public $idPart;
+	  public $getParts;
+	  public $partName;
 
-  	public function ajaxEditPart(){
+  		public function ajaxEditPart(){
 
-	    $item = "id";
+		if($this->getParts == "ok"){
+
+			$item = null;
+			$value = null;
+  
+			$answer = ControllerParts::ctrShowParts($item, $value);
+  
+			echo json_encode($answer);
+
+		} else if ($this->partName != ""){
+
+		$item = "description";
+	    $value = $this->partName;
+
+	    $answer = ControllerParts::ctrShowParts($item, $value);
+
+	    echo json_encode($answer);
+
+
+		} else {
+
+		$item = "id";
 	    $value = $this->idPart;
 
 	    $answer = ControllerParts::ctrShowParts($item, $value);
 
 	    echo json_encode($answer);
 
+		}
   	}
 }
 
@@ -58,6 +83,31 @@ if(isset($_POST["idPart"])){
 	$editPart = new AjaxParts();
 	$editPart -> idPart = $_POST["idPart"];
 	$editPart -> ajaxEditPart();
+  
+  }
+
+
+/*=============================================
+GET PART
+=============================================*/ 
+
+if(isset($_POST["getParts"])){
+
+	$getParts = new AjaxParts();
+	$getParts -> getParts = $_POST["getParts"];
+	$getParts -> ajaxEditPart();
+  
+  }
+
+/*=============================================
+GET PART NAME
+=============================================*/ 
+
+if(isset($_POST["partName"])){
+
+	$partName = new AjaxParts();
+	$partName -> partName = $_POST["partName"];
+	$partName -> ajaxEditPart();
   
   }
 

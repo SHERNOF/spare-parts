@@ -34,7 +34,7 @@
         
           <div class="box-header with-border">
 
-            <form role="form" method="POST" class="formulaWithdrawal">
+            <form role="form" method="POST" class="formWithdrawal">
 
               <div class="box-body">
 
@@ -124,7 +124,7 @@
                       Add Parts Button
                      ======================================-->
 
-                      <button type="button" class="btn btn-default hidden-lg">Add Parts</button>
+                      <button type="button" class="btn btn-default hidden-lg btnAddPart">Add Parts</button>
 
                       <hr>
 
