@@ -57,7 +57,7 @@ class WithdrawalTable{
         Button functions
         =============================================*/
         
-        $buttons =  "<div class='btn-group'><button class='btn btn-primary addProductSale recoverButton' idParts='".$parts[$i]["id"]."'>Add</button></div>";
+        $buttons =  "<div class='btn-group'><button class='btn btn-primary addPartsButton recoverButton' idPart='".$parts[$i]["id"]."'>Add</button></div>";
 
 
                 $Jsondata .= '[

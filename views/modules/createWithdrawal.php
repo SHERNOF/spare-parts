@@ -113,35 +113,12 @@
                       Parts Input
                      ======================================-->
 
-                     <div class="form-group row newParts">
+                     <div class="form-group row newPart">
 
-                        <!-- Parts Description -->
 
-                        <!-- <div class="col-xs-6" style="padding-right:0px">
-                          <div class="input-group">
-                              <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
-                              <input type="text" class="form-control" id="addParts" name="addParts" placeholder="Parts Description" required>
-                          </div>
-                        </div> -->
+                    </div>
 
-                          <!-- Parts Quantity -->  
-
-                          <!-- <div class="col-xs-3">
-                            <input type="text" class="form-control" id="newPartsQty" name="newPartsQty" min="1" placeholder="0" required>
-                          </div>     -->
-
-                          <!-- Parts Price -->  
-                          <!-- <div class="col-xs-3" style="padding-left:0px">
-                            <div class="input-group" >
-                              
-                              <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                              
-                              <input type="number" min="1" class="form-control" id="newPartsPrice" name="newPartsPrice" placeholder="000000" readonly required>
-                              
-                            </div>
-                          </div> -->
-
-                      </div>
+                    <!-- <input type="hidden" name="productsList" id="productsList"> -->
 
                       <!--=====================================
                       Add Parts Button
@@ -227,7 +204,7 @@
                     
                         <div class="input-group">
 
-                          <input type="number" class="form-control" min="0" id="newPartsTotal" name="newPartsTotal" placeholder="0000" readonly required>
+                          <input type="number" class="form-control" min="0" id="newPaymentMethod" name="newPaymentMethod" placeholder="0000" readonly required>
 
                           <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
@@ -271,7 +248,7 @@
             
               <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tableWithdrawal"> 
+                <table class="table table-bordered table-striped dt-responsive tableWithdrawal" width="100%"> 
 
                 <thead> 
                     <tr>  
