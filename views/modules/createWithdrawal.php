@@ -151,7 +151,11 @@
 
                                 <td style="width:50%">
                                   <div class="input-group">
-                                    <input type="number" class="form-control" min="0" id="newPartsTax" name="newPartsTax" placeholder="0" required>
+                                    <input type="number" class="form-control input-lg" min="0" id="newTaxSale" name="newTaxSale" placeholder="0" required>
+                                    
+                                    <input type="hidden" name="newNetPrice" id="newNetPrice" required>
+                                    <input type="hidden" name="newTaxPrice" id="newTaxPrice" required>
+                                    
                                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                                   </div>
                                 </td>
@@ -161,7 +165,7 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-                                    <input type="number" class="form-control" min="0" id="newPartsTotal" name="newPartsTotal" placeholder="0000" readonly required>
+                                    <input type="number" class="form-control input-lg" min="0" id="newPartsTotalSell" total="" name="newPartsTotalSell" placeholder="0000" readonly required>
                                     
                                   </div>
                                 </td>

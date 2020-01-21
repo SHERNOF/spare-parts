@@ -121,14 +121,25 @@ $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
                     '</div>'+
 
                     '<!-- Parts Price -->  '+
-                    '<div class="col-xs-3" style="padding-left:0px">'+
+                    '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
                         '<div class="input-group" >'+
                             '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-                            '<input type="text" class="form-control newPartPrice" name="newPartPrice" value="'+price+'" readonly required>'+
+                            '<input type="number" class="form-control newPartPrice" name="newPartPrice" realPrice="'+price+'" value="'+price+'" readonly required>'+
                         '</div>'+
                     '</div>'+
-
             '</div>')
+
+            /*=============================================
+            Adding total Prices
+            =============================================*/
+
+            addingTotalPrices();
+
+
+            /*=============================================
+            Adding Tax
+            =============================================*/
+            addTax();
         }
     })
 });
@@ -187,13 +198,37 @@ $(".formWithdrawal").on("click", "button.removePart", function(){
 
     $("button.recoverButton[idPart='"+idPart+"']").addClass('btn-primary addPartsButton');
 
+    if($(".newPart").children().length == 0){
+
+
+        $("#newTaxSale").val(0);
+        $("#newPartsTotalSell").val(0);
+        $("#newPartsTotalSell").attr("totalSale",0);
+
+    } else {
+
+        /*=============================================
+        Adding total Prices
+        =============================================*/
+
+        addingTotalPrices();
+
+        /*=============================================
+        Adding Tax
+        =============================================*/
+        addTax();
+
+    }
 });
 
 /*===================================================
 Add Parts Using the Hidden Button during tablet mode
 ===================================================*/
+var numPart = 0;
 
 $(".btnAddPart").click(function(){
+
+    numPart ++;
 
     var data = new FormData();
     data.append("getParts", "ok");
@@ -215,50 +250,72 @@ $(".btnAddPart").click(function(){
             $(".newPart").append(
 
                 '<div class="row" style="padding:5px 15px">'+
-    
-                        '<!-- Parts Description -->'+
-    
-                        '<div class="col-xs-6" style="padding-right:0px">'+
-    
-                            '<div class="input-group">'+
-    
-                                '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removePart"><i class="fa fa-times"></i></button></span>'+              
-    
-                                '<select class="form-control newPartDescription" idPart name="newPartDescription" required>'+
 
-                                '<option>Select Part</option>'+
+                '<!-- Product description -->'+
+                
+                '<div class="col-xs-6" style="padding-right:0px">'+
+                
+                  '<div class="input-group">'+
+                    
+                    '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removePart" idPart><i class="fa fa-times"></i></button></span>'+
 
-                                '</select>'+
-    
-                            '</div>'+
-    
-                        '</div>'+
-    
-                        '<!-- Parts Quantity -->  '+
-    
-                        '<div class="col-xs-3 enterQuantity">'+
-                            '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" required>'+
-                        '</div>'+
-    
-                        '<!-- Parts Price -->  '+
-                        '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
-                            '<div class="input-group" >'+
-                                '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-                                '<input type="text" class="form-control newPartPrice" name="newPartPrice" value="" readonly required>'+
-                            '</div>'+
-                        '</div>'+
-                '</div>')
+                    '<select class="form-control newPartDescription" id="part'+numPart+'" idPart name="newPartDescription" required>'+
+
+                    '<option>Select Part</option>'+
+
+                    '</select>'+  
+
+                  '</div>'+
+
+                '</div>'+
+
+                '<!-- Product quantity -->'+
+
+                '<div class="col-xs-3 enterQuantity">'+
+                  
+                   '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" required>'+
+
+                '</div>' +
+
+                '<!-- Product price -->'+
+
+                '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
+
+                  '<div class="input-group">'+
+
+                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+                       
+                    '<input type="number" class="form-control newPartPrice" realPrice="'+price+'" min="1" name="newPartPrice" readonly required>'+
+       
+                  '</div>'+
+                   
+                '</div>'+
+
+              '</div>');
 
                 answer.forEach(functionforEach);
 
                 function functionforEach(item, index){
 
-                    $(".newPartDescription").append(
+                    if(item.stock != 0){
 
-						'<option idProduct="'+item.id+'" value="'+item.description+'">'+item.description+'</option>'
-		         	)
+                        $("#part"+numPart).append(
 
+                            '<option idPart="'+item.id+'" value="'+item.description+'">'+item.description+'</option>'
+                         )
+                    }
                 }
+
+            /*=============================================
+            Adding total Prices
+            =============================================*/
+
+            addingTotalPrices();
+
+            /*=============================================
+            Adding Tax
+            =============================================*/
+            addTax();
 
         }
     })
@@ -273,11 +330,11 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
 
     var partName = $(this).val();
 
-    // var newProductDescription = $(this).parent().parent().parent().children().children().children(".newProductDescription");
+    var newPartDescription = $(this).parent().parent().parent().children().children().children(".newProductDescription");
 
-	var newPartPrice = $(this).parent().parent().parent().children(".enterPrice").children().children(".newPartPrice");
+    var newPartPrice = $(this).parent().parent().parent().children(".enterPrice").children().children(".newPartPrice");
 
-	// var newPartQty = $(this).parent().parent().parent().children(".enterQuantity").children(".newPartQty");
+	var newPartQty = $(this).parent().parent().parent().children(".enterQuantity").children(".newPartQty");
 
     var data = new FormData;
 
@@ -295,13 +352,11 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
       	dataType:"json",
       	success:function(answer){
               
-            // $(".newPartDescription").attr("idPart", answer["id"]);
-            // $(".newPartQty").attr("stock", answer["stock"]);
-            // $(".newPartQty").attr("newStock", Number(answer["stock"])-1);
-            $(".newPartPrice").val(answer["sellingPrice"]);
-            // $(".newPartPrice").attr("realPrice", answer["sellingPrice"]);
-            // $(newPartPrice).attr("realPrice", answer["sellingPrice"]);
+            $(newPartDescription).attr("stock", answer["stock"]);
+            // $(newPartQty).attr("stock", answer["stock"]);
+            
             $(newPartPrice).val(answer["sellingPrice"]);
+            $(newPartPrice).attr("realPrice", answer["sellingPrice"]);
 
 
       	}
@@ -309,3 +364,119 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
       })
 
 })
+
+/*=============================================
+Modify the quanrtity and auto adjust price
+=============================================*/
+
+$(".formWithdrawal").on("change", "input.newPartQty", function(){
+
+   var price = $(this).parent().parent().children(".enterPrice").children().children(".newPartPrice");
+//    console.log("newPartPrice", newPartPrice)
+
+    var finalPrice = $(this).val() * price.attr("realPrice");
+        
+    price.val(finalPrice);
+
+    var newStock = Number($(this).attr("stock")) - $(this).val();
+
+    $(this).attr("newStock", newStock);
+
+    if(Number($(this).val()) >  Number($(this).attr("stock"))){
+
+        /*==========================================================
+		IF QUANTITY IS MORE THAN THE STOCK VALUE SET INITIAL VALUES
+		===========================================================*/
+
+        $(this).val(1);
+
+        var finalPrice = $(this).val() * price.attr("realPrice");
+
+        price.val(finalPrice);
+
+     // ADDING TOTAL PRICES
+        addingTotalPrices();
+
+        swal({
+            title: "The quantity is more than your stock",
+            text: "¡There's only"+$(this).attr("stock")+" units!",
+            type: "error",
+            confirmButtonText: "Close!"
+          });
+  
+          return;
+    }
+
+
+      // ADDING TOTAL PRICES
+        addingTotalPrices();
+
+    //   Add Tax
+        addTax();
+
+})
+
+/*============================================
+PRICES ADDITION
+=============================================*/
+
+function addingTotalPrices(){
+
+	var priceItem = $(".newPartPrice");
+	var arrayAdditionPrice = [];  
+
+	for(var i = 0; i < priceItem.length; i++){
+
+		 arrayAdditionPrice.push(Number($(priceItem[i]).val()));
+		 
+    }
+    
+    // console.log("arrayAdditionPrice", arrayAdditionPrice)
+
+	function additionArrayPrices(totalSale, numberArray){
+
+		return totalSale + numberArray;
+
+	}
+
+    var addingTotalPrice = arrayAdditionPrice.reduce(additionArrayPrices);
+    // console.log("addingTotalPrice", addingTotalPrice)
+    $("#newPartsTotalSell").val(addingTotalPrice);
+	$("#newPartsTotalSell").attr("totalSale",addingTotalPrice);
+
+
+}
+
+/*=============================================
+ADD TAX
+=============================================*/
+
+function addTax(){
+
+	var tax = $("#newTaxSale").val();
+
+	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
+
+	var taxPrice = Number(totalPrice * tax/100);
+
+	var totalwithTax = Number(taxPrice) + Number(totalPrice);
+	
+	$("#newPartsTotalSell").val(totalwithTax);
+
+	$("#saleTotal").val(totalwithTax);
+
+	$("#newTaxPrice").val(taxPrice);
+
+	$("#newNetPrice").val(totalPrice);
+
+}
+
+/*=============================================
+WHEN TAX CHANGES
+=============================================*/
+
+$("#newTaxSale").change(function(){
+
+	addTax();
+
+});
