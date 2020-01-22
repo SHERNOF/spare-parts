@@ -49,7 +49,7 @@ DELETE PARTS USER
         console.log("idpartsUser", idpartsUser)
 	
 	swal({
-        title: 'Are you sure you want to delete this customer?',
+        title: 'Are you sure you want to delete this Part User?',
         text: "If you're not you can cancel the action!",
         type: 'warning',
         showCancelButton: true,

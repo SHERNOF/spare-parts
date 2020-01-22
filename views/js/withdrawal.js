@@ -207,7 +207,9 @@ $(".formWithdrawal").on("click", "button.removePart", function(){
 
         $("#newTaxSale").val(0);
         $("#newPartsTotalSell").val(0);
+        $("#totalSale").val(0);
         $("#newPartsTotalSell").attr("totalSale",0);
+
 
     } else {
 
@@ -569,7 +571,7 @@ $("#newPaymentMethod").change(function(){
 
 
       	// List method in the entry
-    //   	listMethods()
+      	listMethods()
 
 	}else{
 
@@ -611,12 +613,23 @@ $(".formWithdrawal").on("change", "input#newCashValue", function(){
 })
 
 /*=============================================
+CHANGE TRANSACTION CODE
+=============================================*/
+$(".formWithdrawal").on("change", "input#newTransactionCode", function(){
+
+	// List method in the entry
+     listMethods()
+
+
+})
+
+/*=============================================
 LIST ALL THE PARTS
 =============================================*/
 
 function listParts(){
 
-	var listParts = [];
+	var partsList = [];
 
 	var description = $(".newPartDescription");
 
@@ -626,7 +639,7 @@ function listParts(){
 
 	for(var i = 0; i < description.length; i++){
 
-		listParts.push({ "id" : $(description[i]).attr("idPart"), 
+		partsList.push({ "id" : $(description[i]).attr("idPart"), 
 							  "description" : $(description[i]).val(),
 							  "quantity" : $(quantity[i]).val(),
 							  "stock" : $(quantity[i]).attr("newStock"),
@@ -634,8 +647,26 @@ function listParts(){
 							  "totalPrice" : $(price[i]).val()})
 	}
 
-    // console.log("listParts", listParts)
+    // console.log("partsList", partsList)
 	$("#partsList").val(JSON.stringify(partsList)); 
 
+}
+
+/*=============================================
+LIST OF METHOD PAYMENT
+=============================================*/
+
+function listMethods(){
+
+	var listMethods = "";
+
+	if($("#newPaymentMethod").val() == "cash"){
+
+		$("#listPaymentMethod").val("cash");
+
+	}else{
+
+		$("#listPaymentMethod").val($("#newPaymentMethod").val()+"-"+$("#newTransactionCode").val());
+	}
 }
 

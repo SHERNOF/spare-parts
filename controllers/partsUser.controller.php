@@ -29,7 +29,7 @@ class ControllerpartsUser{
 
 					swal({
 						  type: "success",
-						  title: "The customer has been saved",
+						  title: "The custpart user has been saved",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -50,7 +50,7 @@ class ControllerpartsUser{
 
 					swal({
 						  type: "error",
-						  title: "¡Customer cannot be blank or especial characters!",
+						  title: "Sherwin Part User cannot be blank or especial characters!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Close"
 						  }).then(function(result){

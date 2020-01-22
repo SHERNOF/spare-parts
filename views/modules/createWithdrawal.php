@@ -19,7 +19,6 @@
       
     </section>
 
-
     <!-- Main content -->
     <section class="content">
      <div class="row">
@@ -38,8 +37,6 @@
 
               <div class="box-body">
 
-              
-              
                 <div class="box">
 
                    <!--=====================================
@@ -55,7 +52,7 @@
                     </div>
 
                     <!--=====================================
-                      Billing Code
+                      CODE INPUT
                     ======================================-->
 
                     <div class="form-group">
@@ -85,13 +82,11 @@
                       Parts User Input
                      ======================================-->
 
-                     
-
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                          <select type="text" class="form-control" id="newpartsUser" name="newpartsUser" placeholder="Parts User" required>
-                            <option value="">Parts User Selection</option>  
+                          <select type="text" class="form-control" id="selectpartsUser" name="selectpartsUser" required>
+                            <option value="">Select Parts User</option>  
 
                             <?php
                             $item = null;
@@ -166,6 +161,8 @@
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
                                     <input type="text" class="form-control input-lg" min="0" id="newPartsTotalSell" total="" name="newPartsTotalSell" placeholder="0000" readonly required>
+
+                                    <input type="hidden" name="saleTotal" id="saleTotal" required>
                                     
                                   </div>
                                 </td>
@@ -205,18 +202,7 @@
 
                     <div class="paymentMethodBoxes"></div>
 
-
-                    <!-- <div class="col-xs-6" style="padding-left:0px"> 
-                    
-                        <div class="input-group">
-
-                          <input type="number" class="form-control" min="0" id="newPaymentMethod" name="newPaymentMethod" placeholder="0000" readonly required>
-
-                          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                        </div>
-
-                    </div> -->
+                    <input type="hidden" name="listPaymentMethod" id="listPaymentMethod" required>
                     
                   </div>
 
@@ -235,6 +221,13 @@
             </div>
 
             </form>
+
+            <?php
+
+            $saveWithdrawal = new ControllerWithdrawal();
+            $saveWithdrawal -> ctrCreateWithdrawal();
+            
+          ?>
           
           </div>
 
@@ -337,7 +330,6 @@ MODAL BODY
         <div class="form-group">
         <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-              <!-- <input type="text" min="0" class="form-control input-lg" name="newPhone" placeholder="Add Contact Number" required data-inputmask="'mask':'(999) 999-99999'" required data-mask> -->
               <input type="text" min="0" class="form-control input-lg" name="newPhone" placeholder="Add Contact Number" required required>
             </div>
         </div>
