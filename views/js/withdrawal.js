@@ -117,29 +117,33 @@ $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
                     '<!-- Parts Quantity -->  '+
 
                     '<div class="col-xs-3">'+
-                        '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" stock="'+stock+'" required>'+
+                        '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
                     '</div>'+
 
                     '<!-- Parts Price -->  '+
                     '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
                         '<div class="input-group" >'+
                             '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-                            '<input type="number" class="form-control newPartPrice" name="newPartPrice" realPrice="'+price+'" value="'+price+'" readonly required>'+
+                            '<input type="text" class="form-control newPartPrice" name="newPartPrice" realPrice="'+price+'" value="'+price+'" readonly required>'+
                         '</div>'+
                     '</div>'+
             '</div>')
 
-            /*=============================================
-            Adding total Prices
-            =============================================*/
-
+            
+            // Adding total Prices
             addingTotalPrices();
 
+             // GROUP PRODUCTS IN JSON FORMAT
 
-            /*=============================================
-            Adding Tax
-            =============================================*/
+            listParts();
+            
+            // Adding Tax
             addTax();
+
+            // Product Price format
+             $(".newPartPrice").number(true, 2);
+
+
         }
     })
 });
@@ -218,6 +222,10 @@ $(".formWithdrawal").on("click", "button.removePart", function(){
         =============================================*/
         addTax();
 
+        // GROUP PRODUCTS IN JSON FORMAT
+
+        listParts()
+
     }
 });
 
@@ -273,7 +281,7 @@ $(".btnAddPart").click(function(){
 
                 '<div class="col-xs-3 enterQuantity">'+
                   
-                   '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" required>'+
+                   '<input type="number" class="form-control newPartQty" name="newPartQty" min="1" value="1" newStock required>'+
 
                 '</div>' +
 
@@ -285,7 +293,7 @@ $(".btnAddPart").click(function(){
 
                     '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
                        
-                    '<input type="number" class="form-control newPartPrice" realPrice="'+price+'" min="1" name="newPartPrice" readonly required>'+
+                    '<input type="text" class="form-control newPartPrice" realPrice="" min="1" name="newPartPrice" readonly required>'+
        
                   '</div>'+
                    
@@ -316,6 +324,8 @@ $(".btnAddPart").click(function(){
             Adding Tax
             =============================================*/
             addTax();
+
+            $(".newPartPrice").number(true, 2);
 
         }
     })
@@ -352,11 +362,15 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
       	dataType:"json",
       	success:function(answer){
               
-            $(newPartDescription).attr("stock", answer["stock"]);
-            // $(newPartQty).attr("stock", answer["stock"]);
-            
+            $(newPartDescription).attr("idPart", answer["id"]);
+            $(newPartQty).attr("stock", answer["stock"]);
+            $(newPartQty).attr("newStock", Number(answer["stock"])-1);
             $(newPartPrice).val(answer["sellingPrice"]);
             $(newPartPrice).attr("realPrice", answer["sellingPrice"]);
+
+            // GROUP PRODUCTS IN JSON FORMAT
+
+            listParts();
 
 
       	}
@@ -411,8 +425,12 @@ $(".formWithdrawal").on("change", "input.newPartQty", function(){
       // ADDING TOTAL PRICES
         addingTotalPrices();
 
-    //   Add Tax
+      // Add Tax
         addTax();
+
+        // GROUP PRODUCTS IN JSON FORMAT
+
+        listParts();
 
 })
 
@@ -440,8 +458,9 @@ function addingTotalPrices(){
 	}
 
     var addingTotalPrice = arrayAdditionPrice.reduce(additionArrayPrices);
-    // console.log("addingTotalPrice", addingTotalPrice)
+    
     $("#newPartsTotalSell").val(addingTotalPrice);
+    $("#saleTotal").val(addingTotalPrice);
 	$("#newPartsTotalSell").attr("totalSale",addingTotalPrice);
 
 
@@ -480,3 +499,143 @@ $("#newTaxSale").change(function(){
 	addTax();
 
 });
+
+   // Product Price format
+   $("#newPartsTotalSell").number(true, 2);
+
+
+   /*=============================================
+WHEN TAX CHANGES
+=============================================*/
+
+$("#newTaxSale").change(function(){
+
+	addTax();
+
+});
+
+/*=============================================
+FINAL PRICE FORMAT
+=============================================*/
+
+$("#newSaleTotal").number(true, 2);
+
+/*=============================================
+SELECT PAYMENT METHOD
+=============================================*/
+
+$("#newPaymentMethod").change(function(){
+
+	var method = $(this).val();
+
+	if(method == "cash"){
+
+		$(this).parent().parent().removeClass("col-xs-6");
+
+		$(this).parent().parent().addClass("col-xs-4");
+
+		$(this).parent().parent().parent().children(".paymentMethodBoxes").html(
+
+			 '<div class="col-xs-4">'+ 
+
+			 	'<div class="input-group">'+ 
+
+			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
+
+			 		'<input type="text" class="form-control" id="newCashValue" placeholder="000000" required>'+
+
+			 	'</div>'+
+
+			 '</div>'+
+
+			 '<div class="col-xs-4" id="getCashChange" style="padding-left:0px">'+
+
+			 	'<div class="input-group">'+
+
+			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+
+			 		'<input type="text" class="form-control" id="newCashChange" placeholder="000000" readonly required>'+
+
+			 	'</div>'+
+
+			 '</div>'
+
+		 )
+
+		// Adding format to the price
+
+		$('#newCashValue').number( true, 2);
+      	$('#newCashChange').number( true, 2);
+
+
+      	// List method in the entry
+    //   	listMethods()
+
+	}else{
+
+		$(this).parent().parent().removeClass('col-xs-4');
+
+		$(this).parent().parent().addClass('col-xs-6');
+
+		 $(this).parent().parent().parent().children('.paymentMethodBoxes').html(
+
+		 	'<div class="col-xs-6" style="padding-left:0px">'+
+                        
+                '<div class="input-group">'+
+                     
+                  '<input type="number" min="0" class="form-control" id="newTransactionCode" placeholder="Transaction code"  required>'+
+                       
+                  '<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
+                  
+                '</div>'+
+
+              '</div>')
+
+	}
+})
+
+
+/*=============================================
+CASH CHANGE
+=============================================*/
+$(".formWithdrawal").on("change", "input#newCashValue", function(){
+	
+	var cash = $(this).val();
+
+	var change =  Number(cash) - Number($('#newPartsTotalSell').val());
+
+	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
+
+	newCashChange.val(change);
+
+})
+
+/*=============================================
+LIST ALL THE PARTS
+=============================================*/
+
+function listParts(){
+
+	var listParts = [];
+
+	var description = $(".newPartDescription");
+
+	var quantity = $(".newPartQty");
+
+	var price = $(".newPartPrice");
+
+	for(var i = 0; i < description.length; i++){
+
+		listParts.push({ "id" : $(description[i]).attr("idPart"), 
+							  "description" : $(description[i]).val(),
+							  "quantity" : $(quantity[i]).val(),
+							  "stock" : $(quantity[i]).attr("newStock"),
+							  "price" : $(price[i]).attr("realPrice"),
+							  "totalPrice" : $(price[i]).val()})
+	}
+
+    // console.log("listParts", listParts)
+	$("#partsList").val(JSON.stringify(partsList)); 
+
+}
+

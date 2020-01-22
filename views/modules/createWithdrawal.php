@@ -118,7 +118,7 @@
 
                     </div>
 
-                    <!-- <input type="hidden" name="productsList" id="productsList"> -->
+                    <input type="hidden" name="partsList" id="partsList">
 
                       <!--=====================================
                       Add Parts Button
@@ -165,7 +165,7 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-                                    <input type="number" class="form-control input-lg" min="0" id="newPartsTotalSell" total="" name="newPartsTotalSell" placeholder="0000" readonly required>
+                                    <input type="text" class="form-control input-lg" min="0" id="newPartsTotalSell" total="" name="newPartsTotalSell" placeholder="0000" readonly required>
                                     
                                   </div>
                                 </td>
@@ -194,17 +194,19 @@
                       
                         <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
                           <option value="">Select Payment Method</option>
-                          <option value="Cash">Cash</option>
-                          <option value="Credit Card">Credit Card</option>
-                          <option value="Debit Card">Debit Card</option>
+                          <option value="cash">Cash</option>
+                          <option value="CC">Credit Card</option>
+                          <option value="DC">Debit Card</option>
                         </select>
                   
                       </div>
                     
                     </div>
 
+                    <div class="paymentMethodBoxes"></div>
 
-                    <div class="col-xs-6" style="padding-left:0px"> 
+
+                    <!-- <div class="col-xs-6" style="padding-left:0px"> 
                     
                         <div class="input-group">
 
@@ -214,7 +216,7 @@
 
                         </div>
 
-                    </div>
+                    </div> -->
                     
                   </div>
 
