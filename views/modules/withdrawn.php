@@ -58,24 +58,75 @@
                 </thead>
 
                   <tbody> 
+                     <?php
 
-                      <tr>  
-                        <td>1</td>
-                        <td>100123</td>
-                        <td>Angie</td>
-                        <td>Sherwin</td>
-                        <td>cash</td>
-                        <td>$20</td>
-                        <td>$22</td>
-                        <td>2020-01-10 12:05:32</td>
+          $item = null;
+          $value = null;
+
+          $answer = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
+
+          // var_dump($answer);
+
+          foreach ($answer as $key => $value) {
+           
+
+           echo 
+
+        '<td>'.($key+1).'</td>
+
+                  <td>'.$value["code"].'</td>';
+
+                  $itempartsUser = "id";
+                  $valuepartsUser = $value["idPartsUser"];
+
+                  $partsUserAnswer = ControllerpartsUser::ctrShowpartsUser($itempartsUser, $valuepartsUser);
+
+                  echo '<td>'.$partsUserAnswer["name"].'</td>';
+
+                  $itemUser = "id";
+                  $valueUser = $value["idIssuer"];
+
+                  $userAnswer = ControllerUsers::ctrShowUsers($itemUser, $valueUser);
+
+                  echo '<td>'.$userAnswer["name"].'</td>
+
+                  <td>'.$value["paymentMethod"].'</td>
+
+                  <td>$ '.number_format($value["netPrice"],2).'</td>
+
+                  <td>$ '.number_format($value["totalPrice"],2).'</td>
+
+                  <td>'.$value["withdrawalDate"].'</td>
+
+                  <td>
+
+                    <div class="btn-group">
                         
-                        <td>
-                          <div class="btn-group"> 
-                                <button class="btn btn-info"><i class="fa fa-print"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                          </div>
-                        </td>
-                     </tr> 
+                      <div class="btn-group">
+                        
+                      <button class="btn btn-info"><i class="fa fa-print"></i></button>
+
+                        <button class="btn btn-warning btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+
+                        <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                   </div>  
+
+                  </td>
+
+                </tr>';
+
+        
+
+        
+
+            }
+
+        ?>
+
+                  <tbody>
+
+           
+                      
                   </tbody>
             </table>
         </div>

@@ -36,4 +36,36 @@ class ModelWithdrawal {
 
 	}
 
+	/*=============================================
+	REGISTERING WITHDRAWAL
+	=============================================*/
+
+	static public function mdlAddWithdrawal($table, $data){
+
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idPartsUser, idIssuer, parts, tax, netPrice, totalPrice, paymentMethod) VALUES (:code, :idPartsUser, :idIssuer, :parts, :tax, :netPrice, :totalPrice, :paymentMethod)");
+
+		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
+		$stmt->bindParam(":idPartsUser", $data["idPartsUser"], PDO::PARAM_INT);
+		$stmt->bindParam(":idIssuer", $data["idIssuer"], PDO::PARAM_INT);
+		$stmt->bindParam(":parts", $data["parts"], PDO::PARAM_STR);
+		$stmt->bindParam(":tax", $data["tax"], PDO::PARAM_STR);
+		$stmt->bindParam(":netPrice", $data["netPrice"], PDO::PARAM_STR);
+		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
+		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+
 }

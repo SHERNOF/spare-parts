@@ -88,7 +88,7 @@
   
                         <td>'.$value["partsWithdrawn"].'</td>
   
-                        <td>0000-00-00 00:00:00</td>
+                        <td>'.$value["lastWithdrawn"].'</td>
   
                         <td>'.$value["registerDate"].'</td>
 

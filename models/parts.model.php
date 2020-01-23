@@ -128,30 +128,6 @@ class PartsModel {
 	UPDATE PART
 	=============================================*/
 
-	// static public function mdlUpdatePart($table, $item1, $value1, $value){
-
-	// 	$stmt = Connection::connect()->prepare("UPDATE $table SET $item1 = :$item1 WHERE id = :id");
-
-	// 	$stmt -> bindParam(":".$item1, $value1, PDO::PARAM_STR);
-	// 	$stmt -> bindParam(":id", $value, PDO::PARAM_STR);
-
-	// 	if($stmt -> execute()){
-
-	// 		return "ok";
-		
-	// 	}else{
-
-	// 		return "error";	
-
-	// 	}
-
-	// 	$stmt -> close();
-
-	// 	$stmt = null;
-
-	// }
-
-
 	static public function mdlUpdatePart($table, $item1, $value1, $value){
 
 		$stmt = Connection::connect()->prepare("UPDATE $table SET $item1 = :$item1 WHERE id = :id");
