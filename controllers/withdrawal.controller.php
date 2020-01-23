@@ -25,50 +25,54 @@ class ControllerWithdrawal{
 		if(isset($_POST["newWithdrawal"])){
 
 			/*=============================================
-			UPDATE CUSTOMER'S PURCHASES AND REDUCE THE STOCK AND INCREASE SALES OF THE PRODUCT
+			UPDATE partsUser'S PURCHASES AND REDUCE THE STOCK AND INCREASE SALES OF THE PRODUCT
 			=============================================*/
 
 			$partsList = json_decode($_POST["partsList"], true);
 
-			var_dump($partsList);
+			// var_dump($partsList);
 
 	// 		$totalPurchasedProducts = array();
 
-	// 		foreach ($productsList as $key => $value) {
+			foreach ($partsList as $key => $value) {
 
-	// 		   array_push($totalPurchasedProducts, $value["quantity"]);
+	// // 		   array_push($totalPurchasedProducts, $value["quantity"]);
 				
-	// 		   $tableProducts = "products";
+			   $tableParts = "parts";
 
-	// 		    $item = "id";
-	// 		    $valueProductId = $value["id"];
+			    $item = "id";
+			    $valuePartId = $value["id"];
 	// 		    $order = "id";
 
-	// 		    $getProduct = ProductsModel::mdlShowProducts($tableProducts, $item, $valueProductId, $order);
+				$getPart = PartsModel::mdlShowParts($tableParts, $item, $valuePartId);
+	// 			// $getPart = PartsModel::mdlShowParts($tableParts, $item, $valuePartId, $order);
 
-	// 			$item1a = "sales";
-	// 			$value1a = $value["quantity"] + $getProduct["sales"];
+	// 			// sales is from parts table column
+				$item1a = "sales";
+				$value1a = $value["quantity"] + $getPart["sales"];
 
-	// 		    $newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $valueProductId);
+			    $Withdrawal = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $valuePartId);
 
-	// 			$item1b = "stock";
-	// 			$value1b = $value["stock"];
+				$item1b = "stock";
+				$value1b = $value["stock"];
 
-	// 			$newStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
+				$newStock = PartsModel::mdlUpdatePart($tableParts, $item1b, $value1b, $valuePartId);
+				
 
-	// 		}
+			// }
 
-	// 		$tableCustomers = "customers";
+			// $tablepartsUser  = "partsuser";
 
-	// 		$item = "id";
-	// 		$valueCustomer = $_POST["selectCustomer"];
-
-	// 		$getCustomer = ModelCustomers::mdlShowCustomers($tableCustomers, $item, $valueCustomer);
+			// $itempartsUser = "id";
+			// $valuepartsUser = $_POST["selectpartsUser"];
+			
+			// $getpartsUser = ModelpartsUser::mdlShowpartsUser ($tablepartsUser , $itempartsUser, $valuepartsUser);		
+			// var_dump($getpartsUser);
 
 	// 		$item1a = "purchases";
-	// 		$value1a = array_sum($totalPurchasedProducts) + $getCustomer["purchases"];
+	// 		$value1a = array_sum($totalPurchasedProducts) + $getpartsUser["purchases"];
 
-	// 		$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1a, $value1a, $valueCustomer);
+	// 		$partsUserPurchases = ModelpartsUser::mdlUpdatepartsUser($table , $item1a, $value1a, $valuepartsUser);
 
 	// 		$item1b = "lastPurchase";
 
@@ -78,7 +82,7 @@ class ControllerWithdrawal{
 	// 		$hour = date('H:i:s');
 	// 		$value1b = $date.' '.$hour;
 
-	// 		$dateCustomer = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1b, $value1b, $valueCustomer);
+	// 		$datepartsUser = ModelpartsUser::mdlUpdatepartsUser($table , $item1b, $value1b, $valuepartsUser);
 
 	// 		/*=============================================
 	// 		SAVE THE SALE
@@ -87,7 +91,7 @@ class ControllerWithdrawal{
 	// 		$table = "sales";
 
 	// 		$data = array("idSeller"=>$_POST["idSeller"],
-	// 					   "idCustomer"=>$_POST["selectCustomer"],
+	// 					   "idpartsUser"=>$_POST["selectpartsUser"],
 	// 					   "code"=>$_POST["newSale"],
 	// 					   "products"=>$_POST["productsList"],
 	// 					   "tax"=>$_POST["newTaxPrice"],
@@ -118,7 +122,7 @@ class ControllerWithdrawal{
 
 	// 			</script>';
 
-	// 		}
+			}
 
 		}
 
