@@ -183,13 +183,13 @@ class ControllerWithdrawal{
 				$item1a = "sales";
 				$value1a = $getPart["sales"] - $value["quantity"];
 
-			    $newWithdrawals = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $value);
+			    $newWithdrawals = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $valuePartId);
 
 
 				$item1b = "stock";
 				$value1b = $value["quantity"] + $getPart["stock"];
 
-				$newStock = PartsModel::mdlUpdatePart($tableParts, $item1b, $value1b, $value);
+				$newStock = PartsModel::mdlUpdatePart($tableParts, $item1b, $value1b, $valuePartId);
 
 			}
 
