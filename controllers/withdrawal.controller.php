@@ -40,15 +40,15 @@ class ControllerWithdrawal{
 
 			    $item = "id";
 			    $valuePartId = $value["id"];
-	// // 		    $order = "id";
+			    $order = "id";
 
-				$getPart = PartsModel::mdlShowParts($tableParts, $item, $valuePartId);
+				$getPart = PartsModel::mdlShowParts($tableParts, $item, $valuePartId, $order);
 
 	// // 			// sales is from parts table column
 				$item1a = "sales";
 				$value1a = $value["quantity"] + $getPart["sales"];
 
-			    $Withdrawal = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $valuePartId);
+			    $newWithdrawals = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $valuePartId);
 
 				$item1b = "stock";
 				$value1b = $value["stock"];
@@ -124,6 +124,192 @@ class ControllerWithdrawal{
 		}
 
 	}
+
+
+	/*=============================================
+	EDIT WITHDRAWAL
+	=============================================*/
+
+	static public function ctrEditWithdrawal(){
+
+		if(isset($_POST["editWithdrawal"])){
+
+			/*=============================================
+			FORMAT PRODUCTS AND CUSTOMERS TABLES
+			=============================================*/
+			$table = "withdrawal";
+
+			$item = "code";
+			$value = $_POST["editWithdrawal"];
+
+			$getWithdrawal = ModelWithdrawal::mdlShowWithdrawal($table, $item, $value);
+
+
+			/*=============================================
+			CHECK IF THERE'S ANY EDITED SALE
+			=============================================*/
+
+			if($_POST["partsList"] == ""){
+
+				$partsList = $getWithdrawal["parts"];
+				$partChange = false;
+
+			}else{
+
+				$patsList = $_POST["partsList"];
+				$partChange = true;
+				
+			}
+
+			if($partChange){
+
+			$parts = json_decode($getWithdrawal["parts"], true);
+
+			$totalWithdrawnParts = array();
+
+			foreach ($parts as $key => $value) {
+
+				array_push($totalWithdrawnParts, $value["quantity"]);
+
+				$tableParts = "parts";
+
+				$item = "id";
+				$valuePartId = $value["id"];
+			    $order = "id";
+
+				$getPart = PartsModel::mdlShowParts($tableParts, $item, $valuePartId, $order);
+
+				// sales is from parts table column
+				$item1a = "sales";
+				$value1a = $getPart["sales"] - $value["quantity"];
+
+			    $newWithdrawals = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $value);
+
+
+				$item1b = "stock";
+				$value1b = $value["quantity"] + $getPart["stock"];
+
+				$newStock = PartsModel::mdlUpdatePart($tableParts, $item1b, $value1b, $value);
+
+			}
+
+			$tablepartsUser  = "partsuser";
+
+			$itempartsUser = "id";
+			$valuepartsUser = $_POST["selectpartsUser"];
+			
+			$getpartsUser = ModelpartsUser::mdlShowpartsUser ($tablepartsUser , $itempartsUser, $valuepartsUser);		
+
+			$item1a = "partsWithdrawn";
+			$value1a = $getpartsUser["partsWithdrawn"] - array_sum($totalWithdrawnParts) ;
+
+			$partsUserWithdrawn = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser , $item1a, $value1a, $valuepartsUser);
+
+
+			/*=============================================
+			UPDATE partsUser'S PURCHASES AND REDUCE THE STOCK AND INCREASE SALES OF THE PRODUCT
+			=============================================*/
+
+			
+			$partsList2 = json_decode($partsList, true);
+
+			$totalWithdrawnParts2 = array();
+
+			foreach ($partsList2 as $key => $value) {
+
+			   array_push($totalWithdrawnParts2, $value["quantity"]);
+				
+			   $tableParts2 = "parts";
+
+			    $item2 = "id";
+			    $valuePartId2 = $value["id"];
+			    $order = "id";
+
+				$getPart2 = PartsModel::mdlShowParts($tableParts2, $item2, $valuePartId2, $order);
+
+	// // 			// sales is from parts table column
+				$item1a2 = "sales";
+				$value1a2 = $value["quantity"] + $getPart2["sales"];
+
+			    $newWithdrawals2 = PartsModel::mdlUpdatePart($tableParts2, $item1a2, $value1a2, $valuePartId2);
+
+				$item1b2 = "stock";
+				$value1b2 = $value["stock"];
+
+				$newStock2 = PartsModel::mdlUpdatePart($tableParts2, $item1b2, $value1b2, $valuePartId2);
+
+			}
+
+			$tablepartsUser2  = "partsuser";
+
+			$itempartsUser2 = "id";
+			$valuepartsUser2 = $_POST["selectpartsUser"];
+			
+			$getpartsUser2 = ModelpartsUser::mdlShowpartsUser ($tablepartsUser2, $itempartsUser2, $valuepartsUser2);		
+			// var_dump($getpartsUser);
+
+			$item1a2 = "partsWithdrawn";
+			$value1a2 = array_sum($totalWithdrawnParts2) + $getpartsUser2["partsWithdrawn"];
+
+			$partsUserWithdrawn2 = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser2, $item1a2, $value1a2, $valuepartsUser2);
+			
+
+			$item1b2 = "lastWithdrawn";
+
+			date_default_timezone_set('America/Bogota');
+
+			$date = date('Y-m-d');
+			$hour = date('H:i:s');
+			$value1b2 = $date.' '.$hour;
+
+			$datepartsUser2 = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser2, $item1b2, $value1b2, $valuepartsUser2);
+
+		}
+
+			/*=============================================
+			SAVE THE WITHDRAWAL CHANGES
+			=============================================*/	
+
+			// $table = "withdrawal";
+
+			$data = array("idIssuer"=>$_POST["idIssuer"],
+						   "idPartsUser"=>$_POST["selectpartsUser"],
+						   "code"=>$_POST["editWithdrawal"],
+						   "parts"=>$partsList,
+						   "tax"=>$_POST["newTaxPrice"],
+						   "netPrice"=>$_POST["newNetPrice"],
+						   "totalPrice"=>$_POST["saleTotal"],
+						   "paymentMethod"=>$_POST["listPaymentMethod"]);
+
+			$answer = ModelWithdrawal::mdlEditWithdrawal($table, $data);
+
+			if($answer == "ok"){
+
+				echo'<script>
+
+				localStorage.removeItem("range");
+
+				swal({
+					  type: "success",
+					  title: "The withdrawal has been succesfully added",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then((result) => {
+								if (result.value) {
+
+								window.location = "withdrawn";
+
+								}
+							})
+
+				</script>';
+
+			}
+
+		}
+
+	}
+
 
 
 }

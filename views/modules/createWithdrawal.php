@@ -160,9 +160,10 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-                                    <input type="text" class="form-control input-lg" min="0" id="newPartsTotalSell" total="" name="newPartsTotalSell" placeholder="0000" readonly required>
+                                    <input type="number" class="form-control input-lg" id="newPartsTotalSell" totalSale="" name="newPartsTotalSell" placeholder="0000" readonly required>
 
                                     <input type="hidden" name="saleTotal" id="saleTotal" required>
+                                    
                                     
                                   </div>
                                 </td>

@@ -28,10 +28,10 @@
         <div class="box-header with-border">
 
         <a href="createWithdrawal">
-
             <button class="btn btn-primary">
               Withdraw Part
             </button>
+        </a>
  
         </div>
 
@@ -106,24 +106,18 @@
                         
                       <button class="btn btn-info"><i class="fa fa-print"></i></button>
 
-                        <button class="btn btn-warning btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btnEditWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
 
-                        <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger btnDeleteWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-times"></i></button>
                    </div>  
 
                   </td>
 
                 </tr>';
-
-        
-
-        
-
             }
-
         ?>
 
-                  <tbody>
+                  <!-- <tbody> -->
 
            
                       

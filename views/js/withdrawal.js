@@ -388,6 +388,7 @@ Modify the quanrtity and auto adjust price
 $(".formWithdrawal").on("change", "input.newPartQty", function(){
 
    var price = $(this).parent().parent().children(".enterPrice").children().children(".newPartPrice");
+   
 //    console.log("newPartPrice", newPartPrice)
 
     var finalPrice = $(this).val() * price.attr("realPrice");
@@ -506,15 +507,6 @@ $("#newTaxSale").change(function(){
    $("#newPartsTotalSell").number(true, 2);
 
 
-   /*=============================================
-WHEN TAX CHANGES
-=============================================*/
-
-$("#newTaxSale").change(function(){
-
-	addTax();
-
-});
 
 /*=============================================
 FINAL PRICE FORMAT
@@ -604,7 +596,7 @@ $(".formWithdrawal").on("change", "input#newCashValue", function(){
 	
 	var cash = $(this).val();
 
-	var change =  Number(cash) - Number($('#newPartsTotalSell').val());
+	var change =  Number(cash) - Number($('#saleTotal').val());
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
@@ -670,3 +662,17 @@ function listMethods(){
 	}
 }
 
+
+/*=============================================
+EDIT WITHDRAWAL BUTTON
+=============================================*/
+// $(".tables").on("click", ".btnEditWithdrawal", function(){
+
+    $(".btnEditWithdrawal").click(function(){
+
+	var idWithdrawal = $(this).attr("idWithdrawal");
+
+	window.location = "index.php?route=editWithdrawal&idWithdrawal="+idWithdrawal;
+
+
+})
