@@ -144,6 +144,7 @@
   
                               <input type="text" class="form-control newPartDescription" idPart="'.$value["id"].'" name="addPartsButton" value="'.$value["description"].'" readonly required>
                               
+                              
   
                           </div>
   
@@ -218,7 +219,7 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-                                    <input type="text" class="form-control input-lg" name="newPartsTotalSell" id="newPartsTotalSell" placeholder="00000" total="<?php echo $withdrawal["netPrice"]; ?>"  value="<?php echo $withdrawal["totalPrice"]; ?>" readonly required>
+                                    <input type="text" class="form-control input-lg" name="newPartsTotalSell" id="newPartsTotalSell" placeholder="00000" totalSale="<?php echo $withdrawal["netPrice"]; ?>"  value="<?php echo $withdrawal["totalPrice"]; ?>" readonly required>
 
                                     <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $withdrawal["totalPrice"]; ?>" required>
                                     

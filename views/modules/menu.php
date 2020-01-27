@@ -46,13 +46,13 @@
 					<li>
 						<a href="withdrawn">
 							<i class="fa fa-circle"></i>
-							<span>Withdrawn</span>
+							<span>Parts Withdrawal</span>
 						</a>
 					</li>
 					<li>
-						<a href="create-sales">
+						<a href="createWithdrawal">
 							<i class="fa fa-circle"></i>
-							<span>Parts In-Out</span>
+							<span>Withdraw Parts</span>
 						</a>
 					</li>
 					<li>

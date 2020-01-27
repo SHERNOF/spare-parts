@@ -133,20 +133,64 @@ $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
             // Adding total Prices
             addingTotalPrices();
 
-             // GROUP PRODUCTS IN JSON FORMAT
+             // GROUP PartS IN JSON FORMAT
 
             listParts();
             
             // Adding Tax
             addTax();
 
-            // Product Price format
+            // Part Price format
              $(".newPartPrice").number(true, 2);
 
 
         }
     })
 });
+
+
+/*=============================================
+FUNCTION TO DEACTIVATE "ADD" BUTTONS WHEN THE Part HAS BEEN SELECTED IN THE FOLDER
+=============================================*/
+
+function removeAddPartSale(){
+
+	//We capture all the Parts' id that were selected in the sale
+	var idParts = $(".removePart");
+
+	//We capture all the buttons to add that appear in the table
+	var tableButtons = $(".tableWithdrawal tbody button.addPartsButton");
+
+	//We navigate the cycle to get the different idParts that were added to the sale
+	for(var i = 0; i < idParts.length; i++){
+
+		//We capture the IDs of the Parts added to the sale
+		var button = $(idParts[i]).attr("idPart");
+		
+		//We go over the table that appears to deactivate the "add" buttons
+		for(var j = 0; j < tableButtons.length; j ++){
+
+			if($(tableButtons[j]).attr("idPart") == button){
+
+				$(tableButtons[j]).removeClass("btn-primary addPartsButton");
+				$(tableButtons[j]).addClass("btn-default");
+
+			}
+		}
+
+	}
+	
+}
+
+/*=============================================
+EVERY TIME THAT THE TABLE IS LOADED WHEN WE NAVIGATE THROUGH IT EXECUTES A FUNCTION
+=============================================*/
+
+$('.tableWithdrawal').on( 'draw.dt', function(){
+
+	removeAddPartSale();
+
+})
 
 /*=============================================
 Load table at all time during tab surf
@@ -224,7 +268,7 @@ $(".formWithdrawal").on("click", "button.removePart", function(){
         =============================================*/
         addTax();
 
-        // GROUP PRODUCTS IN JSON FORMAT
+        // GROUP PartS IN JSON FORMAT
 
         listParts()
 
@@ -261,7 +305,7 @@ $(".btnAddPart").click(function(){
 
                 '<div class="row" style="padding:5px 15px">'+
 
-                '<!-- Product description -->'+
+                '<!-- Part description -->'+
                 
                 '<div class="col-xs-6" style="padding-right:0px">'+
                 
@@ -279,7 +323,7 @@ $(".btnAddPart").click(function(){
 
                 '</div>'+
 
-                '<!-- Product quantity -->'+
+                '<!-- Part quantity -->'+
 
                 '<div class="col-xs-3 enterQuantity">'+
                   
@@ -287,7 +331,7 @@ $(".btnAddPart").click(function(){
 
                 '</div>' +
 
-                '<!-- Product price -->'+
+                '<!-- Part price -->'+
 
                 '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
 
@@ -342,7 +386,7 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
 
     var partName = $(this).val();
 
-    var newPartDescription = $(this).parent().parent().parent().children().children().children(".newProductDescription");
+    var newPartDescription = $(this).parent().parent().parent().children().children().children(".newPartDescription");
 
     var newPartPrice = $(this).parent().parent().parent().children(".enterPrice").children().children(".newPartPrice");
 
@@ -370,7 +414,7 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
             $(newPartPrice).val(answer["sellingPrice"]);
             $(newPartPrice).attr("realPrice", answer["sellingPrice"]);
 
-            // GROUP PRODUCTS IN JSON FORMAT
+            // GROUP PartS IN JSON FORMAT
 
             listParts();
 
@@ -431,7 +475,7 @@ $(".formWithdrawal").on("change", "input.newPartQty", function(){
       // Add Tax
         addTax();
 
-        // GROUP PRODUCTS IN JSON FORMAT
+        // GROUP PartS IN JSON FORMAT
 
         listParts();
 
@@ -503,7 +547,7 @@ $("#newTaxSale").change(function(){
 
 });
 
-   // Product Price format
+   // Part Price format
    $("#newPartsTotalSell").number(true, 2);
 
 
@@ -674,5 +718,30 @@ EDIT WITHDRAWAL BUTTON
 
 	window.location = "index.php?route=editWithdrawal&idWithdrawal="+idWithdrawal;
 
-
 })
+
+/*=============================================
+DELETE SALE
+=============================================*/
+$(".tables").on("click", ".btnDeleteWithdrawal", function(){
+
+    var idSale = $(this).attr("idWithdrawal");
+  
+    swal({
+          title: '¿Are you sure you want to delete?',
+          text: "If you're not you can cancel!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: 'Cancel',
+          confirmButtonText: 'Yes delete!'
+        }).then(function(result){
+          if (result.value) {
+            
+              window.location = "index.php?route=withdrawn&idWithdrawal="+idWithdrawal;
+          }
+  
+    })
+  
+  })

@@ -156,7 +156,7 @@ class ControllerWithdrawal{
 
 			}else{
 
-				$patsList = $_POST["partsList"];
+				$partsList = $_POST["partsList"];
 				$partChange = true;
 				
 			}
@@ -310,6 +310,78 @@ class ControllerWithdrawal{
 
 	}
 
+	/*=============================================
+	Delete Sale
+	=============================================*/
 
+	static public function ctrDeleteWithdrawal(){
+
+		if(isset($_GET["idWithdrawal"])){
+
+			$table = "sales";
+
+			$item = "id";
+			$value = $_GET["idWithdrawal"];
+
+			$getWithdrawal = ModelWithdrawal::mdlShowWithdrawal($table, $item, $value);
+
+			/*=============================================
+			Update last Purchase date
+			=============================================*/
+
+			// $tablepartsUser = "partsUSer";
+
+			$itemsales = null;
+			$valuesales = null;
+
+			$getWithdrawal = ModelWithdrawal::mdlShowWithdrawal($table, $itemsales, $valuesales);
+
+			// $saveDates = array();
+
+			foreach ($getWithdrawal as $key => $value) {
+				
+				if($value["idpartsUser"] == $getWithdrawal["idpartsUser"]){
+
+					// array_push($saveDates, $value["Withdrawaldate"]);
+
+					var_dump($value["dates"]);
+
+				}
+
+			}
+		}
+	}
+			
+
+			// if(count($saveDates) > 1){
+
+			// 	if($getSale["Withdrawaldate"] > $saveDates[count($saveDates)-2]){
+
+			// 		$item = "lastpartsWithdrawn";
+			// 		$value = $saveDates[count($saveDates)-2];
+			// 		$valueIdCustomer = $getWithdrawal["idpartsUser"];
+
+			// 		$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
+
+			// 	}else{
+
+			// 		$item = "lastpartsWithdrawn";
+			// 		$value = $saveDates[count($saveDates)-1];
+			// 		$valueIdCustomer = $getSale["idpartsUser"];
+
+			// 		$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser, $item, $value, $valueIdCustomer);
+
+			// 	}
+
+
+			// }else{
+
+			// 	$item = "lastPurchase";
+			// 	$value = "0000-00-00 00:00:00";
+			// 	$valueIdCustomer = $getSale["idCustomer"];
+
+			// 	$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser, $item, $value, $valueIdCustomer);
+
+			// }
 
 }
