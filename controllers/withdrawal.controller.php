@@ -314,74 +314,147 @@ class ControllerWithdrawal{
 	Delete Sale
 	=============================================*/
 
-	static public function ctrDeleteWithdrawal(){
+	 static public function ctrDeleteWithdrawal(){
+
 
 		if(isset($_GET["idWithdrawal"])){
 
-			$table = "sales";
+			$table = "withdrawal";
 
 			$item = "id";
 			$value = $_GET["idWithdrawal"];
 
-			$getWithdrawal = ModelWithdrawal::mdlShowWithdrawal($table, $item, $value);
+			$getSale = ModelWithdrawal::mdlShowWithdrawal($table, $item, $value);
+
 
 			/*=============================================
 			Update last Purchase date
 			=============================================*/
 
-			// $tablepartsUser = "partsUSer";
+			$tableCustomers = "partsUser";
 
 			$itemsales = null;
 			$valuesales = null;
 
-			$getWithdrawal = ModelWithdrawal::mdlShowWithdrawal($table, $itemsales, $valuesales);
+			$getSales = ModelWithdrawal::mdlShowWithdrawal($table, $itemsales, $valuesales);
 
-			// $saveDates = array();
+			$saveDates = array();
 
-			foreach ($getWithdrawal as $key => $value) {
-				
-				if($value["idpartsUser"] == $getWithdrawal["idpartsUser"]){
-
-					// array_push($saveDates, $value["Withdrawaldate"]);
-
-					var_dump($value["dates"]);
-
-				}
-
-			}
-		}
-	}
 			
 
-			// if(count($saveDates) > 1){
+			foreach ($getSales as $key => $value){
 
-			// 	if($getSale["Withdrawaldate"] > $saveDates[count($saveDates)-2]){
+				if ($value["idPartsUser"] == $getSale["idPartsUser"]){
 
-			// 		$item = "lastpartsWithdrawn";
-			// 		$value = $saveDates[count($saveDates)-2];
-			// 		$valueIdCustomer = $getWithdrawal["idpartsUser"];
+					array_push($saveDates, $value["withdrawalDate"]);
 
-			// 		$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
+				}
+			}
 
-			// 	}else{
+				if(count($saveDates) > 1){
 
-			// 		$item = "lastpartsWithdrawn";
-			// 		$value = $saveDates[count($saveDates)-1];
-			// 		$valueIdCustomer = $getSale["idpartsUser"];
+							if($getSale["withdrawalDate"] > $saveDates[count($saveDates)-2]){
+			
+								$item = "lastWithdrawn";
+								$value = $saveDates[count($saveDates)-2];
+								$valueIdCustomer = $getSale["idPartsUser"];
+			
+								$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
+			
+						}else{
+							$item = "lastWithdrawn";
+							$value = $saveDates[count($saveDates)-1];
+							$valueIdCustomer = $getSale["idPartsUser"];
 
-			// 		$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser, $item, $value, $valueIdCustomer);
+							$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
 
-			// 	}
+						}
 
+						}else{
+			
+							$item = "lastWithdrawn";
+							$value = "0000-00-00 00:00:00";
+							$valueIdCustomer = $getSale["idPartsUser"];
+			
+							$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
+							var_dump($customerPurchases);
+			
+			}
 
-			// }else{
+	// 						/*=============================================
+				// // 		FORMAT PRODUCTS AND CUSTOMERS TABLE
+				// // 		=============================================*/
+							$parts = json_decode($getSale["parts"], true);
 
-			// 	$item = "lastPurchase";
-			// 	$value = "0000-00-00 00:00:00";
-			// 	$valueIdCustomer = $getSale["idCustomer"];
+							$totalWithdrawnParts = array();
+				
+							foreach ($parts as $key => $value) {
+				
+								array_push($totalWithdrawnParts, $value["quantity"]);
+				
+								$tableParts = "parts";
+				
+								$item = "id";
+								$valuePartId = $value["id"];
+								$order = "id";
+				
+								$getPart = PartsModel::mdlShowParts($tableParts, $item, $valuePartId, $order);
+				
+								// sales is from parts table column
+								$item1a = "sales";
+								$value1a = $getPart["sales"] - $value["quantity"];
+				
+								$newWithdrawals = PartsModel::mdlUpdatePart($tableParts, $item1a, $value1a, $valuePartId);
+				
+				
+								$item1b = "stock";
+								$value1b = $value["quantity"] + $getPart["stock"];
+				
+								$newStock = PartsModel::mdlUpdatePart($tableParts, $item1b, $value1b, $valuePartId);
+				
+							}
+				
+							$tablepartsUser  = "partsuser";
+				
+							$itempartsUser = "id";
+							$valuepartsUser = $getSale["idPartsUser"];
+							
+							$getpartsUser = ModelpartsUser::mdlShowpartsUser ($tablepartsUser , $itempartsUser, $valuepartsUser);		
+				
+							$item1a = "partsWithdrawn";
+							$value1a = $getpartsUser["partsWithdrawn"] - array_sum($totalWithdrawnParts) ;
+				
+							$partsUserWithdrawn = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser , $item1a, $value1a, $valuepartsUser);
 
-			// 	$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUser, $item, $value, $valueIdCustomer);
+							/*=============================================
+							Delete Sale
+							=============================================*/
 
-			// }
+							$answer = ModelWithdrawal::mdlDeleteWithdrawal($table, $_GET["idWithdrawal"]);
 
-}
+							if($answer == "ok"){
+
+								echo'<script>
+
+								swal({
+									  type: "success",
+									  title: "The sale has been deleted succesfully",
+									  showConfirmButton: true,
+									  confirmButtonText: "Close",
+									  closeOnConfirm: false
+									  }).then((result) => {
+												if (result.value) {
+
+												window.location = "withdrawn";
+
+												}
+											})
+
+								</script>';
+
+							}		
+						}
+
+					}
+		}
+

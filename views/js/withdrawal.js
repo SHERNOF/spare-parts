@@ -723,9 +723,11 @@ EDIT WITHDRAWAL BUTTON
 /*=============================================
 DELETE SALE
 =============================================*/
-$(".tables").on("click", ".btnDeleteWithdrawal", function(){
+// $(".tables").on("click", ".btnDeleteWithdrawal", function(){
 
-    var idSale = $(this).attr("idWithdrawal");
+    $(".btnDeleteWithdrawal").click(function(){
+
+    var idWithdrawal = $(this).attr("idWithdrawal");
   
     swal({
           title: '¿Are you sure you want to delete?',
@@ -736,10 +738,11 @@ $(".tables").on("click", ".btnDeleteWithdrawal", function(){
           cancelButtonColor: '#d33',
           cancelButtonText: 'Cancel',
           confirmButtonText: 'Yes delete!'
-        }).then(function(result){
+        }).then((result) => {
           if (result.value) {
             
               window.location = "index.php?route=withdrawn&idWithdrawal="+idWithdrawal;
+              
           }
   
     })
