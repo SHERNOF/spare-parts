@@ -104,7 +104,11 @@
                         
                       <div class="btn-group">
                         
-                      <button class="btn btn-info"><i class="fa fa-print"></i></button>
+                      <button class="btn btn-info btnPrintBill" withdrawalCode="'.$value["code"].'">
+                      
+                      <i class="fa fa-print"></i>
+                      
+                      </button>
 
                         <button class="btn btn-warning btnEditWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
                         
