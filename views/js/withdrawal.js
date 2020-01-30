@@ -757,15 +757,9 @@ Print Bill
 $(".tables").on("click", ".btnPrintBill", function(){
 
     var withdrawalCode = $(this).attr("withdrawalCode");
-    window.open("extensions/tcpdf/pdf/pdf.php", "_blank");
+    window.open("extensions/tcpdf/pdf/bill.php?code="+withdrawalCode, "_blank");
+    
 
 })
 
 
-// $(".tables").on("click", ".btnPrintBill", function(){
-
-// 	var saleCode = $(this).attr("saleCode");
-
-// 	window.open("extensions/tcpdf/pdf/bill.php", "_blank");
-
-// })

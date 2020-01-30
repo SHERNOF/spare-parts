@@ -55,6 +55,8 @@ $html = <<<EOF
 
 <img src="images/image_demo.jpg" style="width:300px">
 
+
+
 EOF;
 
 $pdf->writeHTML($html, false, false, false, false, '');
