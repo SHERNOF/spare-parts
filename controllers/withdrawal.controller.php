@@ -456,5 +456,20 @@ class ControllerWithdrawal{
 						}
 
 					}
-		}
+
+	/*=============================================
+	DATES RANGE
+	=============================================*/	
+
+	static public function ctrWithdrawalDatesRange($initialDate, $finalDate){
+
+		$table = "withdrawal";
+
+		$answer = ModelWithdrawal::mdlWithdrawalDatesRange($table, $initialDate, $finalDate);
+
+		return $answer;
+		
+	}
+
+}
 

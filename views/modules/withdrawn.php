@@ -32,12 +32,23 @@
               Withdraw Part
             </button>
         </a>
- 
+
+        
+        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+           
+            <span>
+              <i class="fa fa-calendar"></i> Date Range
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+        </button>
+
         </div>
 
         <div class="box-body">
 
-            <table class="table table-bordered table-striped dt-responsive tables" width="100%"> 
+            <table class="table table-bordered table-striped dt-responsive tables WithdrawalTable" width="100%"> 
 
                 <thead> 
 
@@ -57,13 +68,25 @@
 
                 </thead>
 
-                  <tbody> 
-                     <?php
+              <tbody> 
+            <?php
 
-          $item = null;
-          $value = null;
+          if(isset($_GET["initialDate"])){
 
-          $answer = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
+            $initialDate = $_GET["initialDate"];
+            $finalDate = $_GET["finalDate"];
+
+          }else{
+
+            $initialDate = null;
+            $finalDate = null;
+          }
+
+          //   $item = null;
+          //   $value = null;
+
+          // $answer = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
+          $answer = ControllerWithdrawal::ctrWithdrawalDatesRange($initialDate, $finalDate);
 
           // var_dump($answer);
 
@@ -122,14 +145,9 @@
             }
         ?>
 
-                  <!-- <tbody> -->
-
-           
-                      
                   </tbody>
             </table>
 
-            
          <?php
 
           $deleteWithdrawal = new ControllerWithdrawal();

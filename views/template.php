@@ -43,6 +43,10 @@
 
      <!-- iCheck for checkboxes and radio inputs -->
      <link rel="stylesheet" href="views/plugins/iCheck/all.css">
+
+    <!-- Date Picker -->
+     
+     <link rel="stylesheet" href="views/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   
   
   <!--====  End of Plugins CSS  ====-->
@@ -88,6 +92,10 @@
 
 <!-- jQuery Number -->
 <script src="views/plugins/jQueryNumber/jquerynumber.min.js"></script>
+
+<!-- daterangepicker http://www.daterangepicker.com/-->
+<script src="views/bower_components/moment/min/moment.min.js"></script>
+<script src="views/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
 
   

@@ -74,7 +74,7 @@ $block1 = <<<EOF
 					NIT: 71.759.963-9
 
 					<br>
-					ADDRESS: Calle 44B 92-11
+					ADDRESS: Singapore
 
 				</div>
 
@@ -85,10 +85,10 @@ $block1 = <<<EOF
 				<div style="font-size:8.5px; text-align:right; line-height:15px;">
 					
 					<br>
-					CELLPHONE: 300 786 52 49
+					CELLPHONE: 93851908
 					
 					<br>
-					Withdrawals@inventorysystem.com
+					sherwin.nofuente@cognex.com
 
 				</div>
 				
