@@ -139,7 +139,7 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
         $_GET["route"] == 'createWithdrawal' ||
         $_GET["route"] == 'editWithdrawal' ||
         
-        $_GET["route"] == 'parts-report' ||
+        $_GET["route"] == 'reports' ||
         $_GET["route"] == 'logout'){
 
       include "modules/".$_GET["route"].".php";
@@ -182,5 +182,6 @@ if(isset($_SESSION["startSession"]) && $_SESSION["startSession"] == "ok"){
 <script src="views/js/parts.js"></script>
 <script src="views/js/partsUser.js"></script>
 <script src="views/js/withdrawal.js"></script>
+<script src="views/js/reports.js"></script>
 </body>
 </html>

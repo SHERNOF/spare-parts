@@ -82,13 +82,7 @@
             $finalDate = null;
           }
 
-          //   $item = null;
-          //   $value = null;
-
-          // $answer = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
           $answer = ControllerWithdrawal::ctrWithdrawalDatesRange($initialDate, $finalDate);
-
-          // var_dump($answer);
 
           foreach ($answer as $key => $value) {
            
