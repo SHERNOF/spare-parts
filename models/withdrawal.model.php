@@ -153,24 +153,24 @@ class ModelWithdrawal {
 
 		}else{
 
-			// $actualDate = new DateTime();
-			// $actualDate ->add(new DateInterval("P1D"));
-			// $actualDatePlusOne = $actualDate->format("Y-m-d");
+			$actualDate = new DateTime();
+			$actualDate ->add(new DateInterval("P1D"));
+			$actualDatePlusOne = $actualDate->format("Y-m-d");
 
-			// $finalDate2 = new DateTime($finalDate);
-			// $finalDate2 ->add(new DateInterval("P1D"));
-			// $finalDatePlusOne = $finalDate2->format("Y-m-d");
+			$finalDate2 = new DateTime($finalDate);
+			$finalDate2 ->add(new DateInterval("P1D"));
+			$finalDatePlusOne = $finalDate2->format("Y-m-d");
 
-			// if($finalDatePlusOne == $actualDatePlusOne){
+			if($finalDatePlusOne == $actualDatePlusOne){
 
-				// $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE withdrawalDate BETWEEN '$initialDate' AND '$finalDatePlusOne'");
+				$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE withdrawalDate BETWEEN '$initialDate' AND '$finalDatePlusOne'");
 
-			// }else{
+			}else{
 
 
 				$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE withdrawalDate BETWEEN '$initialDate' AND '$finalDate'");
 
-			// }
+			}
 		
 			$stmt -> execute();
 
