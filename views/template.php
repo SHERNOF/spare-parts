@@ -45,8 +45,10 @@
      <link rel="stylesheet" href="views/plugins/iCheck/all.css">
 
     <!-- Date Picker -->
-     
      <link rel="stylesheet" href="views/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
+     <!-- Morris chart -->
+  <link rel="stylesheet" href="views/bower_components/morris.js/morris.css">
   
   
   <!--====  End of Plugins CSS  ====-->
@@ -79,9 +81,6 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
  
-
-
-
    <!-- iCheck 1.0.1 -->
 <script src="views/plugins/iCheck/icheck.min.js"></script>
 
@@ -97,8 +96,17 @@
 <script src="views/bower_components/moment/min/moment.min.js"></script>
 <script src="views/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-
   
+<!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
+<script src="views/bower_components/raphael/raphael.min.js"></script>
+<script src="views/bower_components/morris.js/morris.min.js"></script>  
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
+
+
+
 </head>
 
 <body class="hold-transition skin-purple sidebar-collapse sidebar-mini login-page">

@@ -792,11 +792,12 @@ $('#daterange-btn').daterangepicker(
         'This Month'  : [moment().startOf('month'), moment().endOf('month')],
         'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
       },
-    //   startDate: moment().subtract(29, 'days'),
-      startDate: moment(),
+      startDate: moment().subtract(31, 'days'),
+      // startDate: moment(),
       endDate  : moment()
     },
     function (start, end) {
+
       $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
 
       var initialDate = start.format('YYYY-MM-DD');
@@ -804,13 +805,11 @@ $('#daterange-btn').daterangepicker(
       var finalDate = end.format('YYYY-MM-DD');
 
       var captureRange = $("#daterange-btn span").html();
-
      
          localStorage.setItem("captureRange", captureRange);
          console.log("localStorage", localStorage);
   
          window.location = "index.php?route=withdrawn&initialDate="+initialDate+"&finalDate="+finalDate;
-
 
     }
   )
@@ -860,7 +859,7 @@ $(".daterangepicker.opensleft .ranges li").on("click", function(){
 		}else{
 
 			var initialDate = year+"-"+month+"-"+day;
-	    	var finalDate = year+"-"+month+"-"+day;
+	    var finalDate = year+"-"+month+"-"+day;
 
 		}	
 
@@ -871,3 +870,4 @@ $(".daterangepicker.opensleft .ranges li").on("click", function(){
 	}
 
 })
+

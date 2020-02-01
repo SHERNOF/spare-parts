@@ -27,7 +27,7 @@
       <div class="box">
         <div class="box-header with-border">
 
-                <button type="button" class="btn btn-default pull-right" id="daterange-btn2">
+                <button type="button" class="btn btn-default" id="daterange-btn2">
                 
                     <span>
                         <i class="fa fa-calendar"></i> Date Range
@@ -43,7 +43,21 @@
             
             <div class="box-body">
           
-        </div>
+              <div class="row">
+
+                  <div class="col-xs-12">
+                  
+                    <?php
+
+                        include "reports/sales-graph.php";
+
+                    ?>
+
+                  </div>
+              
+              </div>
+
+            </div>
        
       </div>
 

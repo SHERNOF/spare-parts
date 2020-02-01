@@ -381,9 +381,9 @@ class ControllerWithdrawal{
 			
 			}
 
-	// 						/*=============================================
-				// // 		FORMAT PRODUCTS AND CUSTOMERS TABLE
-				// // 		=============================================*/
+							/*=============================================
+							FORMAT PRODUCTS AND CUSTOMERS TABLE
+					 		=============================================*/
 							$parts = json_decode($getSale["parts"], true);
 
 							$totalWithdrawnParts = array();
