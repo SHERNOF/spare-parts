@@ -22,26 +22,26 @@ $addingMonthPayments = array();
 
 foreach ($answer as $key => $value) {
 
+    // var_Dump($value["withdrawalDate"]);
+
     #We capture only year and month
-	$singleDate = substr($value["withdrawalDate"],0,7);
+    $singleDate = substr($value["withdrawalDate"],0,7);
 
-    #Introduce dates in arrayDates
-	array_push($arrayDates, $singleDate);
+     #Introduce dates in arrayDates
+    array_push($arrayDates, $singleDate);
 
+    
 	#We capture the sales
-	$arraySales = array($singleDate => $value["totalPrice"]);
+    $arraySales = array($singleDate => $value["totalPrice"]);
 
-    #we add payments made in the same month
-	foreach ($arraySales as $key => $value) {
+    foreach ($arraySales as $key => $value) {
 		
-		$addingMonthPayments[$key] += $value;
+        $addingMonthPayments[$key] += $value;
+        
 	}
-
 }
 
-
 $noRepeatDates = array_unique($arrayDates);
-
 
 ?>
 
@@ -75,31 +75,31 @@ SALES GRAPH
     resize           : true,
     data             : [
 
-    <?php
+        
+        <?php
 
-    // if($noRepeatDates != null){
+        if($noRepeatDates != null){
+        
+        foreach($noRepeatDates as $key){
+            
+            echo "{ y: '".$key."', withdrawal: ".$addingMonthPayments[$key]." },";
+            
+        }        
+            echo "{y: '".$key."', withdrawal: ".$addingMonthPayments[$key]." }";
 
-	    foreach($noRepeatDates as $key){
+        }else{
 
-	    	echo "{ y: '".$key."', Withdrawal: ".$addingMonthPayments[$key]." },";
+            echo "{ y: '0', Sales: '0' }";
 
-
-	    }
-
-	    echo "{y: '".$key."', Withdrawal: ".$addingMonthPayments[$key]." }"
-
-    // }else{
-
-    //    echo "{ y: '0', Sales: '0' ";
-
-    // }
+    }
 
     ?>
-
+        
+             
     ],
     xkey             : 'y',
-    ykeys            : ['Withdrawal'],
-    labels           : ['Withdrawal'],
+    ykeys            : ['withdrawal'],
+    labels           : ['withdrawal'],
     lineColors       : ['#efefef'],
     lineWidth        : 2,
     hideHover        : 'auto',

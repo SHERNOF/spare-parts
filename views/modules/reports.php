@@ -1,6 +1,7 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    
     <section class="content-header">
+      
       <h1>
 
         Sales Reports
@@ -52,6 +53,16 @@
                         include "reports/sales-graph.php";
 
                     ?>
+
+                  </div>
+
+                  <div class="col-md-6 col-xs-12">
+
+                  <?php
+
+                     include "reports/bestseller-products.php";
+
+                  ?>
 
                   </div>
               
