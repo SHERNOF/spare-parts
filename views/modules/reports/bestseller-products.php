@@ -66,6 +66,8 @@ $salesTotal = ControllerParts::ctrShowAddingOfTheSales();
                     echo '
                     <li>
                         <a href="#">
+
+                        <img src="'.$products[$i]["image"].'" class="img-thumbnail" width="60px" style="margin-right:10px"> 
                             
                         '.$products[$i]["description"].'
         

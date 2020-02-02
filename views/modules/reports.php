@@ -4,9 +4,9 @@
       
       <h1>
 
-        Sales Reports
+        Parts Withdrawal Reports
 
-        <small>Manage Sales Reports</small>
+        <!-- <small>Manage Sales Reports</small> -->
 
       </h1>
 
@@ -65,6 +65,26 @@
                   ?>
 
                   </div>
+
+                  <div class="col-md-6 col-xs-12">
+           
+                    <?php
+
+                       include "reports/issuers.php";
+
+                    ?>
+
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+           
+                  <?php
+
+                      include "reports/partsUserG.php";
+
+                  ?>
+
+                </div>
               
               </div>
 
