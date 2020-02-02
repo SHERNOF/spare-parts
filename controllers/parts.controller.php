@@ -6,9 +6,9 @@ class ControllerParts {
 	SHOW PARTS
 	=============================================*/
 
-    static public function ctrShowParts($item, $value){
+    static public function ctrShowParts($item, $value, $order){
 		$table = "parts";
-		$answer = PartsModel::mdlShowParts($table, $item, $value);
+		$answer = PartsModel::mdlShowParts($table, $item, $value, $order);
 		return $answer;
 	}
 
@@ -329,6 +329,20 @@ class ControllerParts {
 			}		
 		
 		}
+
+	}
+
+	/*=============================================
+	SHOW ADDING OF THE SALES
+	=============================================*/
+
+	static public function ctrShowAddingOfTheSales(){
+
+		$table = "parts";
+
+		$answer = PartsModel::mdlShowAddingOfTheSales($table);
+
+		return $answer;
 
 	}
 

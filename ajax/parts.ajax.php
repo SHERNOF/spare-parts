@@ -16,8 +16,9 @@ class AjaxParts{
 
 		$item = "idCategory";
 		$value = $this->idCategory;
+		$order = "id";
 
-		$answer = ControllerParts::ctrShowParts($item, $value);
+		$answer = ControllerParts::ctrShowParts($item, $value, $order);
 
 		echo json_encode($answer);
 	}
@@ -36,17 +37,19 @@ class AjaxParts{
 
 			$item = null;
 			$value = null;
+			$order = "id";
   
-			$answer = ControllerParts::ctrShowParts($item, $value);
+			$answer = ControllerParts::ctrShowParts($item, $value, $order);
   
 			echo json_encode($answer);
 
 		} else if ($this->partName != ""){
 
 		$item = "description";
-	    $value = $this->partName;
+		$value = $this->partName;
+		$order = "id";
 
-	    $answer = ControllerParts::ctrShowParts($item, $value);
+	    $answer = ControllerParts::ctrShowParts($item, $value, $order);
 
 	    echo json_encode($answer);
 
@@ -54,9 +57,10 @@ class AjaxParts{
 		} else {
 
 		$item = "id";
-	    $value = $this->idPart;
+		$value = $this->idPart;
+		$order = "id";
 
-	    $answer = ControllerParts::ctrShowParts($item, $value);
+	    $answer = ControllerParts::ctrShowParts($item, $value, $order);
 
 	    echo json_encode($answer);
 

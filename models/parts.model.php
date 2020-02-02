@@ -8,7 +8,7 @@ class PartsModel {
 	Show Parts
     =============================================*/
     
-    static public function mdlShowParts($table, $item, $value){
+    static public function mdlShowParts($table, $item, $value, $order){
 
         if ($item != null){
 
@@ -22,7 +22,8 @@ class PartsModel {
 
         } else {
 
-            $stmt = Connection::connect()->prepare("SELECT * FROM $table");
+			// $stmt = Connection::connect()->prepare("SELECT * FROM $table");
+			$stmt = Connection::connect()->prepare("SELECT * FROM $table ORDER BY sales DESC");
 
 			$stmt -> execute();
 
@@ -149,6 +150,23 @@ class PartsModel {
 
 		$stmt = null;
 
+	}
+
+	/*=============================================
+	SHOW ADDING OF THE SALES
+	=============================================*/	
+
+	static public function mdlShowAddingOfTheSales($table){
+
+		$stmt = Connection::connect()->prepare("SELECT SUM(sales) as total FROM $table");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
 	}
 }
 

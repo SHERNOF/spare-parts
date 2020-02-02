@@ -168,9 +168,9 @@ foreach ($parts as $key => $item) {
 
 $itemPart = "description";
 $valuePart = $item["description"];
-$orden = null;
+$order = null;
 
-$answerPart = ControllerParts::ctrShowParts($itemPart, $valuePart, $orden);
+$answerPart = ControllerParts::ctrShowParts($itemPart, $valuePart, $order);
 
 $valueUnit = number_format($answerPart["sellingPrice"], 2);
 

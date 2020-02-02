@@ -100,8 +100,9 @@
                             <?php
                             $item = null;
                             $value = null;
+                            $order = "id";
 
-                            $PartsUser = ControllerpartsUser::ctrShowpartsUser($item, $value);
+                            $PartsUser = ControllerpartsUser::ctrShowpartsUser($item, $value, $order);
 
                             foreach($PartsUser as $key => $value){
                               echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
@@ -128,8 +129,9 @@
 
                       $item = "id";
                       $valuePart = $value["id"];
+                      $order = "id";
 
-                      $answer = ControllerParts::ctrShowparts($item, $valuePart);
+                      $answer = ControllerParts::ctrShowparts($item, $valuePart, $order);
 
                       $lastStock = $answer["stock"] + $value["quantity"];
                     

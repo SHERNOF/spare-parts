@@ -15,9 +15,10 @@ class WithdrawalTable{
     public function showWithdrawalTable(){	
 
         $item = null;
-		$value = null;
+        $value = null;
+        $order = "id";
 
-        $parts = ControllerParts::ctrShowParts($item, $value);
+        $parts = ControllerParts::ctrShowParts($item, $value, $order);
         // var_dump($parts);
 
         // if(count($parts) == 0){
