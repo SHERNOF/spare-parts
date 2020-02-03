@@ -12,10 +12,7 @@ $colours = array("red","green","yellow","aqua","purple","blue","cyan","magenta",
 
 $salesTotal = ControllerParts::ctrShowAddingOfTheSales();
 
-
-
 ?>
-
 
 <div class="box box-default">
 
@@ -23,8 +20,7 @@ $salesTotal = ControllerParts::ctrShowAddingOfTheSales();
               <h3 class="box-title">Spare Parts Top Usage</h3>
             
             </div>
-
-             
+          
             <div class="box-body">
               <div class="row">
                 <div class="col-md-8">

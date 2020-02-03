@@ -1,5 +1,48 @@
+<?php
+
+$item = null;
+$value = null;
+
+$sales = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
+$Customers = ControllerpartsUser::ctrShowpartsUser($item, $value);
+
+$arrayCustomers = array();
+$arrayCustomersList = array();
+
+foreach ($sales as $key => $valueSales) {
+
+  foreach ($Customers as $key => $valueCustomers) {
+
+    if($valueCustomers["id"] == $valueSales["idPartsUser"]){
+
+        #We capture Customers in an array
+        array_push($arrayCustomers, $valueCustomers["name"]);
+
+        #We capture the names and net values in the same array
+        $arrayCustomersList = array($valueCustomers["name"] => $valueSales["netPrice"]);
+
+        #We add the netprice of each Customer
+
+        foreach ($arrayCustomersList as $key => $value) {
+
+            $addingTotalSales[$key] += $value;
+
+         }
+
+    }
+  
+  }
+
+}
+
+#Avoiding repeated names
+$dontrepeatnames = array_unique($arrayCustomers);
+
+?>
+
+
 <!--=====================================
-Sellers
+Issuers
 ======================================-->
 
 <div class="box box-primary">
@@ -29,15 +72,25 @@ Sellers
       element: 'bar-chart',
       resize: true,
       data: [
-        {y: 'Sherwin Nofuente', a: 10012, b: 90},
-        {y: 'Angelyn Nofuente', a: 7534, b: 65},
-        {y: '2008', a: 5023, b: 40},
+
+        <?php
+    
+        foreach($dontrepeatnames as $value){
+
+         echo "{y: '".$value."', a: '".$addingTotalSales[$value]."'},";
+
+        }
+
+        ?>
+
+        // {y: 'Jamal', a: 10012},
+        // {y: 'David', a: 5023, b: 40
       
       ],
-      barColors: ['#00a65a', '#f56954'],
+      barColors: ['#f6a',],
       xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['CPU', 'DISK'],
+      ykeys: ['a'],
+      labels: ['sales'],
       hideHover: 'auto'
     });
 

@@ -1,12 +1,56 @@
+<?php
+
+$item = null;
+$value = null;
+
+$sales = ControllerWithdrawal::ctrShowWithdrawal($item, $value);
+$users = ControllerUsers::ctrShowUsers($item, $value);
+
+$arraySellers = array();
+$arraySellersList = array();
+
+foreach ($sales as $key => $valueSales) {
+
+  foreach ($users as $key => $valueUsers) {
+
+    if($valueUsers["id"] == $valueSales["idIssuer"]){
+
+       #We capture sellers in an array
+        array_push($arraySellers, $valueUsers["name"]);
+
+        #We capture the names and net values in the same array
+        $arraySellersList = array($valueUsers["name"] => $valueSales["netPrice"]);
+
+    }
+
+       #We add the netprice of each seller
+
+        foreach ($arraySellersList as $key => $value) {
+
+            $addingTotalSales[$key] += $value;
+
+         }
+  }
+}
+
+#Avoiding repeated names
+$dontrepeatnames = array_unique($arraySellers);
+
+
+
+?>
+
+
+
 <!--=====================================
-Sellers
+Issuers
 ======================================-->
 
-<div class="box box-success">
+<div class="box box-primary">
 	
 	<div class="box-header with-border">
     
-    	<h3 class="box-title">Part Issuers</h3>
+    	<h3 class="box-title">Part Users</h3>
   
   	</div>
 
@@ -29,18 +73,24 @@ Sellers
       element: 'bar-chart1',
       resize: true,
       data: [
-        {y: '2006', a: 100, b: 90},
-        {y: '2007', a: 75, b: 65},
-        {y: '2008', a: 50, b: 40},
-        {y: '2009', a: 75, b: 65},
-        {y: '2010', a: 50, b: 40},
-        {y: '2011', a: 75, b: 65},
-        {y: '2012', a: 100, b: 90}
+
+        <?php
+
+        foreach($dontrepeatnames as $value){
+
+          echo "{ y: '".$value."', a: '".$addingTotalSales[$value]."', },";
+
+        }
+
+        ?>
+        // {y: 'Jamal', a: 10012},
+        // {y: 'David', a: 5023, b: 40
+      
       ],
-      barColors: ['#00a65a', '#f56954'],
+      barColors: ['#0af',],
       xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['CPU', 'DISK'],
+      ykeys: ['a'],
+      labels: ['sales'],
       hideHover: 'auto'
     });
 
