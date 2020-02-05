@@ -46,9 +46,9 @@
 
                 <?php
 
-                if(isset($_GET["inicialDate"])){
+                if(isset($_GET["initialDate"])){
 
-                  echo '<a href="views/modules/download-report.php?reports=report&inicialDate='.$_GET["inicialDate"].'&finalDate='.$_GET["finalDate"].'">';
+                  echo '<a href="views/modules/download-report.php?reports=report&initialDate='.$_GET["initialDate"].'&finalDate='.$_GET["finalDate"].'">';
 
                 }   else {
 
