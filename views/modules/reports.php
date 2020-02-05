@@ -27,6 +27,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
+          
+              <div class="input-group">
 
                 <button type="button" class="btn btn-default" id="daterange-btn2">
                 
@@ -38,7 +40,27 @@
 
                 </button>
 
-                <div class="box-tools pull-right"></div>
+              </div>
+
+                <div class="box-tools pull-right">
+
+                <?php
+
+                if(isset($_GET["inicialDate"])){
+
+                  echo '<a href="views/modules/download-report.php?reports=report&inicialDate='.$_GET["inicialDate"].'&finalDate='.$_GET["finalDate"].'">';
+
+                }   else {
+
+                  echo '<a href="views/modules/download-report.php?report=report">';
+
+                }
+
+                ?>
+                    <button class="btn btn-success" style="margin-top:5px">Export to Excel</button>
+                  </a>
+                
+                </div>
 
             </div>
             

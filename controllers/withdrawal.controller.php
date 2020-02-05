@@ -135,7 +135,7 @@ class ControllerWithdrawal{
 		if(isset($_POST["editWithdrawal"])){
 
 			/*=============================================
-			FORMAT PRODUCTS AND CUSTOMERS TABLES
+			FORMAT PRODUCTS AND partsUserS TABLES
 			=============================================*/
 			$table = "withdrawal";
 
@@ -331,7 +331,7 @@ class ControllerWithdrawal{
 			Update last Purchase date
 			=============================================*/
 
-			$tableCustomers = "partsUser";
+			$tablepartsUsers = "partsUser";
 
 			$itemsales = null;
 			$valuesales = null;
@@ -357,16 +357,16 @@ class ControllerWithdrawal{
 			
 								$item = "lastWithdrawn";
 								$value = $saveDates[count($saveDates)-2];
-								$valueIdCustomer = $getSale["idPartsUser"];
+								$valueIdpartsUser = $getSale["idPartsUser"];
 			
-								$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
+								$partsUserPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUsers, $item, $value, $valueIdpartsUser);
 			
 						}else{
 							$item = "lastWithdrawn";
 							$value = $saveDates[count($saveDates)-1];
-							$valueIdCustomer = $getSale["idPartsUser"];
+							$valueIdpartsUser = $getSale["idPartsUser"];
 
-							$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
+							$partsUserPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUsers, $item, $value, $valueIdpartsUser);
 
 						}
 
@@ -374,15 +374,15 @@ class ControllerWithdrawal{
 			
 							$item = "lastWithdrawn";
 							$value = "0000-00-00 00:00:00";
-							$valueIdCustomer = $getSale["idPartsUser"];
+							$valueIdpartsUser = $getSale["idPartsUser"];
 			
-							$customerPurchases = ModelpartsUser::mdlUpdatepartsUser($tableCustomers, $item, $value, $valueIdCustomer);
-							var_dump($customerPurchases);
+							$partsUserPurchases = ModelpartsUser::mdlUpdatepartsUser($tablepartsUsers, $item, $value, $valueIdpartsUser);
+							var_dump($partsUserPurchases);
 			
 			}
 
 							/*=============================================
-							FORMAT PRODUCTS AND CUSTOMERS TABLE
+							FORMAT PRODUCTS AND partsUserS TABLE
 					 		=============================================*/
 							$parts = json_decode($getSale["parts"], true);
 
@@ -470,6 +470,104 @@ class ControllerWithdrawal{
 		return $answer;
 		
 	}
+
+	/*=============================================
+	DOWNLOAD EXCEL
+	=============================================*/
+
+	public function ctrDownloadReport(){
+
+		if(isset($_GET["report"])){
+
+			$table = "withdrawal";
+
+			if(isset($_GET["initialDate"]) && isset($_GET["finalDate"])){
+
+				$sales = ModelWithdrawal::mdlWithdrawalDatesRange($table, $_GET["initialDate"], $_GET["finalDate"]);
+
+			}else{
+
+				$item = null;
+				$value = null;
+
+				$sales = ModelWithdrawal::mdlShowWithdrawal($table, $item, $value);
+
+			}
+
+			/*=============================================
+			WE CREATE EXCEL FILE
+			=============================================*/
+
+			$name = $_GET["report"].'.xls';
+
+			header('Expires: 0');
+			header('Cache-control: private');
+			header("Content-type: application/vnd.ms-excel"); // Excel file
+			header("Cache-Control: cache, must-revalidate"); 
+			header('Content-Description: File Transfer');
+			header('Last-Modified: '.date('D, d M Y H:i:s'));
+			header("Pragma: public"); 
+			header('Content-Disposition:; filename="'.$name.'"');
+			header("Content-Transfer-Encoding: binary");
+
+			echo utf8_decode("<table border='0'> 
+
+					<tr> 
+					<td style='font-weight:bold; border:1px solid #eee;'>CODE</td> 
+					<td style='font-weight:bold; border:1px solid #eee;'>partsUser</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Issuer</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Quantity</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Parts</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Tax</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>netPrice</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>METODO Of Payment</td	
+					<td style='font-weight:bold; border:1px solid #eee;'>Date</td>		
+					</tr>");
+
+			foreach ($sales as $row => $item){
+
+				$partsUser = ControllerpartsUser::ctrShowpartsUser("id", $item["idpartsUser"]);
+				$vendedor = ControllerUsers::ctrShowUsers("id", $item["idIssuer"]);
+
+			 echo utf8_decode("<tr>
+			 			<td style='border:1px solid #eee;'>".$item["code"]."</td> 
+			 			<td style='border:1px solid #eee;'>".$partsUser["name"]."</td>
+			 			<td style='border:1px solid #eee;'>".$vendedor["name"]."</td>
+			 			<td style='border:1px solid #eee;'>");
+
+			 	$products =  json_decode($item["parts"], true);
+
+			 	foreach ($products as $key => $valueproducts) {
+			 			
+			 			echo utf8_decode($valueproducts["quantity"]."<br>");
+			 		}
+
+			 	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+
+		 		foreach ($products as $key => $valueproducts) {
+			 			
+		 			echo utf8_decode($valueproducts["description"]."<br>");
+		 		
+		 		}
+
+		 		echo utf8_decode("</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["netPrice"],2)."</td>	
+					<td style='border:1px solid #eee;'>$ ".number_format($item["totalPrice"],2)."</td>
+					<td style='border:1px solid #eee;'>".$item["paymentMethod"]."</td>
+					<td style='border:1px solid #eee;'>".substr($item["saledate"],0,10)."</td>		
+		 			</tr>");
+
+			}
+
+
+			echo "</table>";
+
+		}
+
+	}
+
 
 }
 
