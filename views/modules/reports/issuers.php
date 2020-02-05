@@ -21,15 +21,14 @@ foreach ($sales as $key => $valueSales) {
         #We capture the names and net values in the same array
         $arraySellersList = array($valueUsers["name"] => $valueSales["netPrice"]);
 
-    }
+           #We add the netprice of each seller
 
-       #We add the netprice of each seller
-
-        foreach ($arraySellersList as $key => $value) {
+           foreach ($arraySellersList as $key => $value) {
 
             $addingTotalSales[$key] += $value;
 
          }
+    }
   }
 }
 

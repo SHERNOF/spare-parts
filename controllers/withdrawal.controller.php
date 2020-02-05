@@ -525,51 +525,49 @@ class ControllerWithdrawal{
 					<td style='font-weight:bold; border:1px solid #eee;'>Date</td>		
 					</tr>");
 
-					</table>
 
-			// foreach ($sales as $row => $item){
+					foreach ($sales as $row => $item){
 
-			// 	$partsUser = ControllerpartsUser::ctrShowpartsUser("id", $item["idpartsUser"]);
-			// 	$vendedor = ControllerUsers::ctrShowUsers("id", $item["idIssuer"]);
 
-			//  echo utf8_decode("<tr>
-			//  			<td style='border:1px solid #eee;'>".$item["code"]."</td> 
-			//  			<td style='border:1px solid #eee;'>".$partsUser["name"]."</td>
-			//  			<td style='border:1px solid #eee;'>".$vendedor["name"]."</td>
-			//  			<td style='border:1px solid #eee;'>");
+					$partsUser = ControllerpartsUser::ctrShowpartsUser("id", $item["idPartsUser"]);
+					$vendedor = ControllerUsers::ctrShowUsers("id", $item["idIssuer"]);
 
-			//  	$products =  json_decode($item["parts"], true);
 
-			//  	foreach ($products as $key => $valueproducts) {
+					echo utf8_decode("<tr>
+					<td style='border:1px solid #eee;'>".$item["code"]."</td> 
+					<td style='border:1px solid #eee;'>".$partsUser["name"]."</td>
+					<td style='border:1px solid #eee;'>".$vendedor["name"]."</td>
+					<td style='border:1px solid #eee;'>");
+					
+					$products =  json_decode($item["parts"], true);
+
+					foreach ($products as $key => $valueproducts) {
 			 			
-			//  			echo utf8_decode($valueproducts["quantity"]."<br>");
-			//  		}
+						echo utf8_decode($valueproducts["quantity"]."<br>");
 
-			//  	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+					}
 
-		 	// 	foreach ($products as $key => $valueproducts) {
-			 			
-		 	// 		echo utf8_decode($valueproducts["description"]."<br>");
-		 		
-		 	// 	}
+					echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
 
-		 	// 	echo utf8_decode("</td>
-			// 		<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
-			// 		<td style='border:1px solid #eee;'>$ ".number_format($item["netPrice"],2)."</td>	
-			// 		<td style='border:1px solid #eee;'>$ ".number_format($item["totalPrice"],2)."</td>
-			// 		<td style='border:1px solid #eee;'>".$item["paymentMethod"]."</td>
-			// 		<td style='border:1px solid #eee;'>".substr($item["saledate"],0,10)."</td>		
-		 	// 		</tr>");
+					foreach ($products as $key => $valueproducts) {
+							
+					echo utf8_decode($valueproducts["description"]."<br>");
+					
+					}
 
-			// }
+					echo utf8_decode("</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["netPrice"],2)."</td>	
+					<td style='border:1px solid #eee;'>$ ".number_format($item["totalPrice"],2)."</td>
+					<td style='border:1px solid #eee;'>".$item["paymentMethod"]."</td>
+					<td style='border:1px solid #eee;'>".substr($item["withdrawalDate"],0,10)."</td>		
+		 			</tr>");
 
+					}
 
-			// echo "</table>";
+					}
 
+					echo "</table>";
 		}
-
 	}
-
-
-}
 
