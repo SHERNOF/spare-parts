@@ -1,3 +1,19 @@
+<?php
+
+if($_SESSION["profile"] == "Special"){
+
+  echo '<script>
+
+    window.location = "home";
+
+  </script>';
+
+  return;
+
+}
+
+?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -125,13 +141,17 @@
                       
                       <i class="fa fa-print"></i>
                       
-                      </button>
+                      </button>';
 
-                        <button class="btn btn-warning btnEditWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                      if($_SESSION["profile"] =="Administrator"){
+
+                        echo '<button class="btn btn-warning btnEditWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
                         
-                        <button class="btn btn-danger btnDeleteWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger btnDeleteWithdrawal" idWithdrawal="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+
+                      }
                         
-                   </div>  
+                   echo '</div>  
 
                   </td>
 

@@ -569,5 +569,19 @@ class ControllerWithdrawal{
 
 					echo "</table>";
 		}
+
+				/*=============================================
+				Adding TOTAL sales (netPrice column)
+				=============================================*/
+
+				public function ctrAddingTotalSales(){
+
+					$table = "withdrawal";
+
+					$answer = ModelWithdrawal::mdlAddingTotalSales($table);
+
+					return $answer;
+
+				}
 	}
 

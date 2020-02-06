@@ -15,9 +15,14 @@ LOAD DYNAMIC PartS TABLE
 // })
 
 
+var hiddenProfile = $('#hiddenProfile').val();
+// console.log("hiddenProfile", hiddenProfile)
+
+
+
     $('.PartsTable').DataTable( {
 
-    "ajax": "ajax/datatable-parts.ajax.php",
+    "ajax": "ajax/datatable-parts.ajax.php?hiddenProfile="+hiddenProfile,
     "deferRender": true,
     "retrieve": true,
     "processing": true,

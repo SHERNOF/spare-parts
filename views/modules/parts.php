@@ -1,3 +1,20 @@
+<?php
+
+if($_SESSION["profile"] == "Seller"){
+
+  echo '<script>
+
+    window.location = "home";
+
+  </script>';
+
+  return;
+
+}
+
+?>
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -45,6 +62,9 @@
                     </tr>
                 </thead>
           </table>
+
+          <input type="hidden" value="<?php echo $_SESSION['profile']; ?>" id="hiddenProfile">
+
         </div>
       </div>
     </section>

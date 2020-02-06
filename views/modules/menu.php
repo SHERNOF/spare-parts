@@ -1,40 +1,59 @@
 <aside class="main-sidebar">
 	<section class="sidebar">
 		<ul class="sidebar-menu">
-			<li class="active">
-				<a href="home">
-					<i class="fa fa-home"></i>
-					<span>Home</span>
-				</a>
-			</li>
-			<li>
-				<a href="users">
-					<i class="fa fa-user"></i>
-					<span>User management</span>
-				</a>
-			</li>
-			<li>
-				<a href="categories">
-					<i class="fa fa-th"></i>
-					<span>Categories</span>
-				</a>
-			</li>
-			<li>
-				<a href="parts">
-					<i class="fa fa-product-hunt"></i>
-					<span>Spare Parts</span>
-				</a>
-			</li>
-			<li>
+
+		<?php
+
+			if ($_SESSION["profile"] == "Administrator") {
+
+				echo '<li class="active">
+					<a href="home">
+						<i class="fa fa-home"></i>
+						<span>Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="users">
+						<i class="fa fa-user"></i>
+						<span>User management</span>
+					</a>
+				</li>
+				<li>';
+			
+			}
+
+			if($_SESSION["profile"] == "Administrator" || $_SESSION["profile"] == "Special"){
+
+				echo '
+				<li>
+					<a href="categories">
+						<i class="fa fa-th"></i>
+						<span>Categories</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="parts">
+						<i class="fa fa-product-hunt"></i>
+						<span>Spare Parts</span>
+					</a>
+				</li>';
+			}
+
+			if($_SESSION["profile"] == "Administrator" || $_SESSION["profile"] == "Seller"){
+
+				echo '<li>
 				<a href="partsUser">
 					<i class="fa fa-user"></i>
 					<span>Parts User</span>
 				</a>
-			</li>
+			</li>';
 
-			<!-- another dorp down menu under a dropdown menu  -->
-			
-			<li class="treeview">
+			}
+
+			if($_SESSION["profile"] == "Administrator" || $_SESSION["profile"] == "Seller"){
+
+				echo '<li class="treeview">
 				<a href="withdrawn">
 					<i class="fa fa-list-ul"></i>
 					<span>Parts Handling</span>
@@ -54,15 +73,25 @@
 							<i class="fa fa-circle"></i>
 							<span>Withdraw Parts</span>
 						</a>
-					</li>
-					<li>
+					</li>';
+			
+			}
+
+			if($_SESSION["profile"] == "Administrator"){
+
+				echo '<li>
 						<a href="reports">
 							<i class="fa fa-circle"></i>
 							<span>Parts Report</span>
 						</a>
-					</li>
-				</ul>
-			</li>
+					</li>';
+			}
+		
+			echo '</ul>
+				
+			</li>';
+			?>
+
 		</ul>
 	</section>
 </aside>
