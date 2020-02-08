@@ -13,7 +13,7 @@ require_once "models/categories.model.php";
 require_once "models/parts.model.php";
 require_once "models/partsUser.model.php";
 require_once "models/withdrawal.model.php";
-
+require_once "extensions/vendor/autoload.php";
 
 
 $template = new ControllerTemplate();
