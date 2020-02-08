@@ -106,81 +106,81 @@ class ControllerWithdrawal{
 
 			if($answer == "ok"){
 
-				$printer = "Thermal Printer H58 Printer USB";
+				$printer = "POS-58-Series";
 
 				$connector = new WindowsPrintConnector($printer);
 
 				$printer = new Printer($connector);
 
-				$printer -> text("Heloo World"."\n");
+				// $printer -> text("Heloo World"."\n");
 
-				$printer -> cut();
+				// $printer -> cut();
 
-				$printer -> close();
+				// $printer -> close();
 				
-				// $printer -> setJustification(Printer::JUSTIFY_CENTER);
+				$printer -> setJustification(Printer::JUSTIFY_CENTER);
 
-				// $printer -> text(date("Y-m-d H:i:s")."\n");//Invoice date
+				$printer -> text(date("Y-m-d H:i:s")."\n");//Invoice date
 
-				// $printer -> feed(1); //We feed paper 1 time*/
+				$printer -> feed(1); //We feed paper 1 time*/
 
-				// $printer -> text("Inventory System"."\n");//Company name
+				$printer -> text("JMSA Pharmacy"."\n");//Company name
 
-				// $printer -> text("ID: 71.759.963-9"."\n");//Company's ID
+				$printer -> text("ID: 71.759.963-9"."\n");//Company's ID
 
-				// $printer -> text("Address: 5th Ave. Miami Fl"."\n");//Company address
+				$printer -> text("Address: Pila, Laguna"."\n");//Company address
 
-				// $printer -> text("Phone: 300 786 52 49"."\n");//Company's phone
+				$printer -> text("Phone: 639567297076"."\n");//Company's phone
 
-				// $printer -> text("Invoice N.".$_POST["newSale"]."\n");//Invoice number
+				$printer -> text("Invoice N.".$_POST["newWithdrawal"]."\n");//Invoice number
 
-				// $printer -> feed(1); //We feed paper 1 time*/
+				$printer -> feed(1); //We feed paper 1 time*/
 
-				// $printer -> text("Customer: ".$getCustomer["name"]."\n");//Customer's name
+				$printer -> text("Customer: ".$getpartsUser["name"]."\n");//Customer's name
 
-				// $tableSeller = "users";
-				// $item = "id";
-				// $seller = $_POST["idSeller"];
+				$tableSeller = "users";
+				$item = "id";
+				$seller = $_POST["idIssuer"];
 
-				// $getSeller = UsersModel::MdlShowUsers($tableSeller, $item, $seller);
+				$getIssuer = UsersModel::MdlShowUsers($tableSeller, $item, $seller);
 
-				// $printer -> text("Seller: ".$getSeller["name"]."\n");//Seller's name
+				$printer -> text("Seller: ".$getIssuer["name"]."\n");//Seller's name
 
-				// $printer -> feed(1); //We feed paper 1 time*/
+				$printer -> feed(1); //We feed paper 1 time*/
 
-				// foreach ($productsList as $key => $value) {
+				foreach ($partsList as $key => $value) {
 
-				// 	$printer->setJustification(Printer::JUSTIFY_LEFT);
+					$printer->setJustification(Printer::JUSTIFY_LEFT);
 
-				// 	$printer->text($value["description"]."\n");//Product's name
+					$printer->text($value["description"]."\n");//Product's name
 
-				// 	$printer->setJustification(Printer::JUSTIFY_RIGHT);
+					$printer->setJustification(Printer::JUSTIFY_RIGHT);
 
-				// 	$printer->text("$ ".number_format($value["price"],2)." Und x ".$value["quantity"]." = $ ".number_format($value["totalPrice"],2)."\n");
+					$printer->text("$ ".number_format($value["price"],2)." Und x ".$value["quantity"]." = $ ".number_format($value["totalPrice"],2)."\n");
 
-				// }
+				}
 
-				// $printer -> feed(1); //We feed paper 1 time*/			
+				$printer -> feed(1); //We feed paper 1 time*/			
 				
-				// $printer->text("NET: $ ".number_format($_POST["newNetPrice"],2)."\n"); //net price
+				$printer->text("NET: $ ".number_format($_POST["newNetPrice"],2)."\n"); //net price
 
-				// $printer->text("TAX: $ ".number_format($_POST["newTaxPrice"],2)."\n"); //tax value
+				$printer->text("TAX: $ ".number_format($_POST["newTaxPrice"],2)."\n"); //tax value
 
-				// $printer->text("--------\n");
+				$printer->text("--------\n");
 
-				// $printer->text("TOTAL: $ ".number_format($_POST["saleTotal"],2)."\n"); //ahora va el total
+				$printer->text("TOTAL: $ ".number_format($_POST["saleTotal"],2)."\n"); //ahora va el total
 
-				// $printer -> feed(1); //We feed paper 1 time*/	
+				$printer -> feed(1); //We feed paper 1 time*/	
 
-				// $printer->text("Thanks for your purchase"); //We can add a footer
+				$printer->text("Thanks for your purchase"); //We can add a footer
 
-				// $printer -> feed(3); //We feed paper 3 times*/
+				$printer -> feed(3); //We feed paper 3 times*/
 
-				// $printer -> cut(); //We cut the paper, if the printer has the option
+				$printer -> cut(); //We cut the paper, if the printer has the option
 
-				// $printer -> pulse(); //Through the printer we send a pulse to open the cash drawer.
+				$printer -> pulse(); //Through the printer we send a pulse to open the cash drawer.
 
-				// $printer -> close(); 
+				$printer -> close(); 
 
 				echo'<script>
 
