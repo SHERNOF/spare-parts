@@ -2,7 +2,7 @@
 
 class PartsTable{
     public function showPartsTable(){	
-
+// test
         echo '{
             "data": [
               [
