@@ -106,7 +106,9 @@ class ControllerWithdrawal{
 
 			if($answer == "ok"){
 
-				$printer = "POS-58-Series";
+				// $printer = "POS-58-Series"; //windows
+
+				$printer = "Thermal Printer H58 Printer USB";
 
 				$connector = new WindowsPrintConnector($printer);
 
