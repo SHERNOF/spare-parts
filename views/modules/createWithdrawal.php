@@ -150,8 +150,9 @@ if($_SESSION["profile"] == "Special"){
                       <table class="table">
                       
                             <thead>
-                              
-                                <th>Taxes</th>
+
+                                <th>Discount</th>
+                                <!-- <th>Taxes</th> -->
                                 <th>Total</th>    
                             
                             </thead>
@@ -160,18 +161,29 @@ if($_SESSION["profile"] == "Special"){
 
                               <tr>
 
-                                <td style="width:50%">
+                              <td style="width:30%">
                                   <div class="input-group">
-                                    <input type="number" class="form-control input-lg" min="0" id="newTaxSale" name="newTaxSale" placeholder="0" required>
+                                    <input type="number" class="form-control input-lg" min="0" id="newDiscSale" name="newDiscSale" placeholder="0" required>
+                                    
+                                    <input type="hidden" name="newNetPrice" id="newNetPrice" required>
+                                    <input type="hidden" name="newDiscPrice" id="newDiscPrice" required>
+                                    
+                                    <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                                  </div>
+                                </td>
+
+                                <!-- <td style="width:30%">
+                                  <div class="input-group">
+                                    <input type="number" class="form-control input-lg" value="0" min="0" id="newTaxSale" name="newTaxSale" placeholder="0" required>
                                     
                                     <input type="hidden" name="newNetPrice" id="newNetPrice" required>
                                     <input type="hidden" name="newTaxPrice" id="newTaxPrice" required>
                                     
                                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                                   </div>
-                                </td>
+                                </td> -->
 
-                                <td style="width:50%">
+                                <td style="width:40%">
                                   <div class="input-group">
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
@@ -181,18 +193,19 @@ if($_SESSION["profile"] == "Special"){
                                     <input type="hidden" name="saleTotal" id="saleTotal" required>
                                     
                                     
-                                  </div>
-                                </td>
+                                    </div>
+                                    
+                                  </td>
+                                
+                                </tr>
                               
-                              </tr>
-                            
-                            </tbody>
-                        
-                        </table>
+                              </tbody>
                           
-                      </div>
-                  
-                  </div>
+                          </table>
+                            
+                        </div>
+                    
+                    </div>
 
                   <hr>
 
@@ -207,6 +220,7 @@ if($_SESSION["profile"] == "Special"){
                       <div class="input-group">
                       
                         <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
+                        
                           <option value="">Select Payment Method</option>
                           <option value="cash">Cash</option>
                           <option value="CC">Credit Card</option>

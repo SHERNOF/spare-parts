@@ -54,51 +54,56 @@ require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-$pdf->startPageGroup();
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
 
-$pdf->AddPage();
+$pdf -> AddPage ('P', 'A7');
+
+//---------------------------------------------------------
 
 $block1 = <<<EOF
 
-	<table>
+<table style="font-size:9px; text-align:center">
+
+	<tr>
 		
-		<tr>
+		<td style="width:160px;">
+	
+			<div>
 			
-			<td style="width:150px"><img src="images/logo-negro-bloque.png"></td>
+				Date: $withdrawaldate
 
-			<td style="background-color:white; width:140px">
+				<br><br>
+				Inventory System
 				
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
-					
-					<br>
-					NIT: 71.759.963-9
+				<br>
+				NIT: 71.759.963-9
 
-					<br>
-					ADDRESS: Singapore
+				<br>
+				Address: 5th Ave. Miami, Fl
 
-				</div>
+				<br>
+				Phone: 300 786 52 49
 
-			</td>
+				<br>
+				Invoice N.$valueWithdrawal
 
-			<td style="background-color:white; width:140px">
+				<br><br>					
+				Customer: $answerpartsUser[name]
 
-				<div style="font-size:8.5px; text-align:right; line-height:15px;">
-					
-					<br>
-					CELLPHONE: 93851908
-					
-					<br>
-					sherwin.nofuente@cognex.com
+				<br>
+				Seller: $answerIssuer[name]
 
-				</div>
-				
-			</td>
+				<br>
 
-			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>BILL <br>$valueWithdrawal</td>
+			</div>
 
-		</tr>
+		</td>
 
-	</table>
+	</tr>
+
+
+</table>
 
 EOF;
 
@@ -106,176 +111,110 @@ $pdf->writeHTML($block1, false, false, false, false, '');
 
 // ---------------------------------------------------------
 
-$block2 = <<<EOF
 
-	<table>
-		<tr>
-			<td style="width:540px"><img src="images/back.jpg"></td>
-		</tr>
-	</table>
+foreach ($parts as $key => $item) {
 
-    <table style="font-size:10px; padding:5px 10px;">
-    
+	$unitValue = number_format($item["price"], 2);
+	
+	$totalPrice = number_format($item["totalPrice"], 2);
+	
+	$block2 = <<<EOF
+	
+	<table style="font-size:9px;">
+	
 		<tr>
-			<td style="border: 1px solid #777; background-color:white; width:390px">
-				Customer: $answerpartsUser[name]
+		
+			<td style="width:160px; text-align:left">
+			$item[description] 
 			</td>
-
-			<td style="border: 1px solid #777; background-color:white; width:150px; text-align:right">
-				Date: $withdrawaldate
+	
+		</tr>
+	
+		<tr>
+		
+			<td style="width:160px; text-align:right">
+			$ $unitValue Units * $item[quantity]  = $ $totalPrice
+			<br>
 			</td>
+	
 		</tr>
-
-		<tr>
-			<td style="border: 1px solid #777; background-color:white; width:540px">Issuer: $answerIssuer[name]</td>
-		</tr>
-
-		<tr>
-		<td style="border-bottom: 1px solid #777; background-color:white; width:540px"></td>
-		</tr>
-
+	
 	</table>
+	
+	EOF;
+	
+	$pdf->writeHTML($block2, false, false, false, false, '');
+	
+	}
 
-EOF;
-
-$pdf->writeHTML($block2, false, false, false, false, '');
-
-// ---------------------------------------------------------
-// ---------------------------------------------------------
+	// ---------------------------------------------------------
 
 $block3 = <<<EOF
 
-	<table style="font-size:10px; padding:5px 10px;">
+<table style="font-size:9px; text-align:right">
 
-		<tr>
-		
-		<td style="border: 1px solid #777; background-color:white; width:260px; text-align:center">Part</td>
-		<td style="border: 1px solid #777; background-color:white; width:80px; text-align:center">quantity</td>
-		<td style="border: 1px solid #777; background-color:white; width:100px; text-align:center">value Unit.</td>
-		<td style="border: 1px solid #777; background-color:white; width:100px; text-align:center">value Total</td>
+	<tr>
+	
+		<td style="width:80px;">
+			 NET: 
+		</td>
 
-		</tr>
+		<td style="width:80px;">
+			$ $netPrice
+		</td>
 
-	</table>
+	</tr>
+
+	<tr>
+	
+		<td style="width:80px;">
+			 TAX: 
+		</td>
+
+		<td style="width:80px;">
+			$ $tax
+		</td>
+
+	</tr>
+
+	<tr>
+	
+		<td style="width:160px;">
+			 --------------------------
+		</td>
+
+	</tr>
+
+	<tr>
+	
+		<td style="width:80px;">
+			 TOTAL: 
+		</td>
+
+		<td style="width:80px;">
+			$ $totalPrice
+		</td>
+
+	</tr>
+
+	<tr>
+	
+		<td style="width:160px;">
+			<br>
+			<br>
+			Thank you for your purchase
+		</td>
+
+	</tr>
+
+</table>
+
+
 
 EOF;
 
 $pdf->writeHTML($block3, false, false, false, false, '');
 
-// ---------------------------------------------------------
-
-foreach ($parts as $key => $item) {
-
-$itemPart = "description";
-$valuePart = $item["description"];
-$order = null;
-
-$answerPart = ControllerParts::ctrShowParts($itemPart, $valuePart, $order);
-
-$valueUnit = number_format($answerPart["sellingPrice"], 2);
-
-$totalPrice = number_format($item["totalPrice"], 2);
-
-$block4 = <<<EOF
-
-	<table style="font-size:10px; padding:5px 10px;">
-
-		<tr>
-			
-			<td style="border: 1px solid #777; color:#333; background-color:white; width:260px; text-align:center">
-				$item[description]
-			</td>
-
-			<td style="border: 1px solid #777; color:#333; background-color:white; width:80px; text-align:center">
-				$item[quantity]
-			</td>
-
-			<td style="border: 1px solid #777; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$valueUnit
-			</td>
-
-			<td style="border: 1px solid #777; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$totalPrice
-			</td>
-
-
-		</tr>
-
-	</table>
-
-
-EOF;
-
-$pdf->writeHTML($block4, false, false, false, false, '');
-
-}
-
-// ---------------------------------------------------------
-
-// ---------------------------------------------------------
-
-$block5 = <<<EOF
-
-	<table style="font-size:10px; padding:5px 10px;">
-
-		<tr>
-
-			<td style="color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border-bottom: 1px solid #666; background-color:white; width:100px; text-align:center"></td>
-
-			<td style="border-bottom: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center"></td>
-
-		</tr>
-		
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666;  background-color:white; width:100px; text-align:center">
-				Net:
-			</td>
-
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $netPrice
-			</td>
-
-		</tr>
-
-		<tr>
-
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Tax:
-			</td>
-		
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $tax
-			</td>
-
-		</tr>
-
-		<tr>
-		
-			<td style="border-right: 1px solid #666; color:#333; background-color:white; width:340px; text-align:center"></td>
-
-			<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">
-				Total:
-			</td>
-			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">
-				$ $totalPrice
-			</td>
-
-		</tr>
-
-
-	</table>
-
-EOF;
-
-$pdf->writeHTML($block5, false, false, false, false, '');
 
 
 $pdf->Output('bill.pdf');

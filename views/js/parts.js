@@ -56,43 +56,43 @@ var hiddenProfile = $('#hiddenProfile').val();
 Add Category and increment the code
 =============================================*/
 
-$("#newCategory").change(function(){
+// $("#newCategory").change(function(){
 
-    var idCategory = $(this).val();
+//     var idCategory = $(this).val();
     
-    var data = new FormData();
+//     var data = new FormData();
     
-    data.append("idCategory", idCategory);
+//     data.append("idCategory", idCategory);
 
-    $.ajax({
+//     $.ajax({
 
-        url:"ajax/parts.ajax.php",
-        method: "POST",
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success:function(answer){
+//         url:"ajax/parts.ajax.php",
+//         method: "POST",
+//         data: data,
+//         cache: false,
+//         contentType: false,
+//         processData: false,
+//         dataType: "json",
+//         success:function(answer){
 
-            if(!answer){
-                var newCode = idCategory + "01";
-                $("#newCode").val(newCode);
-            } else {
-                var newCode = Number(answer["code"]) + 1;
-                $("#newCode").val(newCode);
-            }
+//             if(!answer){
+//                 var newCode = idCategory + "01";
+//                 $("#newCode").val(newCode);
+//             } else {
+//                 var newCode = Number(answer["code"]) + 1;
+//                 $("#newCode").val(newCode);
+//             }
 
            
 
-            // if(answer){
+//             // if(answer){
 
-                // $("#newCategory").parent().after('<div class="alert alert-warning">This category is already been used</div>')
-                // $("#newCategory").val("");
-            // }
-        }
-    })
-})
+//                 // $("#newCategory").parent().after('<div class="alert alert-warning">This category is already been used</div>')
+//                 // $("#newCategory").val("");
+//             // }
+//         }
+//     })
+// })
 
 /*=============================================
 Selling Price

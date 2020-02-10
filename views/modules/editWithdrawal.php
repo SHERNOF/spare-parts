@@ -56,7 +56,10 @@
 
                   $partsUser = ControllerpartsUser::ctrShowpartsUser($itempartsUser, $valuepartsUser);
 
-                  $taxPercentage = round($withdrawal["tax"] * 100 / $withdrawal["netPrice"]);
+                  // $taxPercentage = round($withdrawal["tax"] * 100 / $withdrawal["netPrice"]);
+                  $discPercentage = round($withdrawal["disc"] * 100 / $withdrawal["totalPrice"]);
+
+
 
                   // var_dump($withdrawal);
                 
@@ -185,7 +188,7 @@
                       <div class="row">
 
                       <!--=====================================
-                      Taxes and Total Price
+                      Discount and Total Price
                      ======================================-->
                       
                     <div class="col-xs-8 pull-right">
@@ -194,7 +197,8 @@
                       
                             <thead>
                               
-                                <th>Taxes</th>
+                                <th>Discount</th>
+                                <!-- <th>Taxes</th> -->
                                 <th>Total</th>    
                             
                             </thead>
@@ -206,9 +210,11 @@
                                 <td style="width:50%">
                                   <div class="input-group">
 
-                                    <input type="number" class="form-control input-lg" min="0" id="newTaxSale" name="newTaxSale" value="<?php echo $taxPercentage; ?>" placeholder="0" required>
+                                    <!-- <input type="number" class="form-control input-lg" min="0" id="newTaxSale" name="newTaxSale" value="<?php echo $taxPercentage; ?>" placeholder="0" required> -->
+                                    <input type="number" class="form-control input-lg" min="0" id="newDiscSale" name="newDiscSale" value="<?php echo $discPercentage; ?>" placeholder="0" required>
                                     
-                                    <input type="hidden" name="newTaxPrice" id="newTaxPrice" value="<?php echo $withdrawal["tax"]; ?>" required>
+                                    <!-- <input type="hidden" name="newTaxPrice" id="newTaxPrice" value="<?php echo $withdrawal["tax"]; ?>" required> -->
+                                    <input type="hidden" name="newDiscPrice" id="newDiscPrice" value="<?php echo $withdrawal["disc"]; ?>" required>
                                     
                                     <input type="hidden" name="newNetPrice" id="newNetPrice" value="<?php echo $withdrawal["netPrice"]; ?>" required>
                                     
@@ -221,9 +227,11 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-                                    <input type="text" class="form-control input-lg" name="newPartsTotalSell" id="newPartsTotalSell" placeholder="00000" totalSale="<?php echo $withdrawal["netPrice"]; ?>"  value="<?php echo $withdrawal["totalPrice"]; ?>" readonly required>
+                                    <!-- <input type="text" class="form-control input-lg" name="newPartsTotalSell" id="newPartsTotalSell" placeholder="00000" totalSale="<?php echo $withdrawal["netPrice"]; ?>"  value="<?php echo $withdrawal["totalPrice"]; ?>" readonly required> -->
+                                    <input type="text" class="form-control input-lg" name="newPartsTotalSell" id="newPartsTotalSell" placeholder="00000" totalSale="<?php echo $withdrawal["totalPrice"]; ?>"  value="<?php echo $withdrawal["netPrice"]; ?>" readonly required>
 
-                                    <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $withdrawal["totalPrice"]; ?>" required>
+                                    <!-- <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $withdrawal["totalPrice"]; ?>" required> -->
+                                    <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $withdrawal["netPrice"]; ?>" required>
                                     
                                   </div>
                                 </td>

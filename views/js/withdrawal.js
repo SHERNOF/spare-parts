@@ -153,7 +153,10 @@ $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
             listParts();
             
             // Adding Tax
-            addTax();
+            // addTax();
+
+            // Adding Disc
+            addDisc();
 
             // Part Price format
              $(".newPartPrice").number(true, 2);
@@ -281,7 +284,10 @@ $(".formWithdrawal").on("click", "button.removePart", function(){
         /*=============================================
         Adding Tax
         =============================================*/
-        addTax();
+        // addTax();
+
+
+        addDisc();
 
         // GROUP PartS IN JSON FORMAT
 
@@ -384,7 +390,10 @@ $(".btnAddPart").click(function(){
             /*=============================================
             Adding Tax
             =============================================*/
-            addTax();
+            // addTax();
+
+              // Adding Disc
+            addDisc();
 
             $(".newPartPrice").number(true, 2);
 
@@ -488,7 +497,10 @@ $(".formWithdrawal").on("change", "input.newPartQty", function(){
         addingTotalPrices();
 
       // Add Tax
-        addTax();
+        // addTax();
+
+          // Adding Disc
+            addDisc();
 
         // GROUP PartS IN JSON FORMAT
 
@@ -553,12 +565,52 @@ function addTax(){
 }
 
 /*=============================================
+ADD DISCOUNT
+=============================================*/
+
+function addDisc(){
+
+	var disc = $("#newDiscSale").val();
+
+	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
+
+	var discPrice = Number(totalPrice * disc/100);
+
+	var totalwithDisc = Number(totalPrice) - Number(discPrice);
+	
+	$("#newPartsTotalSell").val(totalwithDisc);
+
+	// $("#saleTotal").val(totalwithDisc);
+  $("#saleTotal").val(totalPrice);
+
+	$("#newDiscPrice").val(discPrice);
+
+	// $("#newNetPrice").val(totalPrice);
+  $("#newNetPrice").val(totalwithDisc);
+
+}
+
+/*=============================================
 WHEN TAX CHANGES
 =============================================*/
 
 $("#newTaxSale").change(function(){
 
 	addTax();
+
+});
+
+   // Part Price format
+   $("#newPartsTotalSell").number(true, 2);
+
+
+/*=============================================
+WHEN DISCOUNT CHANGES
+=============================================*/
+
+$("#newDiscSale").change(function(){
+
+	addDisc();
 
 });
 
@@ -655,7 +707,10 @@ $(".formWithdrawal").on("change", "input#newCashValue", function(){
 	
 	var cash = $(this).val();
 
-	var change =  Number(cash) - Number($('#saleTotal').val());
+  var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
+
+	// var change =  Number(cash) - Number($('#saleTotal').val());
+  var change =  Number(cash) - Number($('#newPartsTotalSell').val());
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
