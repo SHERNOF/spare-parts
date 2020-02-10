@@ -623,7 +623,7 @@ $("#newDiscSale").change(function(){
 FINAL PRICE FORMAT
 =============================================*/
 
-$("#newSaleTotal").number(true, 2);
+// $("#newSaleTotal").number(true, 2);
 
 /*=============================================
 SELECT PAYMENT METHOD
