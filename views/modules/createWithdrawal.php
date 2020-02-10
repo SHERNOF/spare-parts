@@ -245,7 +245,7 @@ if($_SESSION["profile"] == "Special"){
             </div>
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary pull-right">Save sale</button>
+                <button type="submit" class="btn btn-primary pull-right">Save Withdrawal</button>
               </div>
 
             </form>
@@ -261,7 +261,7 @@ if($_SESSION["profile"] == "Special"){
 
         </div>
       
-      <!-- </div> -->
+      </div>
 
       <!--=====================================
                       Table Parts
@@ -305,7 +305,7 @@ if($_SESSION["profile"] == "Special"){
     </div>
   
 
-  <!--=====================================
+<!--=====================================
 MODAL ADD PART USER
 ======================================-->
 
