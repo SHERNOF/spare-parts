@@ -698,17 +698,17 @@ $("#newPaymentMethod").change(function(){
 /*=============================================
 CASH CHANGE
 =============================================*/
-// $(".formWithdrawal").on("change", "input#newCashValue", function(){
 $(".formWithdrawal").on("change", "input#newCashValue", function(){
+
 	
 	var cash = $(this).val();
 
-  // var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
+  var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
 
-	var change =  Number(cash) - Number($('#saleTotal').val());
-  // var change =  Number(cash) - Number($(totalPrice).val());
+	// var change =  Number(cash) - Number($('#saleTotal').val());
+  var change =  Number(cash) - Number($(totalPrice).val());
 
-	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
+  var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
 	newCashChange.val(change);
 
