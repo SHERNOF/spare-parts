@@ -605,7 +605,7 @@ WHEN TAX CHANGES
 
 
 /*=============================================
-WHEN DISCOUNT CHANGES
+WHEN TAX CHANGES
 =============================================*/
 
 $("#newDiscSale").change(function(){
@@ -614,16 +614,11 @@ $("#newDiscSale").change(function(){
 
 });
 
-   // Part Price format
-   $("#newPartsTotalSell").number(true, 2);
-
-
-
 /*=============================================
 FINAL PRICE FORMAT
 =============================================*/
 
-// $("#newSaleTotal").number(true, 2);
+$("#newPartsTotalSell").number(true, 2);
 
 /*=============================================
 SELECT PAYMENT METHOD
@@ -703,6 +698,7 @@ $("#newPaymentMethod").change(function(){
 /*=============================================
 CASH CHANGE
 =============================================*/
+// $(".formWithdrawal").on("change", "input#newCashValue", function(){
 $(".formWithdrawal").on("change", "input#newCashValue", function(){
 	
 	var cash = $(this).val();
