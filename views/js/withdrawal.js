@@ -710,7 +710,7 @@ $(".formWithdrawal").on("change", "input#newCashValue", function(){
   var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
 
 	// var change =  Number(cash) - Number($('#saleTotal').val());
-  var change =  Number(cash) - Number($('#newPartsTotalSell').val());
+  var change =  Number(cash) - Number($(totalPrice).val());
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
