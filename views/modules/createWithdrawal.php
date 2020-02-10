@@ -215,7 +215,7 @@ if($_SESSION["profile"] == "Special"){
 
                   <div class="form-group row">
                   
-                    <div class="col-xs-6" style="padding-right:0px"> 
+                    <div class="col-xs-6" style="padding-right: 0"> 
                     
                       <div class="input-group">
                       
@@ -225,6 +225,7 @@ if($_SESSION["profile"] == "Special"){
                           <option value="cash">Cash</option>
                           <option value="CC">Credit Card</option>
                           <option value="DC">Debit Card</option>
+
                         </select>
                   
                       </div>
@@ -239,17 +240,13 @@ if($_SESSION["profile"] == "Special"){
 
                   <br>                  
 
-                </div>
-              
-              <!-- </form> -->              
+                </div>              
           
             </div>
 
-            <div class="box-footer">
-
-            <button type="submit" class="btn btn-primary pull-right">Save sale</button>
-
-            </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary pull-right">Save sale</button>
+              </div>
 
             </form>
 
@@ -264,7 +261,7 @@ if($_SESSION["profile"] == "Special"){
 
         </div>
       
-      </div>
+      <!-- </div> -->
 
       <!--=====================================
                       Table Parts
