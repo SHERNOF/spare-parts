@@ -544,25 +544,25 @@ function addingTotalPrices(){
 ADD TAX
 =============================================*/
 
-function addTax(){
+// function addTax(){
 
-	var tax = $("#newTaxSale").val();
+// 	var tax = $("#newTaxSale").val();
 
-	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
+// 	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
 
-	var taxPrice = Number(totalPrice * tax/100);
+// 	var taxPrice = Number(totalPrice * tax/100);
 
-	var totalwithTax = Number(taxPrice) + Number(totalPrice);
+// 	var totalwithTax = Number(taxPrice) + Number(totalPrice);
 	
-	$("#newPartsTotalSell").val(totalwithTax);
+// 	$("#newPartsTotalSell").val(totalwithTax);
 
-	$("#saleTotal").val(totalwithTax);
+// 	$("#saleTotal").val(totalwithTax);
 
-	$("#newTaxPrice").val(taxPrice);
+// 	$("#newTaxPrice").val(taxPrice);
 
-	$("#newNetPrice").val(totalPrice);
+// 	$("#newNetPrice").val(totalPrice);
 
-}
+// }
 
 /*=============================================
 ADD DISCOUNT
@@ -605,7 +605,7 @@ WHEN TAX CHANGES
 
 
 /*=============================================
-WHEN TAX CHANGES
+WHEN DISCOUNT CHANGES
 =============================================*/
 
 $("#newDiscSale").change(function(){
@@ -698,17 +698,33 @@ $("#newPaymentMethod").change(function(){
 /*=============================================
 CASH CHANGE
 =============================================*/
+// $(".formWithdrawal").on("change", "input#newCashValue", function(){
+
+	
+// 	var cash = $(this).val();
+
+//   var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
+
+// 	var change =  Number(cash) - Number($('#saleTotal').val());
+//   var change =  Number(cash) - Number($(totalPrice).val());
+
+//   var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
+
+// 	newCashChange.val(change);
+
+// })
+
+
 $(".formWithdrawal").on("change", "input#newCashValue", function(){
 
 	
 	var cash = $(this).val();
+	console.log("cash", cash);
 
-  var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
+	var change =  Number(cash) - Number($('#saleTotal').val());
+	console.log("change", change);
 
-	// var change =  Number(cash) - Number($('#saleTotal').val());
-  var change =  Number(cash) - Number($(totalPrice).val());
-
-  var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
+	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
 	newCashChange.val(change);
 
