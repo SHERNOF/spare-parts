@@ -544,25 +544,42 @@ function addingTotalPrices(){
 ADD TAX
 =============================================*/
 
-// function addTax(){
+function addTax(){
 
-// 	var tax = $("#newTaxSale").val();
+	var tax = $("#newTaxSale").val();
 
-// 	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
+	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
 
-// 	var taxPrice = Number(totalPrice * tax/100);
+	var taxPrice = Number(totalPrice * tax/100);
 
-// 	var totalwithTax = Number(taxPrice) + Number(totalPrice);
+	var totalwithTax = Number(taxPrice) + Number(totalPrice);
 	
-// 	$("#newPartsTotalSell").val(totalwithTax);
+	$("#newPartsTotalSell").val(totalwithTax);
 
-// 	$("#saleTotal").val(totalwithTax);
+	$("#saleTotal").val(totalwithTax);
 
-// 	$("#newTaxPrice").val(taxPrice);
+	$("#newTaxPrice").val(taxPrice);
 
-// 	$("#newNetPrice").val(totalPrice);
+	$("#newNetPrice").val(totalPrice);
 
-// }
+}
+
+/*=============================================
+WHEN TAX CHANGES
+=============================================*/
+
+$("#newTaxSale").change(function(){
+
+	addTax();
+
+});
+
+/*=============================================
+FINAL PRICE FORMAT
+=============================================*/
+
+   $("#newPartsTotalSell").number(true, 2);
+
 
 /*=============================================
 ADD DISCOUNT
@@ -589,20 +606,6 @@ function addDisc(){
   $("#newNetPrice").val(totalwithDisc);
 
 }
-
-/*=============================================
-WHEN TAX CHANGES
-=============================================*/
-
-// $("#newTaxSale").change(function(){
-
-// 	addTax();
-
-// });
-
-//    // Part Price format
-//    $("#newPartsTotalSell").number(true, 2);
-
 
 /*=============================================
 WHEN DISCOUNT CHANGES
@@ -691,7 +694,10 @@ $("#newPaymentMethod").change(function(){
 
               '</div>')
 
-	}
+  }
+  
+
+
 })
 
 
@@ -703,9 +709,9 @@ $(".formWithdrawal").on("change", "input#newCashValue", function(){
 	
 	var cash = $(this).val();
 
-  var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
+  // var totalPrice = $("#newPartsTotalSell").attr("totalSale"); //sherwin
 
-	var change =  Number(cash) - Number($('#saleTotal').val());
+	// var change =  Number(cash) - Number($('#saleTotal').val());
   var change =  Number(cash) - Number($(totalPrice).val());
 
   var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
