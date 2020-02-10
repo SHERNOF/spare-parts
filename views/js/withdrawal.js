@@ -469,7 +469,7 @@ $(".formWithdrawal").on("change", "input.newPartQty", function(){
 
     if(Number($(this).val()) >  Number($(this).attr("stock"))){
 
-        /*==========================================================
+    /*==========================================================
 		IF QUANTITY IS MORE THAN THE STOCK VALUE SET INITIAL VALUES
 		===========================================================*/
 
@@ -574,7 +574,7 @@ function addDisc(){
 
 	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
 
-	var discPrice = Number(totalPrice * disc/100);
+	var discPrice = Math.round(Number(totalPrice * disc/100));
 
 	var totalwithDisc = Number(totalPrice) - Number(discPrice);
 	
@@ -594,14 +594,14 @@ function addDisc(){
 WHEN TAX CHANGES
 =============================================*/
 
-$("#newTaxSale").change(function(){
+// $("#newTaxSale").change(function(){
 
-	addTax();
+// 	addTax();
 
-});
+// });
 
-   // Part Price format
-   $("#newPartsTotalSell").number(true, 2);
+//    // Part Price format
+//    $("#newPartsTotalSell").number(true, 2);
 
 
 /*=============================================
