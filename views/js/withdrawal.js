@@ -617,7 +617,7 @@ $("#newPaymentMethod").change(function(){
 
 		// Adding format to the price
 
-		$('#newCashValue').number( true, 2);
+		// $('#newCashValue').number( true,);
       	$('#newCashChange').number( true, 2);
 
 
@@ -651,11 +651,14 @@ $("#newPaymentMethod").change(function(){
 /*=============================================
 CASH CHANGE
 =============================================*/
-$(".formWithdrawal").on("change", "input#newCashValue", function(){
+// $(".formWithdrawal").on("change", "input#newCashValue", function(){
+  $(".formWithdrawal").on('change', "input#newCashValue", function(){
 	
 	var cash = $(this).val();
 
-	var change =  Number(cash) - Number($('#saleTotal').val());
+  var change =  Number(cash) - Number($('#saleTotal').val());
+  
+  console.log("change", change)
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
