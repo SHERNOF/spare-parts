@@ -97,12 +97,12 @@ class ControllerWithdrawal{
 						   "idPartsUser"=>$_POST["selectpartsUser"],
 						   "code"=>$_POST["newWithdrawal"],
 						   "parts"=>$_POST["partsList"],
-						//    "tax"=>$_POST["newTaxPrice"],
-						"disc"=>$_POST["newDiscPrice"],
-						// "netPrice"=>$_POST["newNetPrice"],
-						"netPrice"=>$_POST["saleTotal"],
-						// "totalPrice"=>$_POST["saleTotal"],
-						   "totalPrice"=>$_POST["newNetPrice"],
+						   "tax"=>$_POST["newTaxPrice"],
+						// "disc"=>$_POST["newDiscPrice"],
+						"netPrice"=>$_POST["newNetPrice"],
+						// "netPrice"=>$_POST["saleTotal"],
+						"totalPrice"=>$_POST["saleTotal"],
+						//    "totalPrice"=>$_POST["newNetPrice"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);
 
 			$answer = ModelWithdrawal::mdlAddWithdrawal($table, $data);
@@ -364,8 +364,8 @@ class ControllerWithdrawal{
 						   "idPartsUser"=>$_POST["selectpartsUser"],
 						   "code"=>$_POST["editWithdrawal"],
 						   "parts"=>$partsList,
-						   "tax"=>$_POST["newTaxPrice"],
-						//    "disc"=>$_POST["newDiscPrice"],
+						//    "tax"=>$_POST["newTaxPrice"],
+						   "disc"=>$_POST["newDiscPrice"],
 						   "netPrice"=>$_POST["newNetPrice"],
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);

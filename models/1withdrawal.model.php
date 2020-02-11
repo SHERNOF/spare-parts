@@ -42,15 +42,15 @@ class ModelWithdrawal {
 
 	static public function mdlAddWithdrawal($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idPartsUser, idIssuer, parts, tax, netPrice, totalPrice, paymentMethod) VALUES (:code, :idPartsUser, :idIssuer, :parts, :tax, :netPrice, :totalPrice, :paymentMethod)");
-		// $stmt = Connection::connect()->prepare("INSERT INTO $table(code, idPartsUser, idIssuer, parts, disc, netPrice, totalPrice, paymentMethod) VALUES (:code, :idPartsUser, :idIssuer, :parts, :disc, :netPrice, :totalPrice, :paymentMethod)");
+		// $stmt = Connection::connect()->prepare("INSERT INTO $table(code, idPartsUser, idIssuer, parts, tax, netPrice, totalPrice, paymentMethod) VALUES (:code, :idPartsUser, :idIssuer, :parts, :tax, :netPrice, :totalPrice, :paymentMethod)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idPartsUser, idIssuer, parts, disc, netPrice, totalPrice, paymentMethod) VALUES (:code, :idPartsUser, :idIssuer, :parts, :disc, :netPrice, :totalPrice, :paymentMethod)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idPartsUser", $data["idPartsUser"], PDO::PARAM_INT);
 		$stmt->bindParam(":idIssuer", $data["idIssuer"], PDO::PARAM_INT);
 		$stmt->bindParam(":parts", $data["parts"], PDO::PARAM_STR);
-		$stmt->bindParam(":tax", $data["tax"], PDO::PARAM_STR);
-		// $stmt->bindParam(":disc", $data["disc"], PDO::PARAM_STR);
+		// $stmt->bindParam(":tax", $data["tax"], PDO::PARAM_STR);
+		$stmt->bindParam(":disc", $data["disc"], PDO::PARAM_STR);
 		$stmt->bindParam(":netPrice", $data["netPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
@@ -76,15 +76,15 @@ class ModelWithdrawal {
 
 	static public function mdlEditWithdrawal($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET idPartsUser = :idPartsUser, idIssuer = :idIssuer, parts = :parts, tax = :tax, netPrice = :netPrice, totalPrice = :totalPrice, paymentMethod = :paymentMethod WHERE code = :code");
-		// $stmt = Connection::connect()->prepare("UPDATE $table SET idPartsUser = :idPartsUser, idIssuer = :idIssuer, parts = :parts, disc = :disc, netPrice = :netPrice, totalPrice = :totalPrice, paymentMethod = :paymentMethod WHERE code = :code");
+		// $stmt = Connection::connect()->prepare("UPDATE $table SET idPartsUser = :idPartsUser, idIssuer = :idIssuer, parts = :parts, tax = :tax, netPrice = :netPrice, totalPrice = :totalPrice, paymentMethod = :paymentMethod WHERE code = :code");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET idPartsUser = :idPartsUser, idIssuer = :idIssuer, parts = :parts, disc = :disc, netPrice = :netPrice, totalPrice = :totalPrice, paymentMethod = :paymentMethod WHERE code = :code");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idPartsUser", $data["idPartsUser"], PDO::PARAM_INT);
 		$stmt->bindParam(":idIssuer", $data["idIssuer"], PDO::PARAM_INT);
 		$stmt->bindParam(":parts", $data["parts"], PDO::PARAM_STR);
-		$stmt->bindParam(":tax", $data["tax"], PDO::PARAM_STR);
-		// $stmt->bindParam(":disc", $data["disc"], PDO::PARAM_STR);
+		// $stmt->bindParam(":tax", $data["tax"], PDO::PARAM_STR);
+		$stmt->bindParam(":disc", $data["disc"], PDO::PARAM_STR);
 		$stmt->bindParam(":netPrice", $data["netPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);

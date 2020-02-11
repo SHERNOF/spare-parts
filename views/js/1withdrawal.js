@@ -94,8 +94,8 @@ $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
             var price = answer["sellingPrice"];
 
             /*=============================================
-          	If stock = 0
-              =============================================*/
+          	AVOID ADDING THE PRODUCT WHEN ITS STOCK IS ZERO
+          	=============================================*/
               
               if(stock == 0){
 
@@ -147,26 +147,29 @@ $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
             
             // Adding total Prices
             addingTotalPrices();
-
-             // GROUP PartS IN JSON FORMAT
-
-            listParts();
             
             // Adding Tax
-            addTax();
+            // addTax();
 
-                // Part Price format
+            // Adding Disc
+            addDisc();
+
+            // GROUP PartS IN JSON FORMAT
+            listParts();
+
+            // Part Price format
              $(".newPartPrice").number(true, 2);
 
-
         }
+
     })
+    
 });
 
 
-/*=============================================
+/*================================================================================
 FUNCTION TO DEACTIVATE "ADD" BUTTONS WHEN THE Part HAS BEEN SELECTED IN THE FOLDER
-=============================================*/
+=================================================================================*/
 
 function removeAddPartSale(){
 
@@ -192,9 +195,7 @@ function removeAddPartSale(){
 
 			}
 		}
-
-	}
-	
+	}	
 }
 
 /*=============================================
@@ -207,8 +208,8 @@ $('.tableWithdrawal').on( 'draw.dt', function(){
 
 })
 
-/*=============================================
-Load table at all time during tab surf
+/*============================================
+WHEN TABLE LOADS EVERYTIME THAT NAVIGATE IN IT
 =============================================*/
 
 $(".tableWithdrawal").on("draw.dt", function(){
@@ -272,16 +273,14 @@ $(".formWithdrawal").on("click", "button.removePart", function(){
 
     } else {
 
-        /*=============================================
-        Adding total Prices
-        =============================================*/
-
+        // ADDING TOTAL PRICES
         addingTotalPrices();
 
-        /*=============================================
-        Adding Tax
-        =============================================*/
-        addTax();
+        // ADD TAX
+        // addTax();
+
+        // ADD DISCOUNT
+        addDisc();
 
         // GROUP PartS IN JSON FORMAT
 
@@ -375,18 +374,16 @@ $(".btnAddPart").click(function(){
                     }
                 }
 
-            /*=============================================
-            Adding total Prices
-            =============================================*/
+           // ADDING TOTAL PRICES
 
             addingTotalPrices();
 
-            // /*=============================================
-            // Adding Tax
-            // =============================================*/
-            addTax();
+           // ADD TAX
+           // addTax();
 
-            
+            // Adding Disc
+            addDisc()
+
             $(".newPartPrice").number(true, 2);
 
         }
@@ -436,9 +433,7 @@ $(".formWithdrawal").on("change", "select.newPartDescription", function(){
 
 
       	}
-
-      })
-
+    })
 })
 
 /*=============================================
@@ -489,7 +484,10 @@ $(".formWithdrawal").on("change", "input.newPartQty", function(){
         addingTotalPrices();
 
       // Add Tax
-        addTax();
+        // addTax();
+
+          // Adding Disc
+            addDisc();
 
         // GROUP PartS IN JSON FORMAT
 
@@ -524,8 +522,7 @@ function addingTotalPrices(){
     
     $("#newPartsTotalSell").val(addingTotalPrice);
     $("#saleTotal").val(addingTotalPrice);
-	$("#newPartsTotalSell").attr("totalSale",addingTotalPrice);
-
+	  $("#newPartsTotalSell").attr("totalSale",addingTotalPrice);
 
 }
 
@@ -539,7 +536,7 @@ function addTax(){
 
 	var totalPrice = $("#newPartsTotalSell").attr("totalSale");
 
-	var taxPrice = Math.round(Number(totalPrice * tax/100));
+	var taxPrice = Number(totalPrice * tax/100);
 
 	var totalwithTax = Number(taxPrice) + Number(totalPrice);
 	
@@ -560,6 +557,49 @@ WHEN TAX CHANGES
 $("#newTaxSale").change(function(){
 
 	addTax();
+
+});
+
+/*============================================
+FINAL PRICE FORMAT
+=============================================*/
+
+$("#newPartsTotalSell").number(true, 2);
+
+/*=============================================
+ADD DISCOUNT
+=============================================*/
+
+function addDisc(){
+
+	var disc = $("#newDiscSale").val();
+
+  var totalPrice = $("#newPartsTotalSell").attr("totalSale");
+  // var totalPrice = $("#newPartsTotalSell");
+
+	var discPrice = Math.round(Number(totalPrice * disc/100));
+
+	var totalwithDisc = Number(totalPrice) - Number(discPrice);
+	
+	$("#newPartsTotalSell").val(totalwithDisc);
+
+	// $("#saleTotal").val(totalwithDisc);
+  $("#saleTotal").val(totalwithDisc);
+
+	$("#newDiscPrice").val(discPrice);
+
+	// $("#newNetPrice").val(totalPrice);
+  $("#newNetPrice").val(totalPrice);
+
+}
+
+/*=============================================
+WHEN DISCOUNT CHANGES
+=============================================*/
+
+$("#newDiscSale").change(function(){
+
+	addDisc();
 
 });
 
@@ -614,7 +654,7 @@ $("#newPaymentMethod").change(function(){
 		// Adding format to the price
 
 		$('#newCashValue').number( true, 2);
-      	$('#newCashChange').number( true, 2);
+    $('#newCashChange').number( true, 2);
 
 
       	// List method in the entry
@@ -622,7 +662,8 @@ $("#newPaymentMethod").change(function(){
 
 	}else{
 
-		$(this).parent().parent().removeClass('col-xs-4');
+
+    $(this).parent().parent().removeClass('col-xs-4');
 
 		$(this).parent().parent().addClass('col-xs-6');
 
@@ -640,30 +681,38 @@ $("#newPaymentMethod").change(function(){
 
               '</div>')
 
-	}
+  }
+  
 
-	
 
-})
+});
+
 
 /*=============================================
 CASH CHANGE
 =============================================*/
 $(".formWithdrawal").on("change", "input#newCashValue", function(){
 
-	
-	var cash = $(this).val();
-	console.log("cash", cash);
+  // $("#newCashValue").change(function(){
 
-	var change =  Number(cash) - Number($('#saleTotal').val());
-	console.log("change", change);
+  var cash = $(this).val();
+
+  console.log("cash", cash);
+
+ 
+  
+  var change =  Number(cash) - Number($('#saleTotal').val());
+  
+  console.log("change", change);
+
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 
-	newCashChange.val(change);
+  newCashChange.val(change);
+  
+  // lessDisc();
 
 })
-
 
 
 /*=============================================
