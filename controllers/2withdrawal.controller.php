@@ -97,21 +97,16 @@ class ControllerWithdrawal{
 						   "idPartsUser"=>$_POST["selectpartsUser"],
 						   "code"=>$_POST["newWithdrawal"],
 						   "parts"=>$_POST["partsList"],
-						//    "tax"=>$_POST["newTaxPrice"],
-						"disc"=>$_POST["newDiscPrice"],
-						// "netPrice"=>$_POST["newNetPrice"],
-						"netPrice"=>$_POST["saleTotal"],
-						// "totalPrice"=>$_POST["saleTotal"],
-						   "totalPrice"=>$_POST["newNetPrice"],
+						   "tax"=>$_POST["newTaxPrice"],
+						   "netPrice"=>$_POST["newNetPrice"],
+						   "totalPrice"=>$_POST["saleTotal"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);
 
 			$answer = ModelWithdrawal::mdlAddWithdrawal($table, $data);
 
 			if($answer == "ok"){
 
-				// $printer = "POS-58-Series"; //windows
- 
-				// // $printer = "Thermal Printer H58 Printer USB";//MAC
+				// $printer = "POS-58-Series";
 
 				// $connector = new WindowsPrintConnector($printer);
 
@@ -131,7 +126,7 @@ class ControllerWithdrawal{
 
 				// $printer -> text("JMSA Pharmacy"."\n");//Company name
 
-				// $printer -> text("ID: 71.759.963-9"."\n");//Company's 
+				// $printer -> text("ID: 71.759.963-9"."\n");//Company's ID
 
 				// $printer -> text("Address: Pila, Laguna"."\n");//Company address
 
@@ -170,7 +165,6 @@ class ControllerWithdrawal{
 				// $printer->text("NET: $ ".number_format($_POST["newNetPrice"],2)."\n"); //net price
 
 				// $printer->text("TAX: $ ".number_format($_POST["newTaxPrice"],2)."\n"); //tax value
-				// $printer->text("DISCOUNT: $ ".number_format($_POST["newDiscPrice"],2)."\n"); //tax value
 
 				// $printer->text("--------\n");
 
@@ -365,7 +359,6 @@ class ControllerWithdrawal{
 						   "code"=>$_POST["editWithdrawal"],
 						   "parts"=>$partsList,
 						   "tax"=>$_POST["newTaxPrice"],
-						//    "disc"=>$_POST["newDiscPrice"],
 						   "netPrice"=>$_POST["newNetPrice"],
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);
@@ -607,8 +600,7 @@ class ControllerWithdrawal{
 					<td style='font-weight:bold; border:1px solid #eee;'>Issuer</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>Quantity</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>Parts</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>Discount</td>
-
+					<td style='font-weight:bold; border:1px solid #eee;'>Tax</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>netPrice</td>		
 					<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
 					<td style='font-weight:bold; border:1px solid #eee;'>METODO Of Payment</td	
@@ -646,7 +638,7 @@ class ControllerWithdrawal{
 					}
 
 					echo utf8_decode("</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["disc"],2)."</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
 					<td style='border:1px solid #eee;'>$ ".number_format($item["netPrice"],2)."</td>	
 					<td style='border:1px solid #eee;'>$ ".number_format($item["totalPrice"],2)."</td>
 					<td style='border:1px solid #eee;'>".$item["paymentMethod"]."</td>
