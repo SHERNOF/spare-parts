@@ -19,7 +19,7 @@ if($_SESSION["profile"] == "Special"){
     <section class="content-header">
       <h1>
 
-        Create Sale
+        Parts Withdrawal
 
         <!-- <small>Manage Users</small> -->
 
@@ -29,7 +29,7 @@ if($_SESSION["profile"] == "Special"){
 
         <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Create Sale</li>
+        <li class="active">Spare Parts Management</li>
 
       </ol>
       
@@ -150,8 +150,9 @@ if($_SESSION["profile"] == "Special"){
                       <table class="table">
                       
                             <thead>
-                              
-                                <th>Taxes</th>
+
+                                <th>Discount</th>
+                                <!-- <th>Taxes</th> -->
                                 <th>Total</th>    
                             
                             </thead>
@@ -160,18 +161,30 @@ if($_SESSION["profile"] == "Special"){
 
                               <tr>
 
-                                <td style="width:50%">
+                              <td style="width:50%">
                                   <div class="input-group">
-                                    <input type="number" class="form-control input-lg" min="0" id="newTaxSale" name="newTaxSale" placeholder="0" required>
+                                    <input type="number" class="form-control input-lg" min="0" id="newDiscSale" name="newDiscSale" placeholder="0" required>
+                                    
+                                    <input type="hidden" name="newNetPrice" id="newNetPrice" required>
+                                    <input type="hidden" name="newDiscPrice" id="newDiscPrice" required>
+                                    
+                                    <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                                  </div>
+                                </td>
+
+                                <!-- <td style="width:30%">
+                                  <div class="input-group">
+                                    <input type="number" class="form-control input-lg" value="0" min="0" id="newTaxSale" name="newTaxSale" placeholder="0" required>
                                     
                                     <input type="hidden" name="newNetPrice" id="newNetPrice" required>
                                     <input type="hidden" name="newTaxPrice" id="newTaxPrice" required>
                                     
                                     <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                                   </div>
-                                </td>
+                                </td> -->
 
                                 <td style="width:50%">
+
                                   <div class="input-group">
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
@@ -181,18 +194,21 @@ if($_SESSION["profile"] == "Special"){
                                     <input type="hidden" name="saleTotal" id="saleTotal" required>
                                     
                                     
-                                  </div>
-                                </td>
+                                    </div>
+                                    
+                                  </td>
+                                
+                                </tr>
                               
-                              </tr>
-                            
-                            </tbody>
-                        
-                        </table>
+                              </tbody>
                           
-                      </div>
-                  
-                  </div>
+                          </table>
+                            
+                        </div>
+
+                      <hr>
+                    
+                    </div>
 
                   <hr>
 
@@ -202,15 +218,17 @@ if($_SESSION["profile"] == "Special"){
 
                   <div class="form-group row">
                   
-                    <div class="col-xs-6" style="padding-right:0px"> 
+                    <div class="col-xs-6" style="padding-right: 0"> 
                     
                       <div class="input-group">
                       
                         <select class="form-control" id="newPaymentMethod" name="newPaymentMethod" required>
+                        
                           <option value="">Select Payment Method</option>
                           <option value="cash">Cash</option>
                           <option value="CC">Credit Card</option>
                           <option value="DC">Debit Card</option>
+
                         </select>
                   
                       </div>
@@ -225,17 +243,13 @@ if($_SESSION["profile"] == "Special"){
 
                   <br>                  
 
-                </div>
-              
-              <!-- </form> -->              
+                </div>              
           
             </div>
 
-            <div class="box-footer">
-
-            <button type="submit" class="btn btn-primary pull-right">Save sale</button>
-
-            </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary pull-right">Save Withdrawals</button>
+              </div>
 
             </form>
 
@@ -294,7 +308,7 @@ if($_SESSION["profile"] == "Special"){
     </div>
   
 
-  <!--=====================================
+<!--=====================================
 MODAL ADD PART USER
 ======================================-->
 
