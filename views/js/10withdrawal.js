@@ -67,6 +67,7 @@ Adding Parts
 =============================================*/
 
 $(".tableWithdrawal tbody").on("click", "button.addPartsButton", function(){
+  // $(".newPart").click(function(){
 
     var idPart = $(this).attr("idPart");
 
@@ -566,6 +567,7 @@ $("#newTaxSale").change(function(){
    $("#newPartsTotalSell").number(true, 2);
 
 
+
 /*=============================================
 FINAL PRICE FORMAT
 =============================================*/
@@ -616,7 +618,7 @@ $("#newPaymentMethod").change(function(){
 
 		// Adding format to the price
 
-		// $('#newCashValue').number( true,);
+		$('#newCashValue').number( true, 2);
       	$('#newCashChange').number( true, 2);
 
 
@@ -642,6 +644,7 @@ $("#newPaymentMethod").change(function(){
                 '</div>'+
 
               '</div>')
+
 	}
 })
 
@@ -649,14 +652,11 @@ $("#newPaymentMethod").change(function(){
 /*=============================================
 CASH CHANGE
 =============================================*/
-// $(".formWithdrawal").on("change", "input#newCashValue", function(){
-  $(".formWithdrawal").on('change', "input#newCashValue", function(){
+$(".formWithdrawal").on("change", "input#newCashValue", function(){
 	
 	var cash = $(this).val();
 
-  var change =  Number(cash) - Number($('#saleTotal').val());
-  
-  console.log("change", change)
+	var change =  Number(cash) - Number($('#saleTotal').val());
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 

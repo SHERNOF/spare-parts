@@ -43,7 +43,6 @@ if($_SESSION["profile"] == "Special"){
                       FORM
       ======================================-->
 
-      <!-- <div class="col-lg-5 col-xs-6"> -->
       <div class="col-lg-5 col-xs-12">
       
         <div class="box box-success">
@@ -125,7 +124,7 @@ if($_SESSION["profile"] == "Special"){
                       Parts Input
                      ======================================-->
 
-                     <div class="form-group row newPart">test
+                     <div class="form-group row newPart">
 
 
                     </div>
@@ -271,7 +270,6 @@ if($_SESSION["profile"] == "Special"){
                       Table Parts
         ======================================-->
 
-      <!-- <div class="col-lg-7 col-xs-6"> -->
       <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
 
         <div class="box box-warning">
@@ -387,8 +385,7 @@ MODAL BODY
 
     <!-- Modal footer -->
     <div class="modal-footer">
-      <button type="button" class="btn pull-left" data-dismiss="modal">Close</button>
-      <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
       <button type="submit" class="btn btn-primary">Save Parts User</button>
     </div>
   </form>
