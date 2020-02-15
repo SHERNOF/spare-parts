@@ -565,8 +565,6 @@ $("#newTaxSale").change(function(){
    // Part Price format
    $("#newPartsTotalSell").number(true, 2);
 
-
-
 /*=============================================
 FINAL PRICE FORMAT
 =============================================*/
