@@ -125,7 +125,7 @@ if($_SESSION["profile"] == "Special"){
                       Parts Input
                      ======================================-->
 
-                     <div class="form-group row newPart">test
+                     <div class="form-group row newPart">
 
 
                     </div>
